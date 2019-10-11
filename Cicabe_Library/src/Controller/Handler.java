@@ -5,48 +5,51 @@
  */
 package Controller;
 
+import View.*;
 import Model.*;
-import view.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
+import java.util.ArrayList;
 import java.awt.event.MouseEvent;
 import javax.swing.JOptionPane;
-import java.util.ArrayList;
+import javax.swing.table.TableModel;
+
+
 
 /**
  *
  * @author Zara
  */
 public class Handler extends MouseAdapter implements ActionListener {
-    private loginFrame loginFrame;
-    private mainFrame mainFrame;
-    private peminjamanFrame peminjamanFrame;
-    private pengembalianFrame pengembalianFrame;
-    private editmemberFrame editmemberFrame;
-    private managebukuFrame managebukuFrame;
+    private login loginFrame;
+    private main mainFrame;
+    private peminjaman peminjamanFrame;
+    private pengembalian pengembalianFrame;
+    private editmember editmember;
+    private managebuku managebukuFrame;
     
     private Controller con = new Controller();
         public Handler() {
-            loginFrame = new loginFrame();
-            mainFrame = new mainFrame();
-            peminjamanFrame = new peminjamanFrame();
-            pengembalianFrame = new PengembalianFrame();
-            editmemberFrame = new editmemberFrame();
-            managebukuFrame = new managebukuFrame();
+            loginFrame = new login();
+            mainFrame = new main();
+            peminjamanFrame = new peminjaman();
+            pengembalianFrame = new pengembalian();
+            editmember = new editmember();
+            managebukuFrame = new managebuku();
             
             loginFrame.setVisible(true);
             mainFrame.setVisible(false);
             peminjamanFrame.setVisible(false);
             pengembalianFrame.setVisible(false);
-            editmemberFrame.setVisible(false);
+            editmember.setVisible(false);
             managebukuFrame.setVisible(false);
             
             loginFrame.addActionListener(this);
             mainFrame.addActionListener(this);
             peminjamanFrame.addActionListener(this);
             pengembalianFrame.addActionListener(this);
-            editmemberFrame.addActionListener(this);
+            editmember.addActionListener(this);
             managebukuFrame.addActionListener(this);
         }
         public void actionPerformed(ActionEvent ae) {
