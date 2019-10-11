@@ -19,27 +19,35 @@ import java.util.ArrayList;
  * @author Zara
  */
 public class Handler extends MouseAdapter implements ActionListener {
-    private Login log;
-    private Main main;
-    private Peminjaman peminjaman;
-    private Pengembalian pengembalian;
+    private loginFrame loginFrame;
+    private mainFrame mainFrame;
+    private peminjamanFrame peminjamanFrame;
+    private pengembalianFrame pengembalianFrame;
+    private editmemberFrame editmemberFrame;
+    private managebukuFrame managebukuFrame;
     
     private Controller con = new Controller();
         public Handler() {
-            log = new Login();
-            main = new Main();
-            peminjaman = new Peminjaman();
-            pengembalian = new Pengembalian();
+            loginFrame = new loginFrame();
+            mainFrame = new mainFrame();
+            peminjamanFrame = new peminjamanFrame();
+            pengembalianFrame = new PengembalianFrame();
+            editmemberFrame = new editmemberFrame();
+            managebukuFrame = new managebukuFrame();
             
-            log.setVisible(true);
-            main.setVisible(false);
-            peminjaman.setVisible(false);
-            pengembalian.setVisible(false);
+            loginFrame.setVisible(true);
+            mainFrame.setVisible(false);
+            peminjamanFrame.setVisible(false);
+            pengembalianFrame.setVisible(false);
+            editmemberFrame.setVisible(false);
+            managebukuFrame.setVisible(false);
             
-            log.addActionListener(this);
-            main.addActionListener(this);
-            peminjaman.addActionListener(this);
-            pengembalian.addActionListener(this);
+            loginFrame.addActionListener(this);
+            mainFrame.addActionListener(this);
+            peminjamanFrame.addActionListener(this);
+            pengembalianFrame.addActionListener(this);
+            editmemberFrame.addActionListener(this);
+            managebukuFrame.addActionListener(this);
         }
         public void actionPerformed(ActionEvent ae) {
                 Object source = ae.getSource();
