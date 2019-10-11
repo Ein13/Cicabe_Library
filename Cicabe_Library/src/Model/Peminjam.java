@@ -33,6 +33,15 @@ public class Peminjam {
         return nama;
     }
     
-    public void setnama(String nama){}
-        
+    public void setnama(String nama){
+        this.nama = nama;
+    }
+    
+    public boolean getpinjam(){
+        return pinjam;
+    }
+    
+    public void setpinjam(boolean pinjam){
+        this.pinjam = pinjam;
+    }
 }
