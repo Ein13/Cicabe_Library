@@ -26,44 +26,93 @@ public class Peminjaman {
         this.sudah_kembali = sudah_kembali;
     }
     
-    public void addBuku(Buku x){
-        Buku = x;
-    }
-        
-    public void addPeminjam (Peminjam x){
-        Peminjam = x;
-    }
-    
-    public String getidpinjam(){
+
+    /**
+     * @return the idpinjam
+     */
+    public String getIdpinjam() {
         return idpinjam;
     }
-    
-    public void setidpinjam(String idpinjam){
+
+    /**
+     * @param idpinjam the idpinjam to set
+     */
+    public void setIdpinjam(String idpinjam) {
         this.idpinjam = idpinjam;
     }
-    
-    public Date gettgl_pinjam(){
+
+    /**
+     * @return the tgl_pinjam
+     */
+    public Date getTgl_pinjam() {
         return tgl_pinjam;
     }
-    
-    public void settgl_pinjam(Date tgl_pinjam){
+
+    /**
+     * @param tgl_pinjam the tgl_pinjam to set
+     */
+    public void setTgl_pinjam(Date tgl_pinjam) {
         this.tgl_pinjam = tgl_pinjam;
     }
-    
-    public int getlama_pinjam(){
+
+    /**
+     * @return the lama_pinjam
+     */
+    public int getLama_pinjam() {
         return lama_pinjam;
     }
-    
-    public void setlama_pinjam(int lama_pinjam){
+
+    /**
+     * @param lama_pinjam the lama_pinjam to set
+     */
+    public void setLama_pinjam(int lama_pinjam) {
         this.lama_pinjam = lama_pinjam;
     }
-    
-    public boolean getsudah_kembali(){
+
+    /**
+     * @return the sudah_kembali
+     */
+    public boolean isSudah_kembali() {
         return sudah_kembali;
     }
-    
-    public void setsudah_kembali(boolean sudah_kembali){
+
+    /**
+     * @param sudah_kembali the sudah_kembali to set
+     */
+    public void setSudah_kembali(boolean sudah_kembali) {
         this.sudah_kembali = sudah_kembali;
     }
+
+    /**
+     * @return the Buku
+     */
+    public Buku getBuku() {
+        return Buku;
+    }
+
+    /**
+     * @param Buku the Buku to set
+     */
+    public void setBuku(Buku Buku) {
+        this.Buku = Buku;
+    }
+
+    /**
+     * @return the Peminjam
+     */
+    public Peminjam getPeminjam() {
+        return Peminjam;
+    }
+
+    /**
+     * @param Peminjam the Peminjam to set
+     */
+    public void setPeminjam(Peminjam Peminjam) {
+        this.Peminjam = Peminjam;
+    }
+    
+    
+    
+    
 
 }
