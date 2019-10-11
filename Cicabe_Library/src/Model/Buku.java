@@ -23,45 +23,77 @@ public class Buku {
         penerbit = Penerbit;
         tahun = Tahun;
     }
-    
-    public String getidbuku(){
+
+    /**
+     * @return the idbuku
+     */
+    public String getIdbuku() {
         return idbuku;
     }
-    
-    public void setidbuku(String idbuku){
+
+    /**
+     * @param idbuku the idbuku to set
+     */
+    public void setIdbuku(String idbuku) {
         this.idbuku = idbuku;
     }
-    
-    public String getjudul(){
+
+    /**
+     * @return the judul
+     */
+    public String getJudul() {
         return judul;
     }
-    
-    public void setjudul(String judul){
+
+    /**
+     * @param judul the judul to set
+     */
+    public void setJudul(String judul) {
         this.judul = judul;
     }
-    
-    public String getpenulis(){
+
+    /**
+     * @return the penulis
+     */
+    public String getPenulis() {
         return penulis;
     }
-    
-    public void setpenulis(String penulis){
+
+    /**
+     * @param penulis the penulis to set
+     */
+    public void setPenulis(String penulis) {
         this.penulis = penulis;
     }
-    
-    public String getpenerbit(){
+
+    /**
+     * @return the penerbit
+     */
+    public String getPenerbit() {
         return penerbit;
     }
-    
-    public void setpenerbit(String penerbit){
+
+    /**
+     * @param penerbit the penerbit to set
+     */
+    public void setPenerbit(String penerbit) {
         this.penerbit = penerbit;
     }
-    
-    public int gettahun(){
+
+    /**
+     * @return the tahun
+     */
+    public int getTahun() {
         return tahun;
     }
-    
-    public void settahun(int tahun){
+
+    /**
+     * @param tahun the tahun to set
+     */
+    public void setTahun(int tahun) {
         this.tahun = tahun;
     }
+    
+    
 }
 
