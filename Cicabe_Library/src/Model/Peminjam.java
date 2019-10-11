@@ -5,6 +5,8 @@
  */
 package Model;
 
+import java.util.Date;
+
 /**
  *
  * @author Naufal
@@ -12,12 +14,13 @@ package Model;
 public class Peminjam {
     private String NIS;
     private String nama;
-    // tgl lahir ???
+    private Date tgl_lahir;
     private boolean pinjam;
     
-    public Peminjam (String NIS, String nama, boolean pinjam){
+    public Peminjam (String NIS, String nama, Date tgl_lahir , boolean pinjam){
         this.NIS = NIS;
         this.nama = nama;
+        this.tgl_lahir = tgl_lahir;
         this.pinjam = pinjam;
     }
     
@@ -35,6 +38,14 @@ public class Peminjam {
     
     public void setnama(String nama){
         this.nama = nama;
+    }
+    
+    public Date gettgl_lahir(){
+        return tgl_lahir;
+    }
+    
+    public void settgl_lahir(Date tgl_lahir){
+        this.tgl_lahir = tgl_lahir;
     }
     
     public boolean getpinjam(){
