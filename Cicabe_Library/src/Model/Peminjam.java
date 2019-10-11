@@ -23,36 +23,62 @@ public class Peminjam {
         this.tgl_lahir = tgl_lahir;
         this.pinjam = pinjam;
     }
-    
-    public String getNIS(){
+
+    /**
+     * @return the NIS
+     */
+    public String getNIS() {
         return NIS;
     }
-    
-    public void setNIS(String NIS){
+
+    /**
+     * @param NIS the NIS to set
+     */
+    public void setNIS(String NIS) {
         this.NIS = NIS;
-    } 
-    
-    public  String getnama(){
+    }
+
+    /**
+     * @return the nama
+     */
+    public String getNama() {
         return nama;
     }
-    
-    public void setnama(String nama){
+
+    /**
+     * @param nama the nama to set
+     */
+    public void setNama(String nama) {
         this.nama = nama;
     }
-    
-    public Date gettgl_lahir(){
+
+    /**
+     * @return the tgl_lahir
+     */
+    public Date getTgl_lahir() {
         return tgl_lahir;
     }
-    
-    public void settgl_lahir(Date tgl_lahir){
+
+    /**
+     * @param tgl_lahir the tgl_lahir to set
+     */
+    public void setTgl_lahir(Date tgl_lahir) {
         this.tgl_lahir = tgl_lahir;
     }
-    
-    public boolean getpinjam(){
+
+    /**
+     * @return the pinjam
+     */
+    public boolean isPinjam() {
         return pinjam;
     }
-    
-    public void setpinjam(boolean pinjam){
+
+    /**
+     * @param pinjam the pinjam to set
+     */
+    public void setPinjam(boolean pinjam) {
         this.pinjam = pinjam;
     }
+    
+    
 }
