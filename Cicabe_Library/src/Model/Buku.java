@@ -1,27 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Model;
 
-/**
- *
- * @author Zara
- */
 public class Buku {
     private String idbuku;
     private String judul;
     private String penulis;
     private String penerbit;
-    private int tahun;
+    private String tahun;
+    private int stok;
     
-    public Buku (String Idbuku, String Judul, String Penulis, String Penerbit, int Tahun){
+    public Buku (String Idbuku, String Judul, String Penulis, String Penerbit, String Tahun, int Stok){
         idbuku = Idbuku;
         judul = Judul;
         penulis = Penulis;
         penerbit = Penerbit;
         tahun = Tahun;
+        stok = Stok;
     }
 
     /**
@@ -83,17 +76,22 @@ public class Buku {
     /**
      * @return the tahun
      */
-    public int getTahun() {
+    public String getTahun() {
         return tahun;
     }
 
     /**
      * @param tahun the tahun to set
      */
-    public void setTahun(int tahun) {
+    public void setTahun(String tahun) {
         this.tahun = tahun;
     }
-    
-    
-}
 
+    public int getStok() {
+        return stok;
+    }
+
+    public void setStok(int stok) {
+        this.stok = stok;
+    }   
+}
