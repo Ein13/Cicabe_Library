@@ -13,11 +13,13 @@ public class Database {
     private Statement stmt;
     private ResultSet rs;
     
-    ArrayList<Petugas> petugas;
+    ArrayList<Petugas> admin;
     ArrayList<Member> member;
     ArrayList<Buku> buku;
     ArrayList<Peminjaman> pinjam;
+    ArrayList<Peminjaman_det> pinjamDet;
     ArrayList<Pengembalian> kembali;
+    ArrayList<Pengembalian_det> kembaliDet;
     
     public void connect() {
         try {
@@ -31,6 +33,7 @@ public class Database {
             ex.printStackTrace();
         }
     }
+    
     public void disconnect() {
         try {
             if(con != null) {
@@ -40,6 +43,20 @@ public class Database {
         }
         catch(SQLException ex) {
             ex.printStackTrace();
+        }
+    }
+    
+    public void loadAdmin(){
+        connect();
+        try{
+            admin = new ArrayList();
+            rs = stmt.executeQuery("SELECT * FROM peminjaman_det");
+            while(rs.next()){
+                admin.add(new Petugas(rs.getString("id"), rs.getString("nama"), 
+                        rs.getString("username"), rs.getString("password")));
+            }
+        } catch(Exception e){
+            e.printStackTrace();
         }
     }
     
@@ -77,8 +94,51 @@ public class Database {
             pinjam = new ArrayList();
             rs = stmt.executeQuery("SELECT * FROM peminjaman");
             while(rs.next()){
-                member.add(new Member(rs.getString("id_Pinjam"), rs.getString("nis"), rs.getString("tempat_Lahir"), 
-                        rs.getDate("tgl_Lahir"), rs.getInt("jml_Pinjam")));
+                pinjam.add(new Peminjaman(rs.getString("id_Pinjam"), rs.getString("nis"), 
+                        rs.getDate("tempat_Lahir"), rs.getDate("tgl_Lahir"), 
+                        rs.getInt("jml_Pinjam")));
+            }
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+    
+    public void loadPinjamDet(){
+        connect();
+        try{
+            pinjamDet = new ArrayList();
+            rs = stmt.executeQuery("SELECT * FROM peminjaman_det");
+            while(rs.next()){
+                pinjamDet.add(new Peminjaman_det(rs.getString("id_Pinjam"), 
+                        rs.getString("id_Buku"), rs.getInt("jml")));
+            }
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+    
+    public void loadKembali(){
+        connect();
+        try{
+            kembali = new ArrayList();
+            rs = stmt.executeQuery("SELECT * FROM pengembalian");
+            while(rs.next()){
+                kembali.add(new Pengembalian(rs.getString("id_Kembali"), 
+                        rs.getString("id_Pinjam"), rs.getDate("tgl_Kembali"), 
+                        rs.getInt("denda"), rs.getInt("total_Kembali")));
+            }
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+    
+    public void loadKembaliDet(){
+        connect();
+        try{
+            kembaliDet = new ArrayList();
+            rs = stmt.executeQuery("SELECT * FROM pengembalian_det");
+            while(rs.next()){
+                kembaliDet.add(new Pengembalian_det(rs.getString("id_Kembali"), rs.getString("id_Buku"), rs.getInt("jml")));
             }
         } catch(Exception e){
             e.printStackTrace();
