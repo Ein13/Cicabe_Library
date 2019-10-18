@@ -150,7 +150,7 @@
                   <Component id="searchField" min="-2" pref="30" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="searchBtn" min="-2" pref="35" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="118" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -187,59 +187,42 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="32" pref="32" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="jmlpinjamLabel" max="32767" attributes="0"/>
+                      <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="ttlLabel" alignment="0" pref="68" max="32767" attributes="0"/>
+                      <Component id="nomorindukLabel" alignment="0" max="32767" attributes="0"/>
+                      <Component id="namaLabel" alignment="0" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="tempatField" alignment="0" pref="212" max="32767" attributes="0"/>
+                      <Component id="namaField" alignment="0" pref="212" max="32767" attributes="0"/>
+                      <Component id="nomorindukField" alignment="0" pref="212" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="jmlpinjamField" alignment="0" max="32767" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="tglField" min="-2" pref="35" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="tempatField" min="-2" pref="212" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="penerbitLabel" alignment="0" max="32767" attributes="0"/>
-                              <Component id="ttlLabel" alignment="0" pref="68" max="32767" attributes="0"/>
-                              <Component id="nomorindukLabel" alignment="0" max="32767" attributes="0"/>
-                              <Component id="namaLabel" alignment="0" max="32767" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="sudahRadio" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="belumRadio" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="addBtn" alignment="1" max="32767" attributes="0"/>
-                                      <Component id="updateBtn" alignment="1" pref="85" max="32767" attributes="0"/>
-                                      <Component id="deleteBtn" alignment="1" max="32767" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="namaField" min="-2" pref="212" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="tglField" min="-2" pref="35" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="bulanField" min="-2" pref="35" max="-2" attributes="0"/>
-                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="tahunField" min="-2" pref="81" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Component id="nomorindukField" alignment="0" min="-2" pref="212" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              </Group>
-                          </Group>
+                          <Component id="bulanField" min="-2" pref="35" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="tahunField" min="-2" pref="81" max="-2" attributes="0"/>
                       </Group>
                   </Group>
+                  <EmptySpace pref="317" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                      <Component id="addBtn" alignment="1" max="32767" attributes="0"/>
+                      <Component id="updateBtn" alignment="1" pref="85" max="32767" attributes="0"/>
+                      <Component id="deleteBtn" alignment="1" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -270,14 +253,12 @@
                       <Component id="jLabel2" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                       <Component id="jLabel4" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="penerbitLabel" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
-                      <Component id="sudahRadio" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jmlpinjamLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jmlpinjamField" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="belumRadio" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="58" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
@@ -299,12 +280,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="nomorindukLabel">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Judul Buku"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="penerbitLabel">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Status"/>
+            <Property name="text" type="java.lang.String" value="Nomor Induk"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="ttlLabel">
@@ -329,16 +305,6 @@
         <Component class="javax.swing.JButton" name="deleteBtn">
           <Properties>
             <Property name="text" type="java.lang.String" value="Delete"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JRadioButton" name="sudahRadio">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Sudah Kembali"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JRadioButton" name="belumRadio">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Belum Kembali"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="tglField">
@@ -372,6 +338,16 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="tempatField">
+        </Component>
+        <Component class="javax.swing.JLabel" name="jmlpinjamLabel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Jumlah Pinjam"/>
+            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[64, 14]"/>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="jmlpinjamField">
         </Component>
       </SubComponents>
     </Container>
