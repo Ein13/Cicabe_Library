@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Connection;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 
 public class Database {
@@ -46,6 +47,8 @@ public class Database {
         }
     }
     
+    //LOAD STUFF
+    
     public void loadAdmin(){
         connect();
         try{
@@ -58,6 +61,11 @@ public class Database {
         } catch(Exception e){
             e.printStackTrace();
         }
+    }
+    
+    public ArrayList<Petugas> getPetugas(){
+        loadAdmin();
+        return admin;
     }
     
     public void loadMember(){
@@ -74,6 +82,11 @@ public class Database {
         }
     }
     
+    public ArrayList<Member> getMember(){
+        loadMember();
+        return member;
+    }
+    
     public void loadBuku(){
         connect();
         try{
@@ -86,6 +99,11 @@ public class Database {
         } catch(Exception e){
             e.printStackTrace();
         }
+    }
+    
+    public ArrayList<Buku> getBuku(){
+        loadBuku();
+        return buku;
     }
     
     public void loadPinjam(){
@@ -103,6 +121,11 @@ public class Database {
         }
     }
     
+    public ArrayList<Peminjaman> getPinjam(){
+        loadPinjam();
+        return pinjam;
+    }
+    
     public void loadPinjamDet(){
         connect();
         try{
@@ -115,6 +138,11 @@ public class Database {
         } catch(Exception e){
             e.printStackTrace();
         }
+    }
+    
+    public ArrayList<Peminjaman_det> getPinjamDet(){
+        loadPinjamDet();
+        return pinjamDet;
     }
     
     public void loadKembali(){
@@ -132,6 +160,11 @@ public class Database {
         }
     }
     
+    public ArrayList<Pengembalian> getKembali(){
+        loadKembali();
+        return kembali;
+    }
+    
     public void loadKembaliDet(){
         connect();
         try{
@@ -143,5 +176,193 @@ public class Database {
         } catch(Exception e){
             e.printStackTrace();
         }
+    }
+    
+    public ArrayList<Pengembalian_det> getKembaliDet(){
+        loadKembaliDet();
+        return kembaliDet;
+    }
+    
+    //INSERT STUFF
+    
+    public boolean insertMember(Member m){
+        connect();
+        boolean cek = false;
+        int row;
+        try{
+           row = stmt.executeUpdate("INSERT INTO member VALUES ('" + m.getNIS() + "', '" + m.getNama() +"', '" + m.getTempat_lahir() + "')");
+           if (row > 0){
+               cek = true;
+           }
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+        return cek;
+    }
+    
+    public boolean insertBuku(Buku b){
+        connect();
+        boolean cek = false;
+        int row;
+        try{
+           row = stmt.executeUpdate("INSERT INTO buku VALUES ('" + b.getIdbuku() +"', '"+ b.getJudul() +"', '"+ b.getPenulis() +"', "
+                   + "'"+ b.getPenerbit() +"', '"+ b.getTahun() +"', '"+ b.getStok() +"')");
+           if (row > 0){
+               cek = true;
+           }
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+        return cek;
+    }
+    
+    public boolean insertPeminjaman(Peminjaman p){
+        connect();
+        boolean cek = false;
+        int row;
+        try{
+           row = stmt.executeUpdate("INSERT INTO peminjaman VALUES('"+ p.getId_pinjam() +"', "
+                   + "'"+ p.getNis() +"', '"+ p.getTgl_pinjam() +"', '"+ p.getTgl_kembali() +"', "
+                   + "'"+ p.getTotal_pinjam() +"')");
+           if (row > 0){
+               cek = true;
+           }
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+        return cek;
+    }
+
+    public boolean insertPeminjaman_Det(Peminjaman_det p){
+        connect();
+        boolean cek = false;
+        int row;
+        try{
+           row = stmt.executeUpdate("INSERT INTO peminjaman_det VALUES('"+ p.getId_pinjam() +"', '"+ p.getId_buku() +"', '"+ p.getJml() +"')");
+           if (row > 0){
+               cek = true;
+           }
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+        return cek;
+    }
+    
+    public boolean insertPengembalian(Pengembalian p){
+        connect();
+        boolean cek = false;
+        int row;
+        try{
+           row = stmt.executeUpdate("INSERT INTO pengembalian VALUES('"+ p.getId_kembali() +"', '"+ p.getId_pinjam() +"', "
+                   + "'"+ p.getTgl_Kembali() +"', '"+ p.getDenda() +"', '"+ p.getTotal_kembali() +"')");
+           if (row > 0){
+               cek = true;
+           }
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+        return cek;
+    }
+    
+    public boolean insertPengembalianDet(Pengembalian_det p){
+        connect();
+        boolean cek = false;
+        int row;
+        try{
+           row = stmt.executeUpdate("INSERT INTO pengembalian_det VALUES('"+ p.getId_kembali() +"', '"+ p.getId_buku() +"', '"+ p.getJml() +"')");
+           if (row > 0){
+               cek = true;
+           }
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+        return cek;
+    }
+    
+    //UPDATE STUFF
+    
+    public boolean updateMember(Member m){
+        connect();
+        boolean cek = false;
+        int row;
+        try {
+            row = stmt.executeUpdate("UPDATE member SET nama = '"+ m.getNama() +"', tempat_lahir = '"+ m.getTempat_lahir() +"', tgl_lahir = '"+ m.getTgl_lahir() +"', jml_pinjam = '"+ m.getJml_pinjam() +"' WHERE nis = '"+ m.getNIS() +"'");
+            if (row > 0){
+                cek = true;
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        disconnect();
+        return cek;
+    }
+    
+    public boolean updateBuku(Buku b){
+        connect();
+        boolean cek = false;
+        int row;
+        try {
+            row = stmt.executeUpdate("UPDATE buku SET judul = '"+ b.getJudul() +"', penulis = '"+b.getPenulis()+"', penerbit = '"+ b.getPenerbit() +"', tahun = '"+ b.getTahun() +"', stok = '"+ b.getStok() +"' WHERE id_Buku = '"+ b.getIdbuku() +"'");
+            if (row > 0){
+                cek = true;
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        disconnect();
+        return cek;
+    }
+    
+    //DELETE STUFF
+    
+    public boolean deleteMember(String id){
+        boolean cek = false;
+        connect();
+        int row;
+        try {
+            row = stmt.executeUpdate("DELETE FROM member WHERE nis = '" + id + "'");
+            if (row > 0){
+                cek = true;
+            }
+        } catch (Exception e){
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Delete Member", JOptionPane.ERROR_MESSAGE);
+        }
+        return cek;
+    }
+    
+    public boolean deleteBuku(String id){
+        boolean cek = false;
+        connect();
+        int row;
+        try {
+            row = stmt.executeUpdate("DELETE FROM buku WHERE id_Buku = '" + id + "'");
+            if (row > 0){
+                cek = true;
+            }
+        } catch (Exception e){
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Delete Buku", JOptionPane.ERROR_MESSAGE);
+        }
+        return cek;
+    }
+    
+    //SEARCH STUFF
+    
+    public void cariBuku(String kategori, String keyword){
+        connect();
+        try {
+            buku = new ArrayList();
+            rs = stmt.executeQuery("SELECT * FROM buku WHERE "+ kategori +" LIKE '%" + keyword +"%'");
+            while (rs.next()){
+                buku.add(new Buku(rs.getString("id_buku"), rs.getString("judul"), rs.getString("penulis"), 
+                        rs.getString("penerbit"), rs.getString("tahun"), rs.getInt("stok")));
+            }
+        } catch (Exception e){
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Cari Pemilih", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    public ArrayList<Buku> getCariBuku(String kategori, String keyword){
+        cariBuku(kategori, keyword);
+        return buku;
     }
 }
