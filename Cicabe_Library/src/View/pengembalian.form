@@ -230,14 +230,9 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="84" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="belumRadio" alignment="1" min="-2" max="-2" attributes="0"/>
-                                      <Group type="102" alignment="1" attributes="0">
-                                          <Component id="statusLabel" min="-2" pref="51" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" max="-2" attributes="0"/>
-                                          <Component id="sudahRadio" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
+                                  <Component id="statusLabel" min="-2" pref="51" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="statusField" min="-2" pref="65" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
@@ -308,11 +303,9 @@
                       <Component id="dendaLabel" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                       <Component id="statusLabel" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                       <Component id="dendaField" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="sudahRadio" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="statusField" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="belumRadio" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                   <Component id="submitBtn" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="19" max="32767" attributes="0"/>
               </Group>
@@ -362,16 +355,6 @@
         <Component class="javax.swing.JTextField" name="indukField">
         </Component>
         <Component class="javax.swing.JTextField" name="dendaField">
-        </Component>
-        <Component class="javax.swing.JRadioButton" name="sudahRadio">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Sudah Kembali"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JRadioButton" name="belumRadio">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Belum Kembali"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="tglField">
           <Events>
@@ -431,6 +414,8 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="idpinjamField">
+        </Component>
+        <Component class="javax.swing.JTextField" name="statusField">
         </Component>
       </SubComponents>
     </Container>

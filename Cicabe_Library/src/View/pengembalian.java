@@ -49,8 +49,6 @@ public class pengembalian extends javax.swing.JFrame {
         judulField = new javax.swing.JTextField();
         indukField = new javax.swing.JTextField();
         dendaField = new javax.swing.JTextField();
-        sudahRadio = new javax.swing.JRadioButton();
-        belumRadio = new javax.swing.JRadioButton();
         tglField = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         bulanField = new javax.swing.JTextField();
@@ -64,6 +62,7 @@ public class pengembalian extends javax.swing.JFrame {
         submitBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         idpinjamField = new javax.swing.JTextField();
+        statusField = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         peminjamTabel = new javax.swing.JTable();
@@ -150,10 +149,6 @@ public class pengembalian extends javax.swing.JFrame {
 
         statusLabel.setText("Status");
 
-        sudahRadio.setText("Sudah Kembali");
-
-        belumRadio.setText("Belum Kembali");
-
         tglField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tglFieldActionPerformed(evt);
@@ -239,12 +234,9 @@ public class pengembalian extends javax.swing.JFrame {
                         .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(dataPanelLayout.createSequentialGroup()
                                 .addGap(84, 84, 84)
-                                .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(belumRadio)
-                                    .addGroup(dataPanelLayout.createSequentialGroup()
-                                        .addComponent(statusLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(sudahRadio))))
+                                .addComponent(statusLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(statusField, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(dataPanelLayout.createSequentialGroup()
                                 .addGap(23, 23, 23)
                                 .addComponent(tanggalbalikLabel)
@@ -301,10 +293,8 @@ public class pengembalian extends javax.swing.JFrame {
                     .addComponent(dendaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(statusLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(dendaField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(sudahRadio))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(belumRadio)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(statusField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
                 .addComponent(submitBtn)
                 .addContainerGap(19, Short.MAX_VALUE))
         );
@@ -418,7 +408,6 @@ public class pengembalian extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBtn;
-    private javax.swing.JRadioButton belumRadio;
     private javax.swing.JTextField bulan2Field;
     private javax.swing.JTextField bulanField;
     private javax.swing.JPanel dataPanel;
@@ -446,9 +435,9 @@ public class pengembalian extends javax.swing.JFrame {
     private javax.swing.JTextField searchField;
     private javax.swing.JLabel searchLabel;
     private javax.swing.JPanel searchPanel;
+    private javax.swing.JTextField statusField;
     private javax.swing.JLabel statusLabel;
     private javax.swing.JButton submitBtn;
-    private javax.swing.JRadioButton sudahRadio;
     private javax.swing.JTextField tahun2Field;
     private javax.swing.JTextField tahunField;
     private javax.swing.JLabel tanggalbalikLabel;
