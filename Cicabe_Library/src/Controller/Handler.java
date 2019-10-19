@@ -28,6 +28,8 @@ public class Handler extends MouseAdapter implements ActionListener {
     private pengembalian pengembalianFrame;
     private editmember editmember;
     private managebuku managebukuFrame;
+    private laporan laporanFrame;
+    private setting settingFrame;
     
     private Controller con = new Controller();
         public Handler() {
@@ -37,6 +39,8 @@ public class Handler extends MouseAdapter implements ActionListener {
             pengembalianFrame = new pengembalian();
             editmember = new editmember();
             managebukuFrame = new managebuku();
+            settingFrame = new setting();
+            laporanFrame = new laporan();
             
             loginFrame.setVisible(true);
             mainFrame.setVisible(false);
@@ -44,6 +48,8 @@ public class Handler extends MouseAdapter implements ActionListener {
             pengembalianFrame.setVisible(false);
             editmember.setVisible(false);
             managebukuFrame.setVisible(false);
+            settingFrame.setVisible(false);
+            laporanFrame.setVisible(false);
             
             loginFrame.addActionListener(this);
             mainFrame.addActionListener(this);
@@ -51,6 +57,8 @@ public class Handler extends MouseAdapter implements ActionListener {
             pengembalianFrame.addActionListener(this);
             editmember.addActionListener(this);
             managebukuFrame.addActionListener(this);
+            settingFrame.addActionListener(this);
+            laporanFrame.addActionListener(this);
         }
         public void actionPerformed(ActionEvent ae) {
                 Object source = ae.getSource();
@@ -58,6 +66,7 @@ public class Handler extends MouseAdapter implements ActionListener {
                     loginFrame.setVisible(false);
                     mainFrame.setVisible(true);
                 }
+                
                 if(source.equals(mainFrame.getlogoutBtn())) {
                     mainFrame.setVisible(false);
                     loginFrame.setVisible(true);
@@ -70,14 +79,23 @@ public class Handler extends MouseAdapter implements ActionListener {
                     mainFrame.setVisible(false);
                     editmember.setVisible(true);
                 }
-                else if(source.equals(mainFrame.pinjamBtn())) {
+                else if(source.equals(mainFrame.getpinjamBtn())) {
                     mainFrame.setVisible(false);
                     peminjamanFrame.setVisible(true);
                 }
-                else if(source.equals(mainFrame.kembaliBtn())) {
+                else if(source.equals(mainFrame.getkembaliBtn())) {
                     mainFrame.setVisible(false);
                     pengembalianFrame.setVisible(true);
                 }
+                else if(source.equals(mainFrame.getlaporanBtn())){
+                    mainFrame.setVisible(false);
+                    laporanFrame.setVisible(true);
+                }
+                else if(source.equals(mainFrame.getsettingBtn())){
+                    mainFrame.setVisible(false);
+                    settingFrame.setVisible(true);
+                }
+                
                 if(source.equals(managebukuFrame.getlogoutBtn())) {
                     managebukuFrame.setVisible(false);
                     loginFrame.setVisible(true);
@@ -98,6 +116,7 @@ public class Handler extends MouseAdapter implements ActionListener {
                 else if(source.equals(managebukuFrame.getupdateBtn())) {
                 
                 }
+                
                 if(source.equals(editmember.getlogoutBtn())) {
                     editmember.setVisible(false);
                     loginFrame.setVisible(true);
@@ -118,6 +137,7 @@ public class Handler extends MouseAdapter implements ActionListener {
                 else if(source.equals(editmember.getupdateBtn())) {
                 
                 }
+                
                 if(source.equals(peminjamanFrame.getlogoutBtn())) {
                     peminjamanFrame.setVisible(false);
                     loginFrame.setVisible(true);
@@ -126,12 +146,13 @@ public class Handler extends MouseAdapter implements ActionListener {
                     peminjamanFrame.setVisible(false);
                     mainFrame.setVisible(true);
                 }
-                else if(source.equals(peminjamanFrame.getsearchBtn())) {
+                else if(source.equals(peminjamanFrame.getokBtn())) {
                 
                 }
-                else if(source.equals(peminjamanFrame.submitBtn())) {
+                else if(source.equals(peminjamanFrame.getsubmitBtn())) {
                 
                 }
+                
                 if(source.equals(pengembalianFrame.getlogoutBtn())) {
                     pengembalianFrame.setVisible(false);
                     loginFrame.setVisible(true);
@@ -145,6 +166,24 @@ public class Handler extends MouseAdapter implements ActionListener {
                 }
                 else if(source.equals(pengembalianFrame.getsubmitBtn())) {
                 
+                }
+                
+                if(source.equals(laporanFrame.getbackBtn())){
+                    laporanFrame.setVisible(false);
+                    mainFrame.setVisible(true);
+                }
+                else if(source.equals(laporanFrame.getlogoutBtn())){
+                    laporanFrame.setVisible(false);
+                    loginFrame.setVisible(true);
+                }
+                
+                if (source.equals(settingFrame.getlogoutBtn())){
+                    settingFrame.setVisible(false);
+                    loginFrame.setVisible(true);
+                }
+                else if(source.equals(settingFrame.getbackBtn())){
+                    settingFrame.setVisible(false);
+                    mainFrame.setVisible(true);
                 }
         }
         public void mousePressed(MouseEvent me) {
