@@ -145,6 +145,15 @@ public class Database {
         return pinjamDet;
     }
     
+    public void loadPinjamDetID(){
+        connect();
+        try{
+            
+        } catch(Exception e){
+            
+        }
+    }
+    
     public void loadKembali(){
         connect();
         try{
