@@ -202,6 +202,28 @@ public class Handler extends MouseAdapter implements ActionListener {
             }
         }
         
+        public void incrementBuku(){
+            if(con.loadBuku().isEmpty){
+                managebukuFrame.getidField().setText(1);
+            }
+            else {
+                managebukuFrame.getidField().setText(con.loadBuku()[con.loadBuku.size-1]);
+            }
+        }
+        
+        public void incrementPeminjaman(){
+            if(con.loadPeminjaman().isEmpty){
+                peminjamanFrame.getidpinjamField().setText(1);
+            }
+            else {
+                peminjamanFrame.getidpinjamField().setText(con.loadPeminjaman()[con.loadPeminjaman.size-1]);
+            }
+        }
+        
+        public void incrementPengembalian(){
+
+        }
+        
         public void addMember(String nis){
             if(con.cekMember(nis)) {
                 JOptionPane.showMessageDialog(null, "nis sudah terdaftar di database");
@@ -243,7 +265,7 @@ public class Handler extends MouseAdapter implements ActionListener {
         public void addBuku(String idBuku){
             if(con.cekBuku(idBuku)) {
                 JOptionPane.showMessageDialog(null, "nis sudah terdaftar di database");
-                managebukuFrame.getidField().setText("");
+                incrementBuku();
                 managebukuFrame.getjudulField().setText("");
                 managebukuFrame.getpenulisField().setText("");
                 managebukuFrame.getpenerbitField().setText("");
@@ -270,7 +292,7 @@ public class Handler extends MouseAdapter implements ActionListener {
                             managebukuFrame.getpenerbitField().getText(),
                             managebukuFrame.gettahunField().getText(),value);
                     con.insertBuku(b);
-                    managebukuFrame.getidField().setText("");
+                    incrementBuku();
                     managebukuFrame.getjudulField().setText("");
                     managebukuFrame.getpenulisField().setText("");
                     managebukuFrame.getpenulisField().setText("");
