@@ -289,7 +289,7 @@ public class editmember extends javax.swing.JFrame {
     private void editdatamemberTableClicked (java.awt.event.MouseEvent evt){
         int i = editdatamemberTable.getSelectedRow();
         TableModel model = editdatamemberTable.getModel();
-        // Kalau vail, kemungkinan urutan table beda dengan database 
+        // Kalau fail, kemungkinan urutan table beda dengan database 
         nomorindukField.setText(model.getValueAt(i,0).toString());
         namaField.setText(model.getValueAt(i,1).toString());
         tempatField.setText(model.getValueAt(i,2).toString());
