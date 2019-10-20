@@ -11,6 +11,8 @@ package View;
  */
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import javax.swing.JSpinner;
+import javax.swing.JTextField;
 public class managebuku extends javax.swing.JFrame {
 
     /**
@@ -312,6 +314,27 @@ public class managebuku extends javax.swing.JFrame {
         deleteBtn.addActionListener(ae);
         addBtn.addActionListener(ae);
         updateBtn.addActionListener(ae);
+    }
+    public JTextField getsearchField(){
+        return searchField;
+    }
+    public JTextField getidField(){
+        return idField;
+    }
+    public JTextField getjudulField(){
+        return judulField;
+    }
+    public JTextField getpenulisField(){
+        return penulisField;
+    }
+    public JTextField getpenerbitField(){
+        return penerbitField;
+    }
+    public JTextField gettahunField(){
+        return tahunField;
+    }
+    public JSpinner getstokspinner(){
+        return stokSpinner;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
