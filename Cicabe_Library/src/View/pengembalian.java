@@ -13,6 +13,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import com.toedter.calendar.JDateChooser;
+import java.awt.event.MouseAdapter;
+import javax.swing.table.TableModel;
 public class pengembalian extends javax.swing.JFrame {
 
     /**
@@ -38,9 +40,9 @@ public class pengembalian extends javax.swing.JFrame {
         searchPanel = new javax.swing.JPanel();
         searchField = new javax.swing.JTextField();
         searchBtn = new javax.swing.JButton();
-        searchComboBox = new javax.swing.JComboBox<>();
+        searchComboBox = new javax.swing.JComboBox<String>();
         jScrollPane2 = new javax.swing.JScrollPane();
-        searchTable = new javax.swing.JTable();
+        pengembalianTable = new javax.swing.JTable();
         dataPanel = new javax.swing.JPanel();
         namaLabel = new javax.swing.JLabel();
         nomorindukLabel = new javax.swing.JLabel();
@@ -99,9 +101,9 @@ public class pengembalian extends javax.swing.JFrame {
 
         searchBtn.setText("Search");
 
-        searchComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nomor Induk", "Nama" }));
+        searchComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Nomor Induk", "Nama" }));
 
-        searchTable.setModel(new javax.swing.table.DefaultTableModel(
+        pengembalianTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -112,7 +114,7 @@ public class pengembalian extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(searchTable);
+        jScrollPane2.setViewportView(pengembalianTable);
 
         javax.swing.GroupLayout searchPanelLayout = new javax.swing.GroupLayout(searchPanel);
         searchPanel.setLayout(searchPanelLayout);
@@ -320,6 +322,14 @@ public class pengembalian extends javax.swing.JFrame {
     public JTextField getstatusField(){
         return statusField;
     }
+    
+    public void setTable(TableModel model){
+        this.pengembalianTable.setModel(model);
+    }
+    
+    public void addMouseAdapter(MouseAdapter ma){
+        pengembalianTable.addMouseListener(ma);
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBtn;
     private javax.swing.JPanel dataPanel;
@@ -338,12 +348,12 @@ public class pengembalian extends javax.swing.JFrame {
     private javax.swing.JLabel namaLabel;
     private javax.swing.JLabel nomorindukLabel;
     private javax.swing.JLabel pengembalianLabel;
+    private javax.swing.JTable pengembalianTable;
     private com.toedter.calendar.JDateChooser pinjamDateChooser;
     private javax.swing.JButton searchBtn;
     private javax.swing.JComboBox<String> searchComboBox;
     private javax.swing.JTextField searchField;
     private javax.swing.JPanel searchPanel;
-    private javax.swing.JTable searchTable;
     private javax.swing.JTextArea searchTextArea;
     private javax.swing.JTextField statusField;
     private javax.swing.JButton submitBtn;
