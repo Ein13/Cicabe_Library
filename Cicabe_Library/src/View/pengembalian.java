@@ -48,16 +48,6 @@ public class pengembalian extends javax.swing.JFrame {
         namaField = new javax.swing.JTextField();
         indukField = new javax.swing.JTextField();
         dendaField = new javax.swing.JTextField();
-        tglField = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        bulanField = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        tahunField = new javax.swing.JTextField();
-        tgl2Field = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        bulan2Field = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        tahun2Field = new javax.swing.JTextField();
         submitBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         idpinjamField = new javax.swing.JTextField();
@@ -65,6 +55,8 @@ public class pengembalian extends javax.swing.JFrame {
         searchTextArea = new javax.swing.JTextArea();
         jLabel6 = new javax.swing.JLabel();
         statusField = new javax.swing.JTextField();
+        pinjamDateChooser = new com.toedter.calendar.JDateChooser();
+        kembaliDateChooser = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -162,44 +154,6 @@ public class pengembalian extends javax.swing.JFrame {
 
         dendaLabel.setText("Denda");
 
-        tglField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tglFieldActionPerformed(evt);
-            }
-        });
-
-        jLabel2.setText("/");
-
-        bulanField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bulanFieldActionPerformed(evt);
-            }
-        });
-
-        jLabel4.setText("/");
-
-        tahunField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tahunFieldActionPerformed(evt);
-            }
-        });
-
-        jLabel3.setText("/");
-
-        bulan2Field.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bulan2FieldActionPerformed(evt);
-            }
-        });
-
-        jLabel5.setText("/");
-
-        tahun2Field.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tahun2FieldActionPerformed(evt);
-            }
-        });
-
         submitBtn.setText("Submit");
 
         jLabel1.setText("ID Peminjaman");
@@ -236,30 +190,13 @@ public class pengembalian extends javax.swing.JFrame {
                                     .addComponent(nomorindukLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(dataPanelLayout.createSequentialGroup()
-                                        .addComponent(tglField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel2)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(bulanField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel4)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(tahunField, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(dataPanelLayout.createSequentialGroup()
-                                        .addComponent(tgl2Field, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel3)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(bulan2Field, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel5)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(tahun2Field, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(idpinjamField, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(indukField, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
-                                        .addComponent(namaField)))))
+                                        .addComponent(namaField))
+                                    .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(kembaliDateChooser, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
+                                        .addComponent(pinjamDateChooser, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                         .addGap(0, 504, Short.MAX_VALUE))
                     .addGroup(dataPanelLayout.createSequentialGroup()
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 914, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -288,29 +225,21 @@ public class pengembalian extends javax.swing.JFrame {
                             .addComponent(namaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(namaField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(tglpinjamLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tglField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(bulanField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tahunField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(pinjamDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(7, 7, 7)
+                        .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(tanggalbalikLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tgl2Field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(bulan2Field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tahun2Field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(kembaliDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(7, 7, 7)
                         .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(dendaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(dendaField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(statusField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)))
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -343,26 +272,6 @@ public class pengembalian extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tglFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tglFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tglFieldActionPerformed
-
-    private void bulanFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bulanFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_bulanFieldActionPerformed
-
-    private void tahunFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tahunFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tahunFieldActionPerformed
-
-    private void bulan2FieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bulan2FieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_bulan2FieldActionPerformed
-
-    private void tahun2FieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tahun2FieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tahun2FieldActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -387,27 +296,23 @@ public class pengembalian extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBtn;
-    private javax.swing.JTextField bulan2Field;
-    private javax.swing.JTextField bulanField;
     private javax.swing.JPanel dataPanel;
     private javax.swing.JTextField dendaField;
     private javax.swing.JLabel dendaLabel;
     private javax.swing.JTextField idpinjamField;
     private javax.swing.JTextField indukField;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private com.toedter.calendar.JDateChooser kembaliDateChooser;
     private javax.swing.JButton logoutBtn;
     private javax.swing.JPanel logoutPanel;
     private javax.swing.JTextField namaField;
     private javax.swing.JLabel namaLabel;
     private javax.swing.JLabel nomorindukLabel;
     private javax.swing.JLabel pengembalianLabel;
+    private com.toedter.calendar.JDateChooser pinjamDateChooser;
     private javax.swing.JButton searchBtn;
     private javax.swing.JComboBox<String> searchComboBox;
     private javax.swing.JTextField searchField;
@@ -416,11 +321,7 @@ public class pengembalian extends javax.swing.JFrame {
     private javax.swing.JTextArea searchTextArea;
     private javax.swing.JTextField statusField;
     private javax.swing.JButton submitBtn;
-    private javax.swing.JTextField tahun2Field;
-    private javax.swing.JTextField tahunField;
     private javax.swing.JLabel tanggalbalikLabel;
-    private javax.swing.JTextField tgl2Field;
-    private javax.swing.JTextField tglField;
     private javax.swing.JLabel tglpinjamLabel;
     // End of variables declaration//GEN-END:variables
 }

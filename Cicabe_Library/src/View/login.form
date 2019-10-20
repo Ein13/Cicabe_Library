@@ -57,14 +57,14 @@
                   <EmptySpace pref="523" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                          <Component id="passField" min="-2" pref="416" max="-2" attributes="0"/>
+                          <Component id="passwordField" min="-2" pref="416" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="perpusLabel" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="581" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
-                                  <Component id="nipField" min="-2" pref="416" max="-2" attributes="0"/>
+                                  <Component id="usernameField" min="-2" pref="416" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="479" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -83,9 +83,9 @@
                   <EmptySpace min="-2" pref="128" max="-2" attributes="0"/>
                   <Component id="perpusLabel" min="-2" pref="48" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
-                  <Component id="nipField" min="-2" pref="30" max="-2" attributes="0"/>
+                  <Component id="usernameField" min="-2" pref="30" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                  <Component id="passField" min="-2" pref="30" max="-2" attributes="0"/>
+                  <Component id="passwordField" min="-2" pref="30" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
                   <Component id="loginbtn" min="-2" pref="35" max="-2" attributes="0"/>
                   <EmptySpace pref="286" max="32767" attributes="0"/>
@@ -99,7 +99,7 @@
             <Property name="text" type="java.lang.String" value="Login"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="nipField">
+        <Component class="javax.swing.JTextField" name="usernameField">
         </Component>
         <Component class="javax.swing.JLabel" name="perpusLabel">
           <Properties>
@@ -109,7 +109,7 @@
             <Property name="text" type="java.lang.String" value="Library App"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="passField">
+        <Component class="javax.swing.JTextField" name="passwordField">
         </Component>
       </SubComponents>
     </Container>
