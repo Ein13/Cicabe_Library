@@ -12,6 +12,7 @@ package View;
 import com.toedter.calendar.JDateChooser;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
+import java.util.Date;
 import javax.swing.JButton;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
@@ -222,13 +223,13 @@ public class editmember extends javax.swing.JFrame {
 
         editdatamemberTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Nomor Induk", "Nama", "Tempat Lahir", "Tanggal Lahir", "Jumlah Pinjam"
             }
         ));
         jScrollPane1.setViewportView(editdatamemberTable);
@@ -285,7 +286,20 @@ public class editmember extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-   public JButton getlogoutBtn(){
+    private void editdatamemberTableClicked (java.awt.event.MouseEvent evt){
+        int i = editdatamemberTable.getSelectedRow();
+        TableModel model = editdatamemberTable.getModel();
+        // Kalau vail, kemungkinan urutan table beda dengan database 
+        nomorindukField.setText(model.getValueAt(i,0).toString());
+        namaField.setText(model.getValueAt(i,1).toString());
+        tempatField.setText(model.getValueAt(i,2).toString());
+        //test2, gk tau bisa atau enggak.
+        tglDateChooser.setDate((Date) model.getValueAt(i, 3));
+        pinjamSpinner.setValue(model.getValueAt(i,4));
+    }
+ 
+    
+    public JButton getlogoutBtn(){
        return logoutBtn;
    }
    public JButton getbackBtn(){
