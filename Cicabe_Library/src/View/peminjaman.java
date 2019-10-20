@@ -9,8 +9,13 @@ package View;
  *
  * @author Luthfi
  */
+import com.toedter.calendar.JDateChooser;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import javax.swing.JSpinner;
+import javax.swing.JTable;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 public class peminjaman extends javax.swing.JFrame {
 
     /**
@@ -50,7 +55,7 @@ public class peminjaman extends javax.swing.JFrame {
         searchComboBox = new javax.swing.JComboBox<>();
         okBtn = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        peminjamanArea = new javax.swing.JTextArea();
         deleteBtn = new javax.swing.JButton();
         jumlahLabel = new javax.swing.JLabel();
         jumlahSpinner = new javax.swing.JSpinner();
@@ -172,9 +177,9 @@ public class peminjaman extends javax.swing.JFrame {
 
         okBtn.setText("Ok");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane2.setViewportView(jTextArea1);
+        peminjamanArea.setColumns(20);
+        peminjamanArea.setRows(5);
+        jScrollPane2.setViewportView(peminjamanArea);
 
         deleteBtn.setText("Delete");
 
@@ -315,6 +320,33 @@ public class peminjaman extends javax.swing.JFrame {
         submitBtn.addActionListener(ae);
         deleteBtn.addActionListener(ae);
     }
+    public JTextField getidpinjamField(){
+        return idpinjamField;
+    }
+    public JTextField getnamaField(){
+        return namaField;
+    }
+    public JTextField getnomorindukField(){
+        return nomorindukField;
+    }
+    public JDateChooser getpinjamDateChooser(){
+        return pinjamDateChooser;
+    }
+    public JDateChooser getkembaliDateChooser(){
+        return kembaliDateChooser;
+    }
+    public JTextField getsearchField(){
+        return searchField;
+    }
+    public JSpinner getjumlahSpinner(){
+        return jumlahSpinner;
+    }
+    public JTextArea getpeminjamanArea(){
+        return peminjamanArea;
+    }
+    public JTable getpeminjamanTable(){
+        return peminjamanTable;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBtn;
@@ -325,7 +357,6 @@ public class peminjaman extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel jumlahLabel;
     private javax.swing.JSpinner jumlahSpinner;
     private com.toedter.calendar.JDateChooser kembaliDateChooser;
@@ -335,6 +366,7 @@ public class peminjaman extends javax.swing.JFrame {
     private javax.swing.JLabel namaLabel;
     private javax.swing.JTextField nomorindukField;
     private javax.swing.JButton okBtn;
+    private javax.swing.JTextArea peminjamanArea;
     private javax.swing.JLabel peminjamanLabel;
     private javax.swing.JTable peminjamanTable;
     private com.toedter.calendar.JDateChooser pinjamDateChooser;
