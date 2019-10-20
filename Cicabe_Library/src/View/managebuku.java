@@ -11,7 +11,6 @@ package View;
  */
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
-import java.util.Date;
 import javax.swing.JButton;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
@@ -292,18 +291,6 @@ public class managebuku extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    private void managebukuTableClicked (java.awt.event.MouseEvent evt){
-        int i = editbukuTable.getSelectedRow();
-        TableModel model = editbukuTable.getModel();
-        // Kalau vail, kemungkinan urutan table beda dengan database 
-        idField.setText(model.getValueAt(i,0).toString());
-        judulField.setText(model.getValueAt(i,1).toString());
-        penulisField.setText(model.getValueAt(i,2).toString());
-        penerbitField.setText(model.getValueAt(i,3).toString());
-        tahunField.setText(model.getValueAt(i,4).toString());
-        //test2, gk tau bisa atau enggak.
-        stokSpinner.setValue(model.getValueAt(i,5));
-    }
     public JButton getlogoutBtn(){
         return logoutBtn;
     }
