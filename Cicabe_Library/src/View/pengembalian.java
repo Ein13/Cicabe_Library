@@ -11,6 +11,8 @@ package View;
  */
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import javax.swing.JTextField;
+import com.toedter.calendar.JDateChooser;
 public class pengembalian extends javax.swing.JFrame {
 
     /**
@@ -294,6 +296,30 @@ public class pengembalian extends javax.swing.JFrame {
         submitBtn.addActionListener(ae);
     }
 
+    public JTextField getsearchField(){
+       return searchField;
+   }
+    public JTextField getidpinjamField(){
+        return idpinjamField;
+    }
+    public JTextField getindukField(){
+        return indukField;
+    }
+    public JTextField getnamaField(){
+        return namaField;
+    }
+    public JDateChooser getpinjamDateChooserField(){
+        return pinjamDateChooser;
+    }
+    public JDateChooser getkembaliDateChooserField(){
+        return kembaliDateChooser;
+    }
+    public JTextField getdendaField(){
+        return dendaField;
+    }
+    public JTextField getstatusField(){
+        return statusField;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBtn;
     private javax.swing.JPanel dataPanel;
