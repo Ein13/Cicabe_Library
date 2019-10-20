@@ -10,9 +10,11 @@ package View;
  * @author Luthfi
  */
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 import javax.swing.JButton;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
+import javax.swing.table.TableModel;
 public class managebuku extends javax.swing.JFrame {
 
     /**
@@ -57,7 +59,7 @@ public class managebuku extends javax.swing.JFrame {
         stokSpinner = new javax.swing.JSpinner();
         tabelPanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        editbukuTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -224,7 +226,7 @@ public class managebuku extends javax.swing.JFrame {
 
         tabelPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        editbukuTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -235,7 +237,7 @@ public class managebuku extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(editbukuTable);
 
         javax.swing.GroupLayout tabelPanelLayout = new javax.swing.GroupLayout(tabelPanel);
         tabelPanel.setLayout(tabelPanelLayout);
@@ -336,17 +338,25 @@ public class managebuku extends javax.swing.JFrame {
     public JSpinner getstokspinner(){
         return stokSpinner;
     }
+    
+    public void setTable(TableModel model){
+        this.editbukuTable.setModel(model);
+    }
+    
+    public void addMouseAdapter(MouseAdapter ma){
+        editbukuTable.addMouseListener(ma);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addBtn;
     private javax.swing.JButton backBtn;
     private javax.swing.JPanel dataPanel;
     private javax.swing.JButton deleteBtn;
+    private javax.swing.JTable editbukuTable;
     private javax.swing.JTextField idField;
     private javax.swing.JLabel idLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField judulField;
     private javax.swing.JLabel judulLabel;
     private javax.swing.JButton logoutBtn;

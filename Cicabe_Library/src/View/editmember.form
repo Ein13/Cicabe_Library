@@ -192,7 +192,7 @@
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="jmlpinjamLabel" max="32767" attributes="0"/>
                               <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="ttlLabel" alignment="0" pref="68" max="32767" attributes="0"/>
+                              <Component id="ttlLabel" alignment="0" pref="83" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
@@ -365,7 +365,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTable" name="peminjamTable">
+            <Component class="javax.swing.JTable" name="editdatamemberTable">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="4" rowCount="4">

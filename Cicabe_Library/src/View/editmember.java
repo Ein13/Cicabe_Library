@@ -11,9 +11,11 @@ package View;
  */
 import com.toedter.calendar.JDateChooser;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 import javax.swing.JButton;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
+import javax.swing.table.TableModel;
 public class editmember extends javax.swing.JFrame {
 
     /**
@@ -56,7 +58,7 @@ public class editmember extends javax.swing.JFrame {
         pinjamSpinner = new javax.swing.JSpinner();
         tabelPanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        peminjamTable = new javax.swing.JTable();
+        editdatamemberTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -218,7 +220,7 @@ public class editmember extends javax.swing.JFrame {
 
         tabelPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
-        peminjamTable.setModel(new javax.swing.table.DefaultTableModel(
+        editdatamemberTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -229,7 +231,7 @@ public class editmember extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(peminjamTable);
+        jScrollPane1.setViewportView(editdatamemberTable);
 
         javax.swing.GroupLayout tabelPanelLayout = new javax.swing.GroupLayout(tabelPanel);
         tabelPanel.setLayout(tabelPanelLayout);
@@ -328,13 +330,20 @@ public class editmember extends javax.swing.JFrame {
        return pinjamSpinner;
    }
    
-   
+   public void setTable(TableModel model){
+        this.editdatamemberTable.setModel(model);
+    }
+    
+    public void addMouseAdapter(MouseAdapter ma){
+        editdatamemberTable.addMouseListener(ma);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addBtn;
     private javax.swing.JButton backBtn;
     private javax.swing.JPanel dataPanel;
     private javax.swing.JButton deleteBtn;
+    private javax.swing.JTable editdatamemberTable;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel jmlpinjamLabel;
@@ -345,7 +354,6 @@ public class editmember extends javax.swing.JFrame {
     private javax.swing.JLabel namaLabel;
     private javax.swing.JTextField nomorindukField;
     private javax.swing.JLabel nomorindukLabel;
-    private javax.swing.JTable peminjamTable;
     private javax.swing.JSpinner pinjamSpinner;
     private javax.swing.JButton searchBtn;
     private javax.swing.JTextField searchField;
