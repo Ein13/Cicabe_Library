@@ -179,13 +179,9 @@ public class Handler extends MouseAdapter implements ActionListener {
                     loginFrame.setVisible(true);
                 }
                 
-                if (source.equals(settingFrame.getlogoutBtn())){
+                if (source.equals(settingFrame.getupdateBtn())){
                     settingFrame.setVisible(false);
                     loginFrame.setVisible(true);
-                }
-                else if(source.equals(settingFrame.getbackBtn())){
-                    settingFrame.setVisible(false);
-                    mainFrame.setVisible(true);
                 }
         }
         public void mousePressed(MouseEvent me) {
