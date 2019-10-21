@@ -10,5 +10,7 @@ The Team :
 
 
 
-#### other
-Aplikasi ini menggunakan [UCanAccess](http://ucanaccess.sourceforge.net/site.html) untuk akses database *.accdb.
+
+Aplikasi ini menggunakan : 
+- [UCanAccess](http://ucanaccess.sourceforge.net/site.html) untuk akses database *.accdb.
+- [JCalendar](https://toedter.com/jcalendar/)
