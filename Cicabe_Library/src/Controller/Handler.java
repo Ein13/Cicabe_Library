@@ -73,22 +73,27 @@ public class Handler extends MouseAdapter implements ActionListener {
                     loginFrame.setVisible(true);
                 }
                 else if(source.equals(mainFrame.getmanageBtn())) {
+                    managebukuFrame.setTable(con.loadTableBuku());
                     mainFrame.setVisible(false);
                     managebukuFrame.setVisible(true);
                 }
                 else if(source.equals(mainFrame.getmemberBtn())) {
+                    editmember.setTable(con.loadTableMember());
                     mainFrame.setVisible(false);
                     editmember.setVisible(true);
                 }
                 else if(source.equals(mainFrame.getpinjamBtn())) {
+                    peminjamanFrame.setTable(con.loadTablePeminjaman());
                     mainFrame.setVisible(false);
                     peminjamanFrame.setVisible(true);
                 }
                 else if(source.equals(mainFrame.getkembaliBtn())) {
+                    pengembalianFrame.setTable(con.loadTablePengembalian());
                     mainFrame.setVisible(false);
                     pengembalianFrame.setVisible(true);
                 }
                 else if(source.equals(mainFrame.getlaporanBtn())){
+                    laporanFrame.setTable(con.loadTableLaporan());
                     mainFrame.setVisible(false);
                     laporanFrame.setVisible(true);
                 }
@@ -106,16 +111,30 @@ public class Handler extends MouseAdapter implements ActionListener {
                     mainFrame.setVisible(true);
                 }
                 else if(source.equals(managebukuFrame.getsearchBtn())) {
-                
+                    con.searchBuku(managebukuFrame.getsearchField().getText());
+                    managebukuFrame.setTable(con.loadTableBuku());
                 }
                 else if(source.equals(managebukuFrame.getdeleteBtn())) {
+                    if(con.deleteBuku(managebukuFrame.getidField().getText())){
+                        JOptionPane.showMessageDialog(managebukuFrame, "Berhasil menghapus buku dengan Id " + managebukuFrame.getidField().getText(), "Hapus Buku", JOptionPane.INFORMATION_MESSAGE);
+                        managebukuFrame.getidField().setText("");
+                        managebukuFrame.getjudulField().setText("");
+                        managebukuFrame.getpenulisField().setText("");
+                        managebukuFrame.getpenerbitField().setText("");
+                        managebukuFrame.gettahunField().setText("");
+                        managebukuFrame.getstokspinner().setValue(0);
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(managebukuFrame, "Gagal hapus buku", "Hapus Buku", JOptionPane.ERROR_MESSAGE);
+                    }
+                    managebukuFrame.setTable(con.loadTableBuku());
                 
                 }
                 else if(source.equals(managebukuFrame.getaddBtn())) {
-                
+                    addBuku(managebukuFrame.getidField().getText());
                 }
                 else if(source.equals(managebukuFrame.getupdateBtn())) {
-                
+                    
                 }
                 
                 if(source.equals(editmember.getlogoutBtn())) {
@@ -127,13 +146,26 @@ public class Handler extends MouseAdapter implements ActionListener {
                     mainFrame.setVisible(true);
                 }
                 else if(source.equals(editmember.getsearchBtn())) {
-                
+                    con.searchMember(editmember.getsearchField().getText());
+                    editmember.setTable(con.loadTableMember());
                 }
                 else if(source.equals(editmember.getdeleteBtn())) {
-                
+                    if(con.deleteMember(editmember.getnomorindukField().getText())){
+                        JOptionPane.showMessageDialog(editmember, "Berhasil menghapus member dengan NIS " + editmember.getnomorindukField().getText(), "Hapus Member", JOptionPane.INFORMATION_MESSAGE);
+                        editmember.getnomorindukField().setText("");
+                        editmember.getnamaField().setText("");
+                        editmember.gettempatField().setText("");
+                        java.util.Date date = new java.util.Date();
+                        editmember.gettglDateChooser().setDate(date);
+                        editmember.getjumlahpinjam().setValue(0);
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(editmember, "Gagal hapus member", "Hapus Member", JOptionPane.ERROR_MESSAGE);
+                    }
+                    editmember.setTable(con.loadTableMember());
                 }
                 else if(source.equals(editmember.getaddBtn())) {
-                
+                    addMember(editmember.getnomorindukField().getText());
                 }
                 else if(source.equals(editmember.getupdateBtn())) {
                 
@@ -164,7 +196,9 @@ public class Handler extends MouseAdapter implements ActionListener {
                     mainFrame.setVisible(true);
                 }
                 else if(source.equals(pengembalianFrame.getsearchBtn())) {
-                
+                    String categoty = (String) pengembalianFrame.getCategory().getSelectedItem();
+                    con.searchPengembalian(category, pengembalianFrame.getsearchField().getText());
+                    pengembalianFrame.setTable(con.loadTablePengembalian());
                 }
                 else if(source.equals(pengembalianFrame.getsubmitBtn())) {
                 
@@ -293,6 +327,7 @@ public class Handler extends MouseAdapter implements ActionListener {
                     managebukuFrame.getpenulisField().setText("");
                     managebukuFrame.gettahunField().setText("");
                     managebukuFrame.getstokspinner().setValue(0);
+                    managebukuFrame.setTable(con.loadTableBuku());
                     JOptionPane.showMessageDialog(null, "Buku berhasil ditambahkan", "Tambah Buku", JOptionPane.INFORMATION_MESSAGE);
                 }
                 else{
@@ -300,4 +335,72 @@ public class Handler extends MouseAdapter implements ActionListener {
                 }
             }
         }
+        
+/*        public void submitPeminjaman(String idPeminjaman){
+            if((peminjamanFrame.getidpinjamField().equals(""))||
+                    (peminjamanFrame.getnamaField().equals(""))||
+                    (peminjamanFrame.getnomorindukField().equals(""))){
+                JOptionPane.showMessageDialog(null, "Field tidak boleh ada yang kosong", "Edit Peminjaman", JOptionPane.WARNING_MESSAGE);
+            }
+            else{
+                try{
+                    peminjamanFrame.getjumlahSpinner().commitEdit();
+                }catch (java.text.ParseException e){}
+                int value = (Integer) peminjamanFrame.getjumlahSpinner().getValue();
+                Peminjaman peminjaman = new Peminjaman(peminjamanFrame.getidpinjamField().getText(),
+                        peminjamanFrame.getnamaField().getText(),
+                        peminjamanFrame.getnomorindukField().getText(),
+                        peminjamanFrame.getpinjamDateChooser().getDate(),
+                        peminjamanFrame.getkembaliDateChooser().getDate(),value);
+                
+                if(con.submitPeminjaman(peminjaman)){
+                    incrementPeminjaman();
+                    peminjamanFrame.getidpinjamField().setText("");
+                    peminjamanFrame.getnamaField().setText("");
+                    peminjamanFrame.getnomorindukField().setText("");
+                    java.util.Date date = new java.util.Date();
+                    peminjamanFrame.getpinjamDateChooser().setDate(date);
+                    peminjamanFrame.getkembaliDateChooser().setDate(date);
+                    peminjamanFrame.getjumlahSpinner().setValue(0);
+                    JOptionPane.showMessageDialog(null, "Peminjaman berhasil dilakukan", "Submit Peminjaman", JOptionPane.INFORMATION_MESSAGE);
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "" + peminjamanFrame.getidField().getText() + "sudah terdaftar", "", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        }
+        
+        public void submitPengembalian(String idPeminjaman){
+            if((pengembalianFrame.getidpinjamField().equals(""))||
+                    (pengembalianFrame.getindukField().equals(""))||
+                    (pengembalianFrame.getnamaField().equals(""))||
+                    (pengembalianFrame.getdendaField().equals(""))||
+                    (pengembalianFrame.getstatusField().equals(""))){
+                JOptionPane.showMessageDialog(null, "Field tidak boleh ada yang kosong", "Pengembalian", JOptionPane.WARNING_MESSAGE);
+            }
+            else{
+                Pengembalian pengembalian = new Pengembalian(pengembalianFrame.getidpinjamField().getText(),
+                        pengembalianFrame.getindukField().getText(),
+                        pengembalianFrame.getnamaField().getText(),
+                        pengembalianFrame.getpinjamDateChooserField().getDate(),
+                        pengembalianFrame.getkembaliDateChooserField().getDate(),
+                        pengembalianFrame.getdendaField().getText(),
+                        pengembalianFrame.getstatusField().getText());
+                
+                if(con.submitPengembalian(pengembalian)){
+                    incrementPengembalian();
+                    pengembalianFrame.getindukField().setText("");
+                    pengembalianFrame.getnamaField().setText("");
+                    java.util.Date date = new java.util.Date();
+                    pengembalianFrame.getpinjamDateChooserField().setDate(date);
+                    pengembalianFrame.getkembaliDateChooserField().setDate(date);
+                    pengembalianFrame.getdendaField().setText("");
+                    pengembalianFrame.getstatusField().setText("");
+                    JOptionPane.showMessageDialog(null, "Pengembalian berhasil dilakukan", "Submit Pengembalian", JOptionPane.INFORMATION_MESSAGE);
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "" + pengembalianFrame.getidField().getText() + "sudah terdaftar", "", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        }*/
 }

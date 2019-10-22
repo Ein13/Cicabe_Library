@@ -15,6 +15,7 @@ import javax.swing.JTextField;
 import com.toedter.calendar.JDateChooser;
 import java.awt.event.MouseAdapter;
 import java.util.Date;
+import javax.swing.JComboBox;
 import javax.swing.table.TableModel;
 public class pengembalian extends javax.swing.JFrame {
 
@@ -340,6 +341,10 @@ public class pengembalian extends javax.swing.JFrame {
     }
     public JTextField getstatusField(){
         return statusField;
+    }
+    
+    public JComboBox getCategory(){
+        return searchComboBox;
     }
     
     public void setTable(TableModel model){
