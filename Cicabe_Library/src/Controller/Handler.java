@@ -199,101 +199,104 @@ public class Handler extends MouseAdapter implements ActionListener {
         }
         
         public void incrementBuku(){
-            if(con.loadBuku().isEmpty){
-                managebukuFrame.getidField().setText(1);
+            ArrayList<Buku> buku = con.loadBuku();
+            if(buku.isEmpty()){
+                managebukuFrame.getidField().setText("1");
             }
             else {
-                managebukuFrame.getidField().setText(con.loadBuku()[con.loadBuku.size-1]);
+                Buku lastbuku = buku.get(buku.size() - 1);
+                managebukuFrame.getidField().setText(lastbuku.getIdbuku() + 1);
+                
             }
         }
         
         public void incrementPeminjaman(){
-            if(con.loadPeminjaman().isEmpty){
-                peminjamanFrame.getidpinjamField().setText(1);
+            ArrayList<Peminjaman> pinjam = con.loadPeminjaman();
+            if(pinjam.isEmpty()){
+                peminjamanFrame.getidpinjamField().setText("1");
             }
             else {
-                peminjamanFrame.getidpinjamField().setText(con.loadPeminjaman()[con.loadPeminjaman.size-1]);
+                Peminjaman lastpinjam = pinjam.get(pinjam.size() - 1);
+                peminjamanFrame.getidpinjamField().setText(lastpinjam.getId_pinjam() + 1);
             }
         }
         
         public void incrementPengembalian(){
-
+            ArrayList<Peminjaman> pinjam = con.loadPeminjaman();
+            if(pinjam.isEmpty()){
+                peminjamanFrame.getidpinjamField().setText("1");
+            }
+            else {
+                Peminjaman lastpinjam = pinjam.get(pinjam.size() - 1);
+                peminjamanFrame.getidpinjamField().setText(lastpinjam.getId_pinjam() + 1);
+            }
         }
         
         public void addMember(String nis){
-            if(con.cekMember(nis)) {
-                JOptionPane.showMessageDialog(null, "nis sudah terdaftar di database");
-                editmember.getnomorindukField().setText("");
-                editmember.getnamaField().setText("");
-                editmember.gettempatField().setText("");
-                java.util.Date date = new java.util.Date();
-                editmember.gettglDateChooser().setDate(date);
-                editmember.getjumlahpinjam().setValue(0);
-            }
-            else {
-                if((editmember.getnomorindukField().equals(""))||
+            if((editmember.getnomorindukField().equals(""))||
                         (editmember.getnamaField().equals(""))||
                         (editmember.gettempatField().equals(""))){
-                    JOptionPane.showMessageDialog(null, "Field tidak boleh ada yg kosong");
+                JOptionPane.showMessageDialog(null, "Field tidak boleh ada yang kosong", "Edit Member", JOptionPane.WARNING_MESSAGE);
+            }
+            else{
+                try{
+                    editmember.getjumlahpinjam().commitEdit();
+                } catch (java.text.ParseException e){
+
                 }
-                else{
-                    try{
-                        editmember.getjumlahpinjam().commitEdit();
-                    } catch (java.text.ParseException e){}
-                    int value = (Integer) editmember.getjumlahpinjam().getValue();
-                    Member m = new Member(editmember.getnomorindukField().getText(),
-                            editmember.getnamaField().getText(),
-                            editmember.gettempatField().getText(),
-                            editmember.gettglDateChooser().getDate(),value);
-                    con.insertMember(m);
+                int value = (Integer) editmember.getjumlahpinjam().getValue();
+                Member m = new Member(editmember.getnomorindukField().getText(),
+                        editmember.getnamaField().getText(),
+                        editmember.gettempatField().getText(),
+                        editmember.gettglDateChooser().getDate(),value);
+                
+                if(con.addMember(m)){
                     editmember.getnomorindukField().setText("");
                     editmember.getnamaField().setText("");
                     editmember.gettempatField().setText("");
                     java.util.Date date = new java.util.Date();
                     editmember.gettglDateChooser().setDate(date);
                     editmember.getjumlahpinjam().setValue(0);
-                    editmember.setTable(con.loadTableModel());
-                    JOptionPane.showMessageDialog(null, "Member berhasil ditambahkan");
+                    editmember.setTable(con.loadTableMember());
+                    JOptionPane.showMessageDialog(null, "Member berhasil ditambahkan", "Tambah Member", JOptionPane.INFORMATION_MESSAGE);
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "NIS " + editmember.getnomorindukField() + "sudah terdaftar", "Tambah Member", JOptionPane.ERROR_MESSAGE);
                 }
             }
         }
         
         public void addBuku(String idBuku){
-            if(con.cekBuku(idBuku)) {
-                JOptionPane.showMessageDialog(null, "nis sudah terdaftar di database");
-                incrementBuku();
-                managebukuFrame.getjudulField().setText("");
-                managebukuFrame.getpenulisField().setText("");
-                managebukuFrame.getpenerbitField().setText("");
-                managebukuFrame.gettahunField().setText("");
-                managebukuFrame.getstokspinner().setValue(0);
+            if((managebukuFrame.getidField().equals(""))||
+                    (managebukuFrame.getjudulField().equals(""))||
+                    (managebukuFrame.getpenulisField().equals(""))||
+                    (managebukuFrame.getpenerbitField().equals(""))||
+                    (managebukuFrame.gettahunField().equals(""))||
+                    (managebukuFrame.getstokspinner().getValue().equals(""))){
+                JOptionPane.showMessageDialog(null, "Field tidak boleh ada yang kosong", "Edit Buku", JOptionPane.WARNING_MESSAGE);
             }
             else{
-                if((managebukuFrame.getidField().equals(""))||
-                        (managebukuFrame.getjudulField().equals(""))||
-                        (managebukuFrame.getpenulisField().equals(""))||
-                        (managebukuFrame.getpenerbitField().equals(""))||
-                        (managebukuFrame.gettahunField().equals(""))||
-                        (managebukuFrame.getstokspinner().getValue().equals(""))){
-                    JOptionPane.showMessageDialog(null, "Field tidak boleh ada yang kosong");
-                }
-                else{
-                    try{
-                        managebukuFrame.getstokspinner().commitEdit();
-                    } catch (java.text.ParseException e){}
-                    int value = (Integer) managebukuFrame.getstokspinner().getValue();
-                    Buku b = new Buku(managebukuFrame.getidField().getText(),
-                            managebukuFrame.getjudulField().getText(),
-                            managebukuFrame.getpenulisField().getText(),
-                            managebukuFrame.getpenerbitField().getText(),
-                            managebukuFrame.gettahunField().getText(),value);
-                    con.insertBuku(b);
+                try{
+                    managebukuFrame.getstokspinner().commitEdit();
+                } catch (java.text.ParseException e){}
+                int value = (Integer) managebukuFrame.getstokspinner().getValue();
+                Buku b = new Buku(managebukuFrame.getidField().getText(),
+                        managebukuFrame.getjudulField().getText(),
+                        managebukuFrame.getpenulisField().getText(),
+                        managebukuFrame.getpenerbitField().getText(),
+                        managebukuFrame.gettahunField().getText(),value);
+                
+                if(con.addBuku(b)){
                     incrementBuku();
                     managebukuFrame.getjudulField().setText("");
                     managebukuFrame.getpenulisField().setText("");
                     managebukuFrame.getpenulisField().setText("");
                     managebukuFrame.gettahunField().setText("");
                     managebukuFrame.getstokspinner().setValue(0);
+                    JOptionPane.showMessageDialog(null, "Buku berhasil ditambahkan", "Tambah Buku", JOptionPane.INFORMATION_MESSAGE);
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "ID Buku" + managebukuFrame.getidField().getText() + "sudah terdaftar", "Tambah Buku", JOptionPane.ERROR_MESSAGE);                    
                 }
             }
         }
