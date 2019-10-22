@@ -14,6 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 import com.toedter.calendar.JDateChooser;
 import java.awt.event.MouseAdapter;
+import java.util.Date;
 import javax.swing.table.TableModel;
 public class pengembalian extends javax.swing.JFrame {
 
@@ -279,6 +280,24 @@ public class pengembalian extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
+    private void pengembalianTableClicked (java.awt.event.MouseEvent evt){
+        int i = pengembalianTable.getSelectedRow();
+        TableModel model = pengembalianTable.getModel();
+        // Kalau fail, kemungkinan urutan table beda dengan database 
+        idpinjamField.setText(model.getValueAt(i,0).toString());
+        indukField.setText(model.getValueAt(i,1).toString());
+        namaField.setText(model.getValueAt(i,2).toString());
+        
+        //test2, gk tau bisa atau enggak.
+        pinjamDateChooser.setDate((Date) model.getValueAt(i, 3));
+        kembaliDateChooser.setDate((Date) model.getValueAt(i, 4));
+        
+        dendaField.setText(model.getValueAt(i,5).toString());
+        statusField.setText(model.getValueAt(i,6).toString());
+    }
+    
+    
+    
     public JButton getlogoutBtn(){
         return logoutBtn;
     }
