@@ -118,7 +118,8 @@ public class Handler extends MouseAdapter implements ActionListener {
                     mainFrame.setVisible(true);
                 }
                 else if(source.equals(managebukuFrame.getsearchBtn())) {
-                    con.searchBuku(managebukuFrame.getsearchField().getText());
+                    String category = (String) managebukuFrame.getsearchCombo().getSelectedItem();
+                    con.searchBuku(category, managebukuFrame.getsearchField().getText());
                     managebukuFrame.setTable(con.loadTableBuku());
                 }
                 else if(source.equals(managebukuFrame.getdeleteBtn())) {
@@ -153,7 +154,8 @@ public class Handler extends MouseAdapter implements ActionListener {
                     mainFrame.setVisible(true);
                 }
                 else if(source.equals(editmember.getsearchBtn())) {
-                    con.searchMember(editmember.getsearchField().getText());
+                    String category = (String) managebukuFrame.getsearchCombo().getSelectedItem();
+                    con.searchMember(category, editmember.getsearchField().getText());
                     editmember.setTable(con.loadTableMember());
                 }
                 else if(source.equals(editmember.getdeleteBtn())) {
@@ -186,8 +188,13 @@ public class Handler extends MouseAdapter implements ActionListener {
                     peminjamanFrame.setVisible(false);
                     mainFrame.setVisible(true);
                 }
-                else if(source.equals(peminjamanFrame.getokBtn())) {
+                else if(source.equals(peminjamanFrame.getaddBtn())) {
                 
+                }
+                else if(source.equals(peminjamanFrame.getsearchBtn())){
+                    String category = (String) peminjamanFrame.getsearchComboBox().getSelectedItem();
+                    con.searchPeminjaman(category, peminjamanFrame.getsearchField().getText());
+                    peminjamanFrame.setTable(con.loadTableBuku());
                 }
                 else if(source.equals(peminjamanFrame.getsubmitBtn())) {
                 
@@ -203,7 +210,7 @@ public class Handler extends MouseAdapter implements ActionListener {
                     mainFrame.setVisible(true);
                 }
                 else if(source.equals(pengembalianFrame.getsearchBtn())) {
-                    String categoty = (String) pengembalianFrame.getCategory().getSelectedItem();
+                    String category = (String) pengembalianFrame.getCategory().getSelectedItem();
                     con.searchPengembalian(category, pengembalianFrame.getsearchField().getText());
                     pengembalianFrame.setTable(con.loadTablePengembalian());
                 }
