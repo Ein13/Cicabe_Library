@@ -84,11 +84,13 @@ public class Handler extends MouseAdapter implements ActionListener {
                 }
                 else if(source.equals(mainFrame.getpinjamBtn())) {
                     peminjamanFrame.setTable(con.loadTablePeminjaman());
+                    peminjamanFrame.setTable(con.loadTableBuku());
                     mainFrame.setVisible(false);
                     peminjamanFrame.setVisible(true);
                 }
                 else if(source.equals(mainFrame.getkembaliBtn())) {
-                    pengembalianFrame.setTable(con.loadTablePengembalian());
+                    pengembalianFrame.setTable(con.loadTablePeminjaman());
+                    pengembalianFrame.setTable(con.loadTableBuku());
                     mainFrame.setVisible(false);
                     pengembalianFrame.setVisible(true);
                 }
@@ -131,10 +133,10 @@ public class Handler extends MouseAdapter implements ActionListener {
                 
                 }
                 else if(source.equals(managebukuFrame.getaddBtn())) {
-                    addBuku(managebukuFrame.getidField().getText());
+                    addBuku();
                 }
                 else if(source.equals(managebukuFrame.getupdateBtn())) {
-                    
+                    updateBuku();
                 }
                 
                 if(source.equals(editmember.getlogoutBtn())) {
@@ -165,10 +167,10 @@ public class Handler extends MouseAdapter implements ActionListener {
                     editmember.setTable(con.loadTableMember());
                 }
                 else if(source.equals(editmember.getaddBtn())) {
-                    addMember(editmember.getnomorindukField().getText());
+                    addMember();
                 }
                 else if(source.equals(editmember.getupdateBtn())) {
-                
+                    updateMember();
                 }
                 
                 if(source.equals(peminjamanFrame.getlogoutBtn())) {
@@ -266,7 +268,7 @@ public class Handler extends MouseAdapter implements ActionListener {
             }
         }
         
-        public void addMember(String nis){
+        public void addMember(){
             if((editmember.getnomorindukField().equals(""))||
                         (editmember.getnamaField().equals(""))||
                         (editmember.gettempatField().equals(""))){
@@ -300,7 +302,7 @@ public class Handler extends MouseAdapter implements ActionListener {
             }
         }
         
-        public void addBuku(String idBuku){
+        public void addBuku(){
             if((managebukuFrame.getidField().equals(""))||
                     (managebukuFrame.getjudulField().equals(""))||
                     (managebukuFrame.getpenulisField().equals(""))||
@@ -403,4 +405,74 @@ public class Handler extends MouseAdapter implements ActionListener {
                 }
             }
         }*/
+        
+        public void updateMember(){
+            if((editmember.getnomorindukField().equals(""))||
+                        (editmember.getnamaField().equals(""))||
+                        (editmember.gettempatField().equals(""))){
+                JOptionPane.showMessageDialog(null, "Field tidak boleh ada yang kosong", "Edit Member", JOptionPane.WARNING_MESSAGE);
+            }
+            else{
+                try{
+                    editmember.getjumlahpinjam().commitEdit();
+                } catch (java.text.ParseException e){
+
+                }
+                int value = (Integer) editmember.getjumlahpinjam().getValue();
+                Member m = new Member(editmember.getnomorindukField().getText(),
+                        editmember.getnamaField().getText(),
+                        editmember.gettempatField().getText(),
+                        editmember.gettglDateChooser().getDate(),value);
+                
+                if(con.updateMember(m)){
+                    editmember.getnomorindukField().setText("");
+                    editmember.getnamaField().setText("");
+                    editmember.gettempatField().setText("");
+                    java.util.Date date = new java.util.Date();
+                    editmember.gettglDateChooser().setDate(date);
+                    editmember.getjumlahpinjam().setValue(0);
+                    editmember.setTable(con.loadTableMember());
+                    JOptionPane.showMessageDialog(null, "Data member berhasil diupdate", "Update Member", JOptionPane.INFORMATION_MESSAGE);
+                }
+                else{
+                    
+                }
+            }
+        }
+        
+        public void updateBuku(){
+            if((managebukuFrame.getidField().equals(""))||
+                    (managebukuFrame.getjudulField().equals(""))||
+                    (managebukuFrame.getpenulisField().equals(""))||
+                    (managebukuFrame.getpenerbitField().equals(""))||
+                    (managebukuFrame.gettahunField().equals(""))||
+                    (managebukuFrame.getstokspinner().getValue().equals(""))){
+                JOptionPane.showMessageDialog(null, "Field tidak boleh ada yang kosong", "Edit Buku", JOptionPane.WARNING_MESSAGE);
+            }
+            else{
+                try{
+                    managebukuFrame.getstokspinner().commitEdit();
+                } catch (java.text.ParseException e){}
+                int value = (Integer) managebukuFrame.getstokspinner().getValue();
+                Buku b = new Buku(managebukuFrame.getidField().getText(),
+                        managebukuFrame.getjudulField().getText(),
+                        managebukuFrame.getpenulisField().getText(),
+                        managebukuFrame.getpenerbitField().getText(),
+                        managebukuFrame.gettahunField().getText(),value);
+                
+                if(con.updateBuku(b)){
+                    incrementBuku();
+                    managebukuFrame.getjudulField().setText("");
+                    managebukuFrame.getpenulisField().setText("");
+                    managebukuFrame.getpenulisField().setText("");
+                    managebukuFrame.gettahunField().setText("");
+                    managebukuFrame.getstokspinner().setValue(0);
+                    managebukuFrame.setTable(con.loadTableBuku());
+                    JOptionPane.showMessageDialog(null, "Data buku berhasil diupdate", "Update Buku", JOptionPane.INFORMATION_MESSAGE);
+                }
+                else{
+                                        
+                }
+            }
+        }
 }
