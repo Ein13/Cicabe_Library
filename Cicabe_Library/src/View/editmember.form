@@ -134,10 +134,14 @@
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="searchBtn" alignment="0" min="-2" pref="105" max="-2" attributes="0"/>
-                      <Component id="searchField" alignment="0" min="-2" pref="315" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="searchField" min="-2" pref="315" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="searchCombo" min="-2" pref="100" max="-2" attributes="0"/>
+                      </Group>
                       <Component id="searchLabel" alignment="0" min="-2" pref="115" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="164" max="32767" attributes="0"/>
+                  <EmptySpace pref="79" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -147,7 +151,10 @@
                   <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                   <Component id="searchLabel" min="-2" pref="34" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="searchField" min="-2" pref="30" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="searchCombo" max="32767" attributes="0"/>
+                      <Component id="searchField" pref="30" max="32767" attributes="0"/>
+                  </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="searchBtn" min="-2" pref="35" max="-2" attributes="0"/>
                   <EmptySpace pref="137" max="32767" attributes="0"/>
@@ -171,6 +178,21 @@
             <Property name="text" type="java.lang.String" value="Search"/>
           </Properties>
         </Component>
+        <Component class="javax.swing.JComboBox" name="searchCombo">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="4">
+                <StringItem index="0" value="NIS"/>
+                <StringItem index="1" value="Nama"/>
+                <StringItem index="2" value="Tempat"/>
+                <StringItem index="3" value="Tanggal Lahir"/>
+              </StringArray>
+            </Property>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
+        </Component>
       </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="dataPanel">
@@ -186,21 +208,14 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="32" pref="32" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="32" pref="32" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jmlpinjamLabel" max="32767" attributes="0"/>
-                              <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="ttlLabel" alignment="0" pref="83" max="32767" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="namaLabel" min="-2" pref="68" max="-2" attributes="0"/>
-                              <Component id="nomorindukLabel" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                      <Component id="namaLabel" min="-2" pref="68" max="-2" attributes="0"/>
+                      <Component id="nomorindukLabel" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jmlpinjamLabel" max="32767" attributes="0"/>
+                          <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="ttlLabel" alignment="0" pref="83" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -211,7 +226,7 @@
                               <Component id="namaField" alignment="0" pref="212" max="32767" attributes="0"/>
                               <Component id="nomorindukField" alignment="0" pref="212" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="309" max="32767" attributes="0"/>
+                          <EmptySpace pref="276" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="1" max="-2" attributes="0">
                               <Component id="addBtn" alignment="1" max="32767" attributes="0"/>
                               <Component id="updateBtn" alignment="1" pref="85" max="32767" attributes="0"/>
@@ -224,7 +239,7 @@
                               <Component id="tglDateChooser" min="-2" pref="150" max="-2" attributes="0"/>
                               <Component id="pinjamSpinner" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="475" max="32767" attributes="0"/>
+                          <EmptySpace pref="442" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
