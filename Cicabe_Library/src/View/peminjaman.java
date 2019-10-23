@@ -14,6 +14,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.JSpinner;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
@@ -59,11 +60,14 @@ public class peminjaman extends javax.swing.JFrame {
         dataPanel = new javax.swing.JPanel();
         searchField = new javax.swing.JTextField();
         searchComboBox = new javax.swing.JComboBox<>();
-        okBtn = new javax.swing.JButton();
+        addBtn = new javax.swing.JButton();
         jumlahLabel = new javax.swing.JLabel();
-        jumlahSpinner = new javax.swing.JSpinner();
         jScrollPane3 = new javax.swing.JScrollPane();
         bukuTable = new javax.swing.JTable();
+        judulField = new javax.swing.JTextField();
+        jumlahSpinner = new javax.swing.JSpinner();
+        searchBtn = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
         tabelPanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         peminjamanTable = new javax.swing.JTable();
@@ -205,7 +209,7 @@ public class peminjaman extends javax.swing.JFrame {
 
         searchComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Judul", "Penerbit", "Pengarang", "Tahun" }));
 
-        okBtn.setText("Ok");
+        addBtn.setText("Add");
 
         jumlahLabel.setText("Jumlah");
 
@@ -222,25 +226,39 @@ public class peminjaman extends javax.swing.JFrame {
         ));
         jScrollPane3.setViewportView(bukuTable);
 
+        searchBtn.setText("Search");
+
+        jLabel2.setText("Judul");
+
         javax.swing.GroupLayout dataPanelLayout = new javax.swing.GroupLayout(dataPanel);
         dataPanel.setLayout(dataPanelLayout);
         dataPanelLayout.setHorizontalGroup(
             dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(dataPanelLayout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3)
                     .addGroup(dataPanelLayout.createSequentialGroup()
-                        .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(searchComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jumlahLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jumlahSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(okBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 111, Short.MAX_VALUE)))
+                        .addContainerGap()
+                        .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane3)
+                            .addGroup(dataPanelLayout.createSequentialGroup()
+                                .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(searchComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(36, 36, 36)
+                                .addComponent(searchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 162, Short.MAX_VALUE))))
+                    .addGroup(dataPanelLayout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(dataPanelLayout.createSequentialGroup()
+                                .addComponent(jumlahLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jumlahSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(judulField, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
+                        .addGap(110, 110, 110)
+                        .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         dataPanelLayout.setVerticalGroup(
@@ -250,13 +268,23 @@ public class peminjaman extends javax.swing.JFrame {
                 .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(searchComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(okBtn)
-                    .addComponent(jumlahSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jumlahLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(searchBtn))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(judulField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jumlahLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addBtn)
+                    .addComponent(jumlahSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(34, 34, 34))
         );
+
+        JFormattedTextField tf = ((JSpinner.DefaultEditor) jumlahSpinner.getEditor()).getTextField();
+        tf.setEditable(false);
 
         tabelPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
@@ -286,7 +314,7 @@ public class peminjaman extends javax.swing.JFrame {
             tabelPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tabelPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -338,13 +366,16 @@ public class peminjaman extends javax.swing.JFrame {
     public JButton getdeleteBtn(){
         return deleteBtn;
     }
-    public JButton getokBtn(){
-        return okBtn;
+    public JButton getaddBtn(){
+        return addBtn;
+    }
+    public JButton getsearchBtn(){
+        return searchBtn;
     }
     public void addActionListener(ActionListener ae){
         logoutBtn.addActionListener(ae);
         backBtn.addActionListener(ae);
-        okBtn.addActionListener(ae);
+        addBtn.addActionListener(ae);
         submitBtn.addActionListener(ae);
         deleteBtn.addActionListener(ae);
     }
@@ -381,6 +412,9 @@ public class peminjaman extends javax.swing.JFrame {
     public JComboBox getsearchComboBox(){
         return searchComboBox;
     }
+    public JTextField getjudulField(){
+        return judulField;
+    }
     
     public void setTable(TableModel model){
         this.peminjamanTable.setModel(model);
@@ -391,6 +425,7 @@ public class peminjaman extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addBtn;
     private javax.swing.JButton backBtn;
     private javax.swing.JTable bukuTable;
     private javax.swing.JPanel dataPanel;
@@ -398,9 +433,11 @@ public class peminjaman extends javax.swing.JFrame {
     private javax.swing.JTextField idpinjamField;
     private javax.swing.JLabel idpinjamLabel;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTextField judulField;
     private javax.swing.JLabel jumlahLabel;
     private javax.swing.JSpinner jumlahSpinner;
     private com.toedter.calendar.JDateChooser kembaliDateChooser;
@@ -409,11 +446,11 @@ public class peminjaman extends javax.swing.JFrame {
     private javax.swing.JTextField namaField;
     private javax.swing.JLabel namaLabel;
     private javax.swing.JTextField nomorindukField;
-    private javax.swing.JButton okBtn;
     private javax.swing.JTextArea peminjamanArea;
     private javax.swing.JLabel peminjamanLabel;
     private javax.swing.JTable peminjamanTable;
     private com.toedter.calendar.JDateChooser pinjamDateChooser;
+    private javax.swing.JButton searchBtn;
     private javax.swing.JComboBox<String> searchComboBox;
     private javax.swing.JTextField searchField;
     private javax.swing.JPanel searchPanel;

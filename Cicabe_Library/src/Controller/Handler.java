@@ -12,7 +12,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.util.ArrayList;
 import java.awt.event.MouseEvent;
+import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
+import javax.swing.JSpinner;
 import javax.swing.table.TableModel;
 
 
@@ -59,6 +61,9 @@ public class Handler extends MouseAdapter implements ActionListener {
             managebukuFrame.addActionListener(this);
             settingFrame.addActionListener(this);
             laporanFrame.addActionListener(this);
+            JSpinner spinner = peminjamanFrame.getjumlahSpinner();
+            JFormattedTextField tf = ((JSpinner.DefaultEditor) spinner.getEditor()).getTextField();
+            tf.setEditable(false);
         }
         public void actionPerformed(ActionEvent ae) {
                 Object source = ae.getSource();
