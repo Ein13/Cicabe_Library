@@ -368,6 +368,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="idpinjamField">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane3">
           <AuxValues>
@@ -407,6 +410,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="idpengembalianField">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>

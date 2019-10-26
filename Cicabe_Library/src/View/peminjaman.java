@@ -74,7 +74,7 @@ public class peminjaman extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        logoutPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        logoutPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(1));
 
         backBtn.setText("Back");
 
@@ -110,10 +110,12 @@ public class peminjaman extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        searchPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        searchPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(1));
 
         idpinjamLabel.setText("ID Peminjaman");
         idpinjamLabel.setPreferredSize(new java.awt.Dimension(27, 14));
+
+        idpinjamField.setEditable(false);
 
         namaLabel.setText("Nama");
 
@@ -209,7 +211,7 @@ public class peminjaman extends javax.swing.JFrame {
                 .addContainerGap(29, Short.MAX_VALUE))
         );
 
-        dataPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        dataPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(1));
 
         searchComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Judul", "Penerbit", "Pengarang", "Tahun" }));
 
@@ -290,7 +292,7 @@ public class peminjaman extends javax.swing.JFrame {
         JFormattedTextField tf = ((JSpinner.DefaultEditor) jumlahSpinner.getEditor()).getTextField();
         tf.setEditable(false);
 
-        tabelPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        tabelPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(1));
 
         peminjamanTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

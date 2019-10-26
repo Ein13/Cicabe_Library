@@ -16,6 +16,10 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 import javax.swing.table.TableModel;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+//import java.util.Calendar;
 
 
 
@@ -69,6 +73,8 @@ public class Handler extends MouseAdapter implements ActionListener {
                 Object source = ae.getSource();
                 if(source.equals(loginFrame.getloginBtn())) {
                     login(loginFrame.getusernameField().getText(), loginFrame.getpasswordField().getText());
+                    loginFrame.getusernameField().setText("");
+                    loginFrame.getpasswordField().setText("");
                 }
                 
                 if(source.equals(mainFrame.getlogoutBtn())) {
@@ -77,23 +83,34 @@ public class Handler extends MouseAdapter implements ActionListener {
                 }
                 else if(source.equals(mainFrame.getmanageBtn())) {
                     managebukuFrame.setTable(con.loadTableBuku());
+                    incrementBuku();
                     mainFrame.setVisible(false);
                     managebukuFrame.setVisible(true);
                 }
                 else if(source.equals(mainFrame.getmemberBtn())) {
+                    Date dateNow = new java.util.Date();
+                    editmember.gettglDateChooser().setDate(dateNow);
                     editmember.setTable(con.loadTableMember());
                     mainFrame.setVisible(false);
                     editmember.setVisible(true);
                 }
                 else if(source.equals(mainFrame.getpinjamBtn())) {
-                    peminjamanFrame.setTable(con.loadTablePeminjaman());
-                    peminjamanFrame.setTable(con.loadTableBuku());
+                    //peminjamanFrame.setTable(con.loadTablePeminjaman());
+                    //peminjamanFrame.setTable(con.loadTableBuku());
+                    incrementPeminjaman();
+                    Date dateNow = new java.util.Date();
+                    peminjamanFrame.getpinjamDateChooser().setDate(dateNow);
+                    peminjamanFrame.getkembaliDateChooser().setDate(dateNow);
                     mainFrame.setVisible(false);
                     peminjamanFrame.setVisible(true);
                 }
                 else if(source.equals(mainFrame.getkembaliBtn())) {
-                    pengembalianFrame.setTable(con.loadTablePeminjaman());
-                    pengembalianFrame.setTable(con.loadTableBuku());
+                    //pengembalianFrame.setTable(con.loadTablePeminjaman());
+                    //pengembalianFrame.setTable(con.loadTableBuku());
+                    incrementPeminjaman();
+                    Date dateNow = new java.util.Date();
+                    pengembalianFrame.getpinjamDateChooserField().setDate(dateNow);
+                    pengembalianFrame.getkembaliDateChooserField().setDate(dateNow);
                     mainFrame.setVisible(false);
                     pengembalianFrame.setVisible(true);
                 }
@@ -108,10 +125,24 @@ public class Handler extends MouseAdapter implements ActionListener {
                 }
                 
                 if(source.equals(managebukuFrame.getlogoutBtn())) {
+                    managebukuFrame.getidField().setText("");
+                    managebukuFrame.getjudulField().setText("");
+                    managebukuFrame.getpenulisField().setText("");
+                    managebukuFrame.getpenerbitField().setText("");
+                    managebukuFrame.gettahunField().setText("");
+                    managebukuFrame.getstokspinner().setValue(0);
+                    managebukuFrame.getsearchField().setText("");
                     managebukuFrame.setVisible(false);
                     loginFrame.setVisible(true);
                 }
                 else if(source.equals(managebukuFrame.getbackBtn())) {
+                    managebukuFrame.getidField().setText("");
+                    managebukuFrame.getjudulField().setText("");
+                    managebukuFrame.getpenulisField().setText("");
+                    managebukuFrame.getpenerbitField().setText("");
+                    managebukuFrame.gettahunField().setText("");
+                    managebukuFrame.getstokspinner().setValue(0);
+                    managebukuFrame.getsearchField().setText("");
                     managebukuFrame.setVisible(false);
                     mainFrame.setVisible(true);
                 }
@@ -144,10 +175,24 @@ public class Handler extends MouseAdapter implements ActionListener {
                 }
                 
                 if(source.equals(editmember.getlogoutBtn())) {
+                    editmember.getnomorindukField().setText("");
+                    editmember.getnamaField().setText("");
+                    editmember.gettempatField().setText("");
+                    Date dateNow = new java.util.Date();
+                    editmember.gettglDateChooser().setDate(dateNow);
+                    editmember.getjumlahpinjam().setValue(0);
+                    editmember.getsearchField().setText("");
                     editmember.setVisible(false);
                     loginFrame.setVisible(true);
                 }
                 else if(source.equals(editmember.getbackBtn())) {
+                    editmember.getnomorindukField().setText("");
+                    editmember.getnamaField().setText("");
+                    editmember.gettempatField().setText("");
+                    Date dateNow = new java.util.Date();
+                    editmember.gettglDateChooser().setDate(dateNow);
+                    editmember.getjumlahpinjam().setValue(0);
+                    editmember.getsearchField().setText("");
                     editmember.setVisible(false);
                     mainFrame.setVisible(true);
                 }
@@ -179,15 +224,31 @@ public class Handler extends MouseAdapter implements ActionListener {
                 }
                 
                 if(source.equals(peminjamanFrame.getlogoutBtn())) {
+                    peminjamanFrame.getidpinjamField().setText("");
+                    peminjamanFrame.getnamaField().setText("");
+                    peminjamanFrame.getnomorindukField().setText("");
+                    Date dateNow = new java.util.Date();
+                    peminjamanFrame.getpinjamDateChooser().setDate(dateNow);
+                    peminjamanFrame.getkembaliDateChooser().setDate(dateNow);
+                    peminjamanFrame.getsearchField().setText("");
+                    peminjamanFrame.getjudulField().setText("");
                     peminjamanFrame.setVisible(false);
                     loginFrame.setVisible(true);
                 }
                 else if(source.equals(peminjamanFrame.getbackBtn())) {
+                    peminjamanFrame.getidpinjamField().setText("");
+                    peminjamanFrame.getnamaField().setText("");
+                    peminjamanFrame.getnomorindukField().setText("");
+                    Date dateNow = new java.util.Date();
+                    peminjamanFrame.getpinjamDateChooser().setDate(dateNow);
+                    peminjamanFrame.getkembaliDateChooser().setDate(dateNow);
+                    peminjamanFrame.getsearchField().setText("");
+                    peminjamanFrame.getjudulField().setText("");
                     peminjamanFrame.setVisible(false);
                     mainFrame.setVisible(true);
                 }
                 else if(source.equals(peminjamanFrame.getaddBtn())) {
-                
+                    
                 }
                 else if(source.equals(peminjamanFrame.getsearchBtn())){
                     //String category = (String) peminjamanFrame.getsearchComboBox().getSelectedItem();
@@ -195,15 +256,35 @@ public class Handler extends MouseAdapter implements ActionListener {
                     //peminjamanFrame.setTable(con.loadTableBuku());
                 }
                 else if(source.equals(peminjamanFrame.getsubmitBtn())) {
-                
+                    
                 }
-                else if(source.equals(peminjamanFrame.getdeleteBtn()))
+                else if(source.equals(peminjamanFrame.getdeleteBtn())){
+                    
+                }
                 
                 if(source.equals(pengembalianFrame.getlogoutBtn())) {
+                    pengembalianFrame.getidpinjamField().setText("");
+                    pengembalianFrame.getidpengembalianField().setText("");
+                    pengembalianFrame.getindukField().setText("");
+                    pengembalianFrame.getnamaField().setText("");
+                    Date dateNow = new java.util.Date();
+                    pengembalianFrame.getpinjamDateChooserField().setDate(dateNow);
+                    pengembalianFrame.getkembaliDateChooserField().setDate(dateNow);
+                    pengembalianFrame.getdendaField().setText("");
+                    pengembalianFrame.getstatusField().setText("");
                     pengembalianFrame.setVisible(false);
                     loginFrame.setVisible(true);
                 }
                 else if(source.equals(pengembalianFrame.getbackBtn())) {
+                    pengembalianFrame.getidpinjamField().setText("");
+                    pengembalianFrame.getidpengembalianField().setText("");
+                    pengembalianFrame.getindukField().setText("");
+                    pengembalianFrame.getnamaField().setText("");
+                    Date dateNow = new java.util.Date();
+                    pengembalianFrame.getpinjamDateChooserField().setDate(dateNow);
+                    pengembalianFrame.getkembaliDateChooserField().setDate(dateNow);
+                    pengembalianFrame.getdendaField().setText("");
+                    pengembalianFrame.getstatusField().setText("");
                     pengembalianFrame.setVisible(false);
                     mainFrame.setVisible(true);
                 }
@@ -252,7 +333,9 @@ public class Handler extends MouseAdapter implements ActionListener {
             }
             else {
                 Buku lastbuku = buku.get(buku.size() - 1);
-                managebukuFrame.getidField().setText(lastbuku.getIdbuku() + 1);
+                int temp = Integer.parseInt(lastbuku.getIdbuku());
+                int count = temp + 1;
+                managebukuFrame.getidField().setText(Integer.toString(count));
                 
             }
         }
@@ -264,7 +347,9 @@ public class Handler extends MouseAdapter implements ActionListener {
             }
             else {
                 Peminjaman lastpinjam = pinjam.get(pinjam.size() - 1);
-                peminjamanFrame.getidpinjamField().setText(lastpinjam.getId_pinjam() + 1);
+                int temp = Integer.parseInt(lastpinjam.getId_pinjam());
+                int count = temp + 1;
+                peminjamanFrame.getidpinjamField().setText(Integer.toString(count));
             }
         }
         
@@ -275,7 +360,9 @@ public class Handler extends MouseAdapter implements ActionListener {
             }
             else {
                 Peminjaman lastpinjam = pinjam.get(pinjam.size() - 1);
-                peminjamanFrame.getidpinjamField().setText(lastpinjam.getId_pinjam() + 1);
+                int temp = Integer.parseInt(lastpinjam.getId_pinjam());
+                int count = temp + 1;
+                peminjamanFrame.getidpinjamField().setText(Integer.toString(temp));
             }
         }
         
@@ -292,6 +379,11 @@ public class Handler extends MouseAdapter implements ActionListener {
 
                 }
                 int value = (Integer) editmember.getjumlahpinjam().getValue();
+                Date temp = editmember.gettglDateChooser().getDate();
+                //System.out.println(date);
+                //DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                //String strDate = dateFormat.format(temp);
+                //System.out.println(strDate);
                 Member m = new Member(editmember.getnomorindukField().getText(),
                         editmember.getnamaField().getText(),
                         editmember.gettempatField().getText(),
@@ -301,8 +393,8 @@ public class Handler extends MouseAdapter implements ActionListener {
                     editmember.getnomorindukField().setText("");
                     editmember.getnamaField().setText("");
                     editmember.gettempatField().setText("");
-                    java.util.Date date = new java.util.Date();
-                    editmember.gettglDateChooser().setDate(date);
+                    Date dateNow = new java.util.Date();
+                    editmember.gettglDateChooser().setDate(dateNow);
                     editmember.getjumlahpinjam().setValue(0);
                     editmember.setTable(con.loadTableMember());
                     JOptionPane.showMessageDialog(null, "Member berhasil ditambahkan", "Tambah Member", JOptionPane.INFORMATION_MESSAGE);
@@ -314,11 +406,11 @@ public class Handler extends MouseAdapter implements ActionListener {
         }
         
         public void addBuku(){
-            if((managebukuFrame.getidField().equals(""))||
-                    (managebukuFrame.getjudulField().equals(""))||
-                    (managebukuFrame.getpenulisField().equals(""))||
-                    (managebukuFrame.getpenerbitField().equals(""))||
-                    (managebukuFrame.gettahunField().equals(""))||
+            if((managebukuFrame.getidField().getText().equals(""))||
+                    (managebukuFrame.getjudulField().getText().equals(" "))||
+                    (managebukuFrame.getpenulisField().getText().equals(""))||
+                    (managebukuFrame.getpenerbitField().getText().equals(""))||
+                    (managebukuFrame.gettahunField().getText().equals(""))||
                     (managebukuFrame.getstokspinner().getValue().equals(""))){
                 JOptionPane.showMessageDialog(null, "Field tidak boleh ada yang kosong", "Edit Buku", JOptionPane.WARNING_MESSAGE);
             }
@@ -418,9 +510,9 @@ public class Handler extends MouseAdapter implements ActionListener {
         }*/
         
         public void updateMember(){
-            if((editmember.getnomorindukField().equals(""))||
-                        (editmember.getnamaField().equals(""))||
-                        (editmember.gettempatField().equals(""))){
+            if((editmember.getnomorindukField().getText().equals(""))||
+                        (editmember.getnamaField().getText().equals(""))||
+                        (editmember.gettempatField().getText().equals(""))){
                 JOptionPane.showMessageDialog(null, "Field tidak boleh ada yang kosong", "Edit Member", JOptionPane.WARNING_MESSAGE);
             }
             else{

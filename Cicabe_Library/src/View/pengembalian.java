@@ -74,7 +74,7 @@ public class pengembalian extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(51, 0, 0));
 
-        logoutPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        logoutPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(1));
 
         logoutBtn.setText("Logout");
 
@@ -107,7 +107,7 @@ public class pengembalian extends javax.swing.JFrame {
                 .addContainerGap(29, Short.MAX_VALUE))
         );
 
-        searchPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        searchPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(1));
 
         searchBtn.setText("Search");
 
@@ -156,7 +156,7 @@ public class pengembalian extends javax.swing.JFrame {
                 .addContainerGap(71, Short.MAX_VALUE))
         );
 
-        dataPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        dataPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(1));
 
         namaLabel.setText("Nama");
 
@@ -172,6 +172,8 @@ public class pengembalian extends javax.swing.JFrame {
 
         jLabel1.setText("ID Peminjaman");
 
+        idpinjamField.setEditable(false);
+
         searchTextArea.setColumns(20);
         searchTextArea.setRows(5);
         jScrollPane3.setViewportView(searchTextArea);
@@ -183,6 +185,8 @@ public class pengembalian extends javax.swing.JFrame {
         kembaliDateChooser.setDateFormatString("yyyy-MM-dd");
 
         jLabel2.setText("ID Pengembalian");
+
+        idpengembalianField.setEditable(false);
 
         javax.swing.GroupLayout dataPanelLayout = new javax.swing.GroupLayout(dataPanel);
         dataPanel.setLayout(dataPanelLayout);
@@ -270,7 +274,7 @@ public class pengembalian extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(1));
 
         bukuTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
