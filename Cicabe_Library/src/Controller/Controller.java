@@ -13,86 +13,136 @@ public class Controller {
     private Pengembalian pengembalian_log;
     private Pengembalian_det pengembalian_det_log;
     
-    //LOAD STUFF
+    //BASIC LOAD STUFF///////////////////////////////////////////////////////////////////////////////
     
     public ArrayList loadAdmin(){
-        ArrayList<Petugas> admin = new ArrayList();
-        admin = db.getPetugas();
+        ArrayList<Petugas> admin = db.getPetugas();
         return admin;
     }
     
     public ArrayList loadMember(){
-        ArrayList<Member> member = new ArrayList();
-        member = db.getMember();
+        ArrayList<Member> member = db.getMember();
         return member;
     }
     
     public ArrayList loadBuku(){
-        ArrayList<Buku> buku = new ArrayList();
-        buku = db.getBuku();
+        ArrayList<Buku> buku = db.getBuku();
         return buku;
     }
     
     public ArrayList loadPeminjaman(){
-        ArrayList<Peminjaman> pinjam = new ArrayList();
-        pinjam = db.getPinjam();
+        ArrayList<Peminjaman> pinjam = db.getPinjam();
         return pinjam;
     }
     
     public ArrayList loadPengembalian(){
-        ArrayList<Pengembalian> kembali = new ArrayList();
-        kembali = db.getKembali();
+        ArrayList<Pengembalian> kembali = db.getKembali();
         return kembali;
     }
+    
+    //LOAD TABLE STUFF///////////////////////////////////////////////////////////////////////////////
     
     public DefaultTableModel loadTableMember(){
         DefaultTableModel model = new DefaultTableModel(new String[]{"NIS", "Nama", "Tempat Lahir", "Tgl Lahir", "Jumlah Pinjam"}, 0);
         ArrayList<Member> member = loadMember();
         
-        for(Member m : member){
+        member.forEach((m) -> {
             model.addRow(new Object[]{m.getNIS(), m.getNama(), m.getTempat_lahir(), m.getTgl_lahir(), m.getJml_pinjam()});
-            
-        }
+        });
         return model;
     }
     
-    //INSERT STUFF
+    public DefaultTableModel loadTableBuku(){
+        DefaultTableModel model = new DefaultTableModel(new String[]{"ID", "Judul", "Penulis", "Penerbit", "Tahun", "Stok"}, 0);
+        ArrayList<Buku> buku = loadBuku();
+        
+        buku.forEach((b) -> {
+            model.addRow(new Object[]{b.getIdbuku(), b.getJudul(), b.getPenulis(), b.getPenerbit(), b.getTahun(), b.getStok()});
+        });
+        return model;
+    }
+    
+    public DefaultTableModel loadTablePeminjaman(){
+        DefaultTableModel model = new DefaultTableModel(new String[]{"ID Pinjam", "NIS", "Tgl Pinjam", "Tgl Kembali", "Total Pinjam"}, 0);
+        ArrayList<Peminjaman> pinjam = loadPeminjaman();
+        
+        pinjam.forEach((pin) -> {
+            model.addRow(new Object[]{pin.getId_pinjam(), pin.getNis(), pin.getTgl_pinjam(), pin.getTgl_kembali(), pin.getTotal_pinjam()});
+        });
+        return model;
+    }
+    
+    //INSERT STUFF///////////////////////////////////////////////////////////////////////////////
     
     public boolean addMember(Member m){
         ArrayList<Member> member = loadMember();
         
-        for (Member mem : member){
-            if (m.getNIS().equals(mem.getNIS())){
-                return false;
-            }
+        if (!member.stream().noneMatch((mem) -> (m.getNIS().equals(mem.getNIS())))) {
+            return false;
         }
         
-        if (db.insertMember(m)){
-            return true;
-        }
-        return false;
+        return db.insertMember(m);
     }
     
     public boolean addBuku(Buku b){
         ArrayList<Buku> buku = loadBuku();
         
+        if (!buku.stream().noneMatch((buk) -> (buk.getIdbuku().equals(b.getIdbuku())))) {
+            return false;
+        }
+        
+        return db.insertBuku(b);
+    }
+    
+    //DELETE STUFF///////////////////////////////////////////////////////////////////////////////
+    
+    public boolean deleteBuku(String id){
+        return db.deleteBuku(id);
+    }
+    
+    public boolean deleteMember(String nis){
+        return db.deleteMember(nis);
+    }
+    
+    //EDIT STUFF/////////////////////////////////////////////////////////////////////////////////
+    
+    public boolean updateBuku(Buku b){
+        boolean cek = false;
+        ArrayList<Buku> buku = loadBuku();
+        
         for (Buku buk : buku){
             if (buk.getIdbuku().equals(b.getIdbuku())){
-                return false;
+                db.updateBuku(b);
+                cek = true;
             }
         }
         
-        if (db.insertBuku(b)){
-            return true;
+        buku = loadBuku();
+        return cek;
+    }    
+  
+    public boolean updateMember(Member m){
+        boolean cek = false;
+        ArrayList<Member> member = loadMember();
+        
+        for (Member mem : member){
+            if (mem.getNIS().equals(m.getNIS())){
+                db.updateMember(m);
+                cek = true;
+            }
         }
-        return false;
-    }
+        
+        member = loadMember();
+        return cek;
+    } 
     
-    //CEK CEK RICEK
+    //CEK CEK RICEK//////////////////////////////////////////////////////////////////////////////
     
     public boolean cekLogin(String user, String pass){
         ArrayList<Petugas> admin = loadAdmin();
         for (Petugas a : admin){
+            System.out.println(a.getUsername());
+            System.out.println(a.getPassword());
             if (a.getUsername().equals(user) && a.getPassword().equals(pass)){
                 return true;
             }
@@ -102,19 +152,35 @@ public class Controller {
     
     public boolean cekMember(String nis){
         ArrayList<Member> member = loadMember();
-        for (Member m : member){
-            if (m.getNIS().equals(nis)){
-                return true;
-            }
-        }
-        return false;
+        return member.stream().anyMatch((m) -> (m.getNIS().equals(nis)));
     }
     
+    //SEARCH STUFF///////////////////////////////////////////////////////////////////////////////
     
+    public DefaultTableModel searchBuku(String kategori, String keyword){
+        ArrayList<Buku> buku = db.getCariBuku(kategori, keyword);
+        
+        
+        DefaultTableModel model = new DefaultTableModel(new String[]{"ID", "Judul", "Penulis", "Penerbit", "Tahun", "Stok"}, 0);      
+        
+        buku.forEach((b) -> {
+            model.addRow(new Object[]{b.getIdbuku(), b.getJudul(), b.getPenulis(), b.getPenerbit(), b.getTahun(), b.getStok()});
+        });
+        return model;
+    }
     
-    
-    
-    
+    public DefaultTableModel searchMember(String kategori, String keyword){
+        ArrayList<Member> member = db.getCariMember(kategori, keyword);
+        
+        
+        DefaultTableModel model = new DefaultTableModel(new String[]{"NIS", "Nama", "Tempat Lahir", "Tgl Lahir", "Jumlah Pinjam"}, 0);
+        
+        member.forEach((m) -> {
+            model.addRow(new Object[]{m.getNIS(), m.getNama(), m.getTempat_lahir(), m.getTgl_lahir(), m.getJml_pinjam()});
+        });
+        return model;
+    }   
+  
     
     
     

@@ -28,9 +28,9 @@ public class Database {
             String url = "jdbc:ucanaccess://" + msAccDB;
             con = DriverManager.getConnection(url);
             stmt = con.createStatement();
-            System.out.println("Connected");
+            //System.out.println("Connected");
         }
-        catch(SQLException ex) {
+        catch(Exception ex) {
             ex.printStackTrace();
         }
     }
@@ -42,7 +42,7 @@ public class Database {
                 stmt.close();
             }
         }
-        catch(SQLException ex) {
+        catch(Exception ex) {
             ex.printStackTrace();
         }
     }
@@ -53,7 +53,7 @@ public class Database {
         connect();
         try{
             admin = new ArrayList();
-            rs = stmt.executeQuery("SELECT * FROM peminjaman_det");
+            rs = stmt.executeQuery("SELECT * FROM admin");
             while(rs.next()){
                 admin.add(new Petugas(rs.getString("id"), rs.getString("nama"), 
                         rs.getString("username"), rs.getString("password")));
@@ -199,7 +199,7 @@ public class Database {
         boolean cek = false;
         int row;
         try{
-           row = stmt.executeUpdate("INSERT INTO member VALUES ('" + m.getNIS() + "', '" + m.getNama() +"', '" + m.getTempat_lahir() + "')");
+           row = stmt.executeUpdate("INSERT INTO member VALUES ('" + m.getNIS() + "', '" + m.getNama() +"', '" + m.getTempat_lahir() + "', '" + m.getTgl_lahir() + "', '" + m.getJml_pinjam() + "')");
            if (row > 0){
                cek = true;
            }
@@ -366,12 +366,31 @@ public class Database {
                         rs.getString("penerbit"), rs.getString("tahun"), rs.getInt("stok")));
             }
         } catch (Exception e){
-            JOptionPane.showMessageDialog(null, e.getMessage(), "Cari Pemilih", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Cari Buku", JOptionPane.ERROR_MESSAGE);
         }
     }
     
     public ArrayList<Buku> getCariBuku(String kategori, String keyword){
         cariBuku(kategori, keyword);
         return buku;
+    }
+    
+    public void cariMember(String kategori, String keyword){
+        connect();
+        try {
+            member = new ArrayList();
+            rs = stmt.executeQuery("SELECT * FROM member WHERE "+ kategori +" LIKE '%" + keyword +"%'");
+            while (rs.next()){
+                member.add(new Member(rs.getString("nis"), rs.getString("nama"), rs.getString("tempat_Lahir"), 
+                        rs.getDate("tgl_Lahir"), rs.getInt("jml_Pinjam")));
+            }
+        } catch (Exception e){
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Cari Member", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    public ArrayList<Member> getCariMember(String kategori, String keyword){
+        cariMember(kategori, keyword);
+        return member;
     }
 }

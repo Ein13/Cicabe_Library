@@ -11,6 +11,6 @@ package Controller;
  */
 public class Driver {
     public static void main(String[] args){
-        System.out.println("hello worldv2");
+        Handler handler = new Handler();
     }
 }

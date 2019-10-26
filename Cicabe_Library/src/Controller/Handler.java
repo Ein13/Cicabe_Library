@@ -69,8 +69,6 @@ public class Handler extends MouseAdapter implements ActionListener {
                 Object source = ae.getSource();
                 if(source.equals(loginFrame.getloginBtn())) {
                     login(loginFrame.getusernameField().getText(), loginFrame.getpasswordField().getText());
-                    loginFrame.setVisible(false);
-                    mainFrame.setVisible(true);
                 }
                 
                 if(source.equals(mainFrame.getlogoutBtn())) {
@@ -100,7 +98,7 @@ public class Handler extends MouseAdapter implements ActionListener {
                     pengembalianFrame.setVisible(true);
                 }
                 else if(source.equals(mainFrame.getlaporanBtn())){
-                    laporanFrame.setTable(con.loadTableLaporan());
+                    //laporanFrame.setTable(con.loadTableLaporan());
                     mainFrame.setVisible(false);
                     laporanFrame.setVisible(true);
                 }
@@ -119,8 +117,8 @@ public class Handler extends MouseAdapter implements ActionListener {
                 }
                 else if(source.equals(managebukuFrame.getsearchBtn())) {
                     String category = (String) managebukuFrame.getsearchCombo().getSelectedItem();
-                    con.searchBuku(category, managebukuFrame.getsearchField().getText());
-                    managebukuFrame.setTable(con.loadTableBuku());
+                    managebukuFrame.setTable(con.searchBuku(category, managebukuFrame.getsearchField().getText()));
+                    //managebukuFrame.setTable(con.loadTableBuku());
                 }
                 else if(source.equals(managebukuFrame.getdeleteBtn())) {
                     if(con.deleteBuku(managebukuFrame.getidField().getText())){
@@ -192,9 +190,9 @@ public class Handler extends MouseAdapter implements ActionListener {
                 
                 }
                 else if(source.equals(peminjamanFrame.getsearchBtn())){
-                    String category = (String) peminjamanFrame.getsearchComboBox().getSelectedItem();
-                    con.searchPeminjaman(category, peminjamanFrame.getsearchField().getText());
-                    peminjamanFrame.setTable(con.loadTableBuku());
+                    //String category = (String) peminjamanFrame.getsearchComboBox().getSelectedItem();
+                    //con.searchPeminjaman(category, peminjamanFrame.getsearchField().getText());
+                    //peminjamanFrame.setTable(con.loadTableBuku());
                 }
                 else if(source.equals(peminjamanFrame.getsubmitBtn())) {
                 
@@ -210,9 +208,9 @@ public class Handler extends MouseAdapter implements ActionListener {
                     mainFrame.setVisible(true);
                 }
                 else if(source.equals(pengembalianFrame.getsearchBtn())) {
-                    String category = (String) pengembalianFrame.getCategory().getSelectedItem();
-                    con.searchPengembalian(category, pengembalianFrame.getsearchField().getText());
-                    pengembalianFrame.setTable(con.loadTablePengembalian());
+                    //String category = (String) pengembalianFrame.getCategory().getSelectedItem();
+                    //con.searchPengembalian(category, pengembalianFrame.getsearchField().getText());
+                    //pengembalianFrame.setTable(con.loadTablePengembalian());
                 }
                 else if(source.equals(pengembalianFrame.getsubmitBtn())) {
                 
@@ -240,6 +238,7 @@ public class Handler extends MouseAdapter implements ActionListener {
             if(con.cekLogin(usr, pwd)) {
                 loginFrame.setVisible(false);
                 mainFrame.setVisible(true);
+                JOptionPane.showMessageDialog(null, "Selamat Datang, " + usr +".");
             }
             else {
                 JOptionPane.showMessageDialog(null, "username atau password salah");
