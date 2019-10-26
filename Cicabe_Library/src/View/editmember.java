@@ -158,6 +158,8 @@ public class editmember extends javax.swing.JFrame {
         jmlpinjamLabel.setText("Jumlah Pinjam");
         jmlpinjamLabel.setPreferredSize(new java.awt.Dimension(64, 14));
 
+        tglDateChooser.setDateFormatString("yyyy-MM-dd");
+
         javax.swing.GroupLayout dataPanelLayout = new javax.swing.GroupLayout(dataPanel);
         dataPanel.setLayout(dataPanelLayout);
         dataPanelLayout.setHorizontalGroup(

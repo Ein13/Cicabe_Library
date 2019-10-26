@@ -123,6 +123,10 @@ public class peminjaman extends javax.swing.JFrame {
 
         ttlLabel1.setText("Tanggal Kembali");
 
+        pinjamDateChooser.setDateFormatString("yyyy-MM-dd");
+
+        kembaliDateChooser.setDateFormatString("yyyy-MM-dd");
+
         peminjamanArea.setColumns(20);
         peminjamanArea.setRows(5);
         jScrollPane2.setViewportView(peminjamanArea);
