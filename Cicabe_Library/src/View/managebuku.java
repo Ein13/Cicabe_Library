@@ -66,7 +66,7 @@ public class managebuku extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        logoutPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        logoutPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(1));
 
         backBtn.setText("Back");
 
@@ -102,7 +102,7 @@ public class managebuku extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        searchPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        searchPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(1));
 
         searchLabel.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         searchLabel.setText("Search");
@@ -140,7 +140,7 @@ public class managebuku extends javax.swing.JFrame {
                 .addContainerGap(134, Short.MAX_VALUE))
         );
 
-        dataPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        dataPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(1));
 
         idLabel.setText("ID Buku");
 
@@ -149,6 +149,8 @@ public class managebuku extends javax.swing.JFrame {
         penerbitLabel.setText("Penerbit");
 
         penulisLabel.setText("Penulis");
+
+        idField.setEditable(false);
 
         tahunLabel.setText("Tahun");
 
@@ -234,7 +236,7 @@ public class managebuku extends javax.swing.JFrame {
                 .addGap(25, 25, 25))
         );
 
-        tabelPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        tabelPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(1));
 
         editbukuTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

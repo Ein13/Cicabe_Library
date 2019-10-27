@@ -237,6 +237,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="idpinjamField">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="namaLabel">
           <Properties>
@@ -263,8 +266,14 @@
         <Component class="javax.swing.JTextField" name="nomorindukField">
         </Component>
         <Component class="com.toedter.calendar.JDateChooser" name="pinjamDateChooser">
+          <Properties>
+            <Property name="dateFormatString" type="java.lang.String" value="yyyy-MM-dd"/>
+          </Properties>
         </Component>
         <Component class="com.toedter.calendar.JDateChooser" name="kembaliDateChooser">
+          <Properties>
+            <Property name="dateFormatString" type="java.lang.String" value="yyyy-MM-dd"/>
+          </Properties>
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane2">
           <AuxValues>

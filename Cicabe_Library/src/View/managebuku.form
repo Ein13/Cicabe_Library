@@ -317,6 +317,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="idField">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="judulField">
         </Component>
