@@ -393,4 +393,24 @@ public class Database {
         cariMember(kategori, keyword);
         return member;
     }
+    
+    public void cariPeminjaman(String kategori, String keyword){
+        connect();
+        try {
+            pinjam = new ArrayList();
+            rs = stmt.executeQuery("SELECT * FROM peminjaman WHERE "+ kategori +" LIKE '%" + keyword +"%'");
+            while (rs.next()){
+                pinjam.add(new Peminjaman(rs.getString("id_Pinjam"), rs.getString("nis"), 
+                        rs.getDate("tempat_Lahir"), rs.getDate("tgl_Lahir"), 
+                        rs.getInt("jml_Pinjam")));
+            }
+        } catch (Exception e){
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Cari Pinjam", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    public ArrayList<Peminjaman> getCariPeminjaman(String kategori, String keyword){
+        cariPeminjaman(kategori, keyword);
+        return pinjam;
+    }
 }

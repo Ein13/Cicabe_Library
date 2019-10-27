@@ -190,9 +190,9 @@ public class Handler extends MouseAdapter implements ActionListener {
                 
                 }
                 else if(source.equals(peminjamanFrame.getsearchBtn())){
-                    //String category = (String) peminjamanFrame.getsearchComboBox().getSelectedItem();
-                    //con.searchPeminjaman(category, peminjamanFrame.getsearchField().getText());
-                    //peminjamanFrame.setTable(con.loadTableBuku());
+                    String category = (String) peminjamanFrame.getsearchComboBox().getSelectedItem();
+                    con.searchPeminjaman(category, peminjamanFrame.getsearchField().getText());
+                    peminjamanFrame.setTable(con.loadTableBuku());
                 }
                 else if(source.equals(peminjamanFrame.getsubmitBtn())) {
                 

@@ -181,7 +181,17 @@ public class Controller {
         return model;
     }   
   
-    
+    public DefaultTableModel searchPeminjaman(String kategori, String keyword){
+        ArrayList<Peminjaman> pinjam = db.getCariPeminjaman(kategori, keyword);
+        
+        
+        DefaultTableModel model = new DefaultTableModel(new String[]{"ID Pinjam", "NIS", "Tgl Pinjam", "Tgl Kembali", "Total Pinjam"}, 0);
+        
+        pinjam.forEach((pin) -> {
+            model.addRow(new Object[]{pin.getId_pinjam(), pin.getNis(), pin.getTgl_pinjam(), pin.getTgl_kembali(), pin.getTotal_pinjam()});
+        });
+        return model;
+    }
     
     
                     //nyimpen code disini biar ga lupa, JANGAN DIHAPUS
