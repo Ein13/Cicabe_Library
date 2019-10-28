@@ -34,6 +34,7 @@ public class main extends javax.swing.JFrame {
         managePanel = new javax.swing.JPanel();
         manageBtn = new javax.swing.JButton();
         memberBtn = new javax.swing.JButton();
+        ManageBukuPNG = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         pinjamBtn = new javax.swing.JButton();
         kembaliBtn = new javax.swing.JButton();
@@ -70,21 +71,29 @@ public class main extends javax.swing.JFrame {
 
         memberBtn.setText("Data Peminjam");
 
+        ManageBukuPNG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/books.png"))); // NOI18N
+
         javax.swing.GroupLayout managePanelLayout = new javax.swing.GroupLayout(managePanel);
         managePanel.setLayout(managePanelLayout);
         managePanelLayout.setHorizontalGroup(
             managePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, managePanelLayout.createSequentialGroup()
-                .addContainerGap(114, Short.MAX_VALUE)
-                .addGroup(managePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(ManageBukuPNG)
+                .addGap(143, 143, 143))
+            .addGroup(managePanelLayout.createSequentialGroup()
+                .addGap(113, 113, 113)
+                .addGroup(managePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(memberBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(manageBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(101, 101, 101))
+                .addContainerGap(124, Short.MAX_VALUE))
         );
         managePanelLayout.setVerticalGroup(
             managePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(managePanelLayout.createSequentialGroup()
-                .addGap(173, 173, 173)
+                .addGap(24, 24, 24)
+                .addComponent(ManageBukuPNG)
+                .addGap(29, 29, 29)
                 .addComponent(manageBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(memberBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -133,7 +142,7 @@ public class main extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(settingBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(laporanBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(176, Short.MAX_VALUE))
+                .addContainerGap(154, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -212,6 +221,7 @@ public class main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel ManageBukuPNG;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JButton kembaliBtn;

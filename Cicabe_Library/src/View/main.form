@@ -106,19 +106,26 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="114" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="ManageBukuPNG" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="143" max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="113" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="memberBtn" min="-2" pref="170" max="-2" attributes="0"/>
                       <Component id="manageBtn" min="-2" pref="170" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="101" max="-2" attributes="0"/>
+                  <EmptySpace pref="124" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="173" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                  <Component id="ManageBukuPNG" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                   <Component id="manageBtn" min="-2" pref="40" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
                   <Component id="memberBtn" min="-2" pref="40" max="-2" attributes="0"/>
@@ -136,6 +143,13 @@
         <Component class="javax.swing.JButton" name="memberBtn">
           <Properties>
             <Property name="text" type="java.lang.String" value="Data Peminjam"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="ManageBukuPNG">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Image/books.png"/>
+            </Property>
           </Properties>
         </Component>
       </SubComponents>
@@ -205,7 +219,7 @@
                       <Component id="settingBtn" min="-2" pref="170" max="-2" attributes="0"/>
                       <Component id="laporanBtn" min="-2" pref="170" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="176" max="32767" attributes="0"/>
+                  <EmptySpace pref="154" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
