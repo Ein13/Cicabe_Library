@@ -43,7 +43,7 @@ public class managebuku extends javax.swing.JFrame {
         searchLabel = new javax.swing.JLabel();
         searchField = new javax.swing.JTextField();
         searchBtn = new javax.swing.JButton();
-        searchCombo = new javax.swing.JComboBox<>();
+        searchCombo = new javax.swing.JComboBox<String>();
         dataPanel = new javax.swing.JPanel();
         idLabel = new javax.swing.JLabel();
         judulLabel = new javax.swing.JLabel();
@@ -66,7 +66,7 @@ public class managebuku extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        logoutPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(1));
+        logoutPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
         backBtn.setText("Back");
 
@@ -102,14 +102,14 @@ public class managebuku extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        searchPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(1));
+        searchPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
         searchLabel.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         searchLabel.setText("Search");
 
         searchBtn.setText("Search");
 
-        searchCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Judul", "Penerbit", "Penulis", "Tahun" }));
+        searchCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Judul", "Penerbit", "Penulis", "Tahun" }));
 
         javax.swing.GroupLayout searchPanelLayout = new javax.swing.GroupLayout(searchPanel);
         searchPanel.setLayout(searchPanelLayout);
@@ -140,7 +140,7 @@ public class managebuku extends javax.swing.JFrame {
                 .addContainerGap(134, Short.MAX_VALUE))
         );
 
-        dataPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(1));
+        dataPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
         idLabel.setText("ID Buku");
 
@@ -157,6 +157,11 @@ public class managebuku extends javax.swing.JFrame {
         updateBtn.setText("Update");
 
         addBtn.setText("Add");
+        addBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addBtnActionPerformed(evt);
+            }
+        });
 
         deleteBtn.setText("Delete");
 
@@ -236,7 +241,7 @@ public class managebuku extends javax.swing.JFrame {
                 .addGap(25, 25, 25))
         );
 
-        tabelPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(1));
+        tabelPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
         editbukuTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -300,6 +305,10 @@ public class managebuku extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -312,7 +321,6 @@ public class managebuku extends javax.swing.JFrame {
         penulisField.setText(model.getValueAt(i,2).toString());
         penerbitField.setText(model.getValueAt(i,3).toString());
         tahunField.setText(model.getValueAt(i,4).toString());
-        //test2, gk tau bisa atau enggak.
         stokSpinner.setValue(model.getValueAt(i,5));
     }
     
