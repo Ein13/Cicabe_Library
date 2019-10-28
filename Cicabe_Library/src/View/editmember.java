@@ -12,7 +12,11 @@ package View;
 import com.toedter.calendar.JDateChooser;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JSpinner;
@@ -300,9 +304,14 @@ public class editmember extends javax.swing.JFrame {
         nomorindukField.setText(model.getValueAt(i,0).toString());
         namaField.setText(model.getValueAt(i,1).toString());
         tempatField.setText(model.getValueAt(i,2).toString());
-        //test2, gk tau bisa atau enggak.
-        tglDateChooser.setDate((Date) model.getValueAt(i, 3));
         pinjamSpinner.setValue(model.getValueAt(i,4));
+        try {
+            //jdateChooser
+            Date date = new SimpleDateFormat("dd-MM-yyyy").parse((String)model.getValueAt(i, 5).toString());
+            tglDateChooser.setDate(date);
+        } catch (ParseException ex) {
+            Logger.getLogger(editmember.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
  
     
