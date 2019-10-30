@@ -30,7 +30,7 @@ public class Database {
             stmt = con.createStatement();
             //System.out.println("Connected");
         }
-        catch(Exception ex) {
+        catch(SQLException ex) {
             ex.printStackTrace();
         }
     }
@@ -42,7 +42,7 @@ public class Database {
                 stmt.close();
             }
         }
-        catch(Exception ex) {
+        catch(SQLException ex) {
             ex.printStackTrace();
         }
     }
@@ -58,7 +58,7 @@ public class Database {
                 admin.add(new Petugas(rs.getString("id"), rs.getString("nama"), 
                         rs.getString("username"), rs.getString("password")));
             }
-        } catch(Exception e){
+        } catch(SQLException e){
             e.printStackTrace();
         }
     }
@@ -77,7 +77,7 @@ public class Database {
                 member.add(new Member(rs.getString("nis"), rs.getString("nama"), rs.getString("tempat_Lahir"), 
                         rs.getDate("tgl_Lahir"), rs.getInt("jml_Pinjam")));
             }
-        } catch(Exception e){
+        } catch(SQLException e){
             e.printStackTrace();
         }
     }
@@ -96,7 +96,7 @@ public class Database {
                 buku.add(new Buku(rs.getString("id_buku"), rs.getString("judul"), rs.getString("penulis"), 
                         rs.getString("penerbit"), rs.getString("tahun"), rs.getInt("stok")));
             }
-        } catch(Exception e){
+        } catch(SQLException e){
             e.printStackTrace();
         }
     }
@@ -116,7 +116,7 @@ public class Database {
                         rs.getDate("tempat_Lahir"), rs.getDate("tgl_Lahir"), 
                         rs.getInt("jml_Pinjam")));
             }
-        } catch(Exception e){
+        } catch(SQLException e){
             e.printStackTrace();
         }
     }
@@ -135,7 +135,7 @@ public class Database {
                 pinjamDet.add(new Peminjaman_det(rs.getString("id_Pinjam"), 
                         rs.getString("id_Buku"), rs.getInt("jml")));
             }
-        } catch(Exception e){
+        } catch(SQLException e){
             e.printStackTrace();
         }
     }
@@ -164,7 +164,7 @@ public class Database {
                         rs.getString("id_Pinjam"), rs.getDate("tgl_Kembali"), 
                         rs.getInt("denda"), rs.getInt("total_Kembali")));
             }
-        } catch(Exception e){
+        } catch(SQLException e){
             e.printStackTrace();
         }
     }
@@ -182,7 +182,7 @@ public class Database {
             while(rs.next()){
                 kembaliDet.add(new Pengembalian_det(rs.getString("id_Kembali"), rs.getString("id_Buku"), rs.getInt("jml")));
             }
-        } catch(Exception e){
+        } catch(SQLException e){
             e.printStackTrace();
         }
     }
@@ -199,12 +199,15 @@ public class Database {
         boolean cek = false;
         int row;
         try{
-           row = stmt.executeUpdate("INSERT INTO member VALUES ('" + m.getNIS() + "', '" + m.getNama() +"', '" + m.getTempat_lahir() + "', '" + m.getTgl_lahir() + "', '" + m.getJml_pinjam() + "')");
-           if (row > 0){
-               cek = true;
-           }
-        } catch(Exception e){
-            e.printStackTrace();
+            java.text.DateFormat df = new java.text.SimpleDateFormat("MM/dd/yyyy");
+            String tgl = df.format(m.getTgl_lahir());
+ 
+            row = stmt.executeUpdate("INSERT INTO member VALUES ('" + m.getNIS() + "', '" + m.getNama() +"', '" + m.getTempat_lahir() + "', #" + tgl +"#, '" + m.getJml_pinjam() + "')");
+            if (row > 0){
+                cek = true;
+            }
+        } catch(SQLException e){
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Insert Member", JOptionPane.ERROR_MESSAGE);
         }
         return cek;
     }
@@ -219,8 +222,8 @@ public class Database {
            if (row > 0){
                cek = true;
            }
-        } catch(Exception e){
-            e.printStackTrace();
+        } catch(SQLException e){
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Insert Buku", JOptionPane.ERROR_MESSAGE);
         }
         return cek;
     }
@@ -236,8 +239,8 @@ public class Database {
            if (row > 0){
                cek = true;
            }
-        } catch(Exception e){
-            e.printStackTrace();
+        } catch(SQLException e){
+           JOptionPane.showMessageDialog(null, e.getMessage(), "Insert", JOptionPane.ERROR_MESSAGE);
         }
         return cek;
     }
@@ -251,8 +254,8 @@ public class Database {
            if (row > 0){
                cek = true;
            }
-        } catch(Exception e){
-            e.printStackTrace();
+        } catch(SQLException e){
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Insert", JOptionPane.ERROR_MESSAGE);
         }
         return cek;
     }
@@ -267,8 +270,8 @@ public class Database {
            if (row > 0){
                cek = true;
            }
-        } catch(Exception e){
-            e.printStackTrace();
+        } catch(SQLException e){
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Insert", JOptionPane.ERROR_MESSAGE);
         }
         return cek;
     }
@@ -282,8 +285,8 @@ public class Database {
            if (row > 0){
                cek = true;
            }
-        } catch(Exception e){
-            e.printStackTrace();
+        } catch(SQLException e){
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Insert", JOptionPane.ERROR_MESSAGE);
         }
         return cek;
     }
@@ -299,8 +302,8 @@ public class Database {
             if (row > 0){
                 cek = true;
             }
-        } catch (Exception e){
-            e.printStackTrace();
+        } catch (SQLException e){
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Update Member", JOptionPane.ERROR_MESSAGE);
         }
         disconnect();
         return cek;
@@ -315,8 +318,8 @@ public class Database {
             if (row > 0){
                 cek = true;
             }
-        } catch (Exception e){
-            e.printStackTrace();
+        } catch (SQLException e){
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Update Buku", JOptionPane.ERROR_MESSAGE);
         }
         disconnect();
         return cek;
@@ -333,7 +336,7 @@ public class Database {
             if (row > 0){
                 cek = true;
             }
-        } catch (Exception e){
+        } catch (SQLException e){
             JOptionPane.showMessageDialog(null, e.getMessage(), "Delete Member", JOptionPane.ERROR_MESSAGE);
         }
         return cek;
@@ -348,7 +351,7 @@ public class Database {
             if (row > 0){
                 cek = true;
             }
-        } catch (Exception e){
+        } catch (SQLException e){
             JOptionPane.showMessageDialog(null, e.getMessage(), "Delete Buku", JOptionPane.ERROR_MESSAGE);
         }
         return cek;
@@ -365,7 +368,7 @@ public class Database {
                 buku.add(new Buku(rs.getString("id_buku"), rs.getString("judul"), rs.getString("penulis"), 
                         rs.getString("penerbit"), rs.getString("tahun"), rs.getInt("stok")));
             }
-        } catch (Exception e){
+        } catch (SQLException e){
             JOptionPane.showMessageDialog(null, e.getMessage(), "Cari Buku", JOptionPane.ERROR_MESSAGE);
         }
     }
@@ -384,7 +387,7 @@ public class Database {
                 member.add(new Member(rs.getString("nis"), rs.getString("nama"), rs.getString("tempat_Lahir"), 
                         rs.getDate("tgl_Lahir"), rs.getInt("jml_Pinjam")));
             }
-        } catch (Exception e){
+        } catch (SQLException e){
             JOptionPane.showMessageDialog(null, e.getMessage(), "Cari Member", JOptionPane.ERROR_MESSAGE);
         }
     }
@@ -404,7 +407,7 @@ public class Database {
                         rs.getDate("tempat_Lahir"), rs.getDate("tgl_Lahir"), 
                         rs.getInt("jml_Pinjam")));
             }
-        } catch (Exception e){
+        } catch (SQLException e){
             JOptionPane.showMessageDialog(null, e.getMessage(), "Cari Pinjam", JOptionPane.ERROR_MESSAGE);
         }
     }
