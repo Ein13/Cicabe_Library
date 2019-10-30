@@ -14,11 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 import com.toedter.calendar.JDateChooser;
 import java.awt.event.MouseAdapter;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.table.TableModel;
@@ -362,21 +358,9 @@ public class pengembalian extends javax.swing.JFrame {
         indukField.setText(model.getValueAt(i,1).toString());
         namaField.setText(model.getValueAt(i,2).toString());
         
-        try {
-            //jdateChooser Format belum fix
-            Date date = new SimpleDateFormat("dd-MM-yyyy").parse((String)model.getValueAt(i, 3).toString());
-            pinjamDateChooser.setDate(date);
-        } catch (ParseException ex) {
-            Logger.getLogger(editmember.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        try {
-            //jdateChooser Format belum fix
-            Date date = new SimpleDateFormat("dd-MM-yyyy").parse((String)model.getValueAt(i, 4).toString());
-            kembaliDateChooser.setDate(date);
-        } catch (ParseException ex) {
-            Logger.getLogger(editmember.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        //test2, gk tau bisa atau enggak.
+        pinjamDateChooser.setDate((Date) model.getValueAt(i, 3));
+        kembaliDateChooser.setDate((Date) model.getValueAt(i, 4));
         
         dendaField.setText(model.getValueAt(i,5).toString());
         statusField.setText(model.getValueAt(i,6).toString());
