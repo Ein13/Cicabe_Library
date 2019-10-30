@@ -197,9 +197,9 @@ public class Handler extends MouseAdapter implements ActionListener {
                     mainFrame.setVisible(true);
                 }
                 else if(source.equals(editmember.getsearchBtn())) {
-                    String category = (String) editmember.getsearchCombo().getSelectedItem();
+                    String category = (String) managebukuFrame.getsearchCombo().getSelectedItem();
                     con.searchMember(category, editmember.getsearchField().getText());
-                    //editmember.setTable(con.loadTableMember());
+                    editmember.setTable(con.loadTableMember());
                 }
                 else if(source.equals(editmember.getdeleteBtn())) {
                     if(con.deleteMember(editmember.getnomorindukField().getText())){
@@ -318,8 +318,8 @@ public class Handler extends MouseAdapter implements ActionListener {
         public void login(String usr, String pwd) {
             if(con.cekLogin(usr, pwd)) {
                 loginFrame.setVisible(false);
-                JOptionPane.showMessageDialog(null, "Selamat Datang, " + usr +".");                        
                 mainFrame.setVisible(true);
+                JOptionPane.showMessageDialog(null, "Selamat Datang, " + usr +".");
             }
             else {
                 JOptionPane.showMessageDialog(null, "username atau password salah");
