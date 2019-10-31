@@ -48,7 +48,7 @@ public class editmember extends javax.swing.JFrame {
         searchLabel = new javax.swing.JLabel();
         searchField = new javax.swing.JTextField();
         searchBtn = new javax.swing.JButton();
-        searchCombo = new javax.swing.JComboBox<>();
+        searchCombo = new javax.swing.JComboBox<String>();
         dataPanel = new javax.swing.JPanel();
         namaLabel = new javax.swing.JLabel();
         nomorindukLabel = new javax.swing.JLabel();
@@ -112,7 +112,7 @@ public class editmember extends javax.swing.JFrame {
 
         searchBtn.setText("Search");
 
-        searchCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "NIS", "Nama", "Tempat", "Tanggal Lahir" }));
+        searchCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "NIS", "Nama", "Tempat", "Tanggal Lahir" }));
 
         javax.swing.GroupLayout searchPanelLayout = new javax.swing.GroupLayout(searchPanel);
         searchPanel.setLayout(searchPanelLayout);
@@ -243,6 +243,11 @@ public class editmember extends javax.swing.JFrame {
                 "Nomor Induk", "Nama", "Tempat Lahir", "Tanggal Lahir", "Jumlah Pinjam"
             }
         ));
+        editdatamemberTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                editdatamemberTableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(editdatamemberTable);
 
         javax.swing.GroupLayout tabelPanelLayout = new javax.swing.GroupLayout(tabelPanel);
@@ -293,6 +298,23 @@ public class editmember extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void editdatamemberTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editdatamemberTableMouseClicked
+        int i = editdatamemberTable.getSelectedRow();
+        TableModel model = editdatamemberTable.getModel();
+        // Kalau fail, kemungkinan urutan table beda dengan database 
+        nomorindukField.setText(model.getValueAt(i,0).toString());
+        namaField.setText(model.getValueAt(i,1).toString());
+        tempatField.setText(model.getValueAt(i,2).toString());
+        pinjamSpinner.setValue(model.getValueAt(i,4));
+        try {
+            //jdateChooser
+            Date date = new SimpleDateFormat("dd-MM-yyyy").parse((String)model.getValueAt(i, 5).toString());
+            tglDateChooser.setDate(date);
+        } catch (ParseException ex) {
+            Logger.getLogger(editmember.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_editdatamemberTableMouseClicked
 
     /**
      * @param args the command line arguments
