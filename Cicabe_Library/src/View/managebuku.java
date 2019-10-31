@@ -254,6 +254,11 @@ public class managebuku extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        editbukuTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                editbukuTableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(editbukuTable);
 
         javax.swing.GroupLayout tabelPanelLayout = new javax.swing.GroupLayout(tabelPanel);
@@ -308,6 +313,18 @@ public class managebuku extends javax.swing.JFrame {
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_addBtnActionPerformed
+
+    private void editbukuTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editbukuTableMouseClicked
+         int i = editbukuTable.getSelectedRow();
+        TableModel model = editbukuTable.getModel();
+        // Kalau fail, kemungkinan urutan table beda dengan database 
+        idField.setText(model.getValueAt(i,0).toString());
+        judulField.setText(model.getValueAt(i,1).toString());
+        penulisField.setText(model.getValueAt(i,2).toString());
+        penerbitField.setText(model.getValueAt(i,3).toString());
+        tahunField.setText(model.getValueAt(i,4).toString());
+        stokSpinner.setValue(model.getValueAt(i,5));
+    }//GEN-LAST:event_editbukuTableMouseClicked
 
     /**
      * @param args the command line arguments
