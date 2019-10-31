@@ -309,34 +309,13 @@ public class editmember extends javax.swing.JFrame {
         pinjamSpinner.setValue(model.getValueAt(i,4));
         try {
             //jdateChooser
-            Date date = new SimpleDateFormat("dd-MM-yyyy").parse((String)model.getValueAt(i, 5).toString());
+            Date date = new SimpleDateFormat("MM-dd-yyyy").parse((String)model.getValueAt(i, 3).toString());
             tglDateChooser.setDate(date);
         } catch (ParseException ex) {
             Logger.getLogger(editmember.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_editdatamemberTableMouseClicked
-
-    /**
-     * @param args the command line arguments
-     */
-    private void editdatamemberTableClicked (java.awt.event.MouseEvent evt){
-        int i = editdatamemberTable.getSelectedRow();
-        TableModel model = editdatamemberTable.getModel();
-        // Kalau fail, kemungkinan urutan table beda dengan database 
-        nomorindukField.setText(model.getValueAt(i,0).toString());
-        namaField.setText(model.getValueAt(i,1).toString());
-        tempatField.setText(model.getValueAt(i,2).toString());
-        pinjamSpinner.setValue(model.getValueAt(i,4));
-        try {
-            //jdateChooser
-            Date date = new SimpleDateFormat("dd-MM-yyyy").parse((String)model.getValueAt(i, 5).toString());
-            tglDateChooser.setDate(date);
-        } catch (ParseException ex) {
-            Logger.getLogger(editmember.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
- 
-    
+     
     public JButton getlogoutBtn(){
        return logoutBtn;
    }
@@ -384,7 +363,6 @@ public class editmember extends javax.swing.JFrame {
    public JSpinner getjumlahpinjam(){
        return pinjamSpinner;
    }
-   
    public void setTable(TableModel model){
         this.editdatamemberTable.setModel(model);
     }

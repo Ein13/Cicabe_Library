@@ -120,7 +120,7 @@ public class Handler extends MouseAdapter implements ActionListener {
                     laporanFrame.setVisible(true);
                 }
                 else if(source.equals(mainFrame.getsettingBtn())){
-                    mainFrame.setVisible(false);
+                    //mainFrame.setVisible(false);
                     settingFrame.setVisible(true);
                 }
                 
