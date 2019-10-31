@@ -7,6 +7,9 @@ package Controller;
 
 import View.*;
 import Model.*;
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -19,6 +22,8 @@ import javax.swing.table.TableModel;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.JFrame;
+import javax.swing.JRootPane;
 import javax.swing.table.DefaultTableModel;
 //import java.util.Calendar;
 
@@ -38,270 +43,296 @@ public class Handler extends MouseAdapter implements ActionListener {
     private laporan laporanFrame;
     private setting settingFrame;
     
+    public static void centreWindow(Window frame) {
+        Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+        int x = (int) ((dimension.getWidth() - frame.getWidth()) / 2);
+        int y = (int) ((dimension.getHeight() - frame.getHeight()) / 2);
+        frame.setLocation(x, y);
+    }
     private Controller con = new Controller();
-        public Handler() {
-            loginFrame = new login();
-            mainFrame = new main();
-            peminjamanFrame = new peminjaman();
-            pengembalianFrame = new pengembalian();
-            editmember = new editmember();
-            managebukuFrame = new managebuku();
-            settingFrame = new setting();
-            laporanFrame = new laporan();
+    public Handler() {
+        loginFrame = new login();
+        mainFrame = new main();
+        peminjamanFrame = new peminjaman();
+        pengembalianFrame = new pengembalian();
+        editmember = new editmember();
+        managebukuFrame = new managebuku();
+        settingFrame = new setting();
+        laporanFrame = new laporan();
             
-            loginFrame.setVisible(true);
-            mainFrame.setVisible(false);
-            peminjamanFrame.setVisible(false);
-            pengembalianFrame.setVisible(false);
-            editmember.setVisible(false);
-            managebukuFrame.setVisible(false);
-            settingFrame.setVisible(false);
-            laporanFrame.setVisible(false);
-            
-            loginFrame.addActionListener(this);
-            mainFrame.addActionListener(this);
-            peminjamanFrame.addActionListener(this);
-            pengembalianFrame.addActionListener(this);
-            editmember.addActionListener(this);
-            managebukuFrame.addActionListener(this);
-            settingFrame.addActionListener(this);
-            laporanFrame.addActionListener(this);
-            loginFrame.getRootPane().setDefaultButton(loginFrame.getloginBtn());
-            JSpinner spinner = peminjamanFrame.getjumlahSpinner();
-            JFormattedTextField tf = ((JSpinner.DefaultEditor) spinner.getEditor()).getTextField();
-            tf.setEditable(false);
+        loginFrame.setVisible(true);
+        mainFrame.setVisible(false);
+        peminjamanFrame.setVisible(false);
+        pengembalianFrame.setVisible(false);
+        editmember.setVisible(false);
+        managebukuFrame.setVisible(false);
+        laporanFrame.setVisible(false);
+        settingFrame.setVisible(false);
+          
+        loginFrame.addActionListener(this);
+        mainFrame.addActionListener(this);
+        peminjamanFrame.addActionListener(this);
+        pengembalianFrame.addActionListener(this);
+        editmember.addActionListener(this);
+        managebukuFrame.addActionListener(this);
+        settingFrame.addActionListener(this);
+        laporanFrame.addActionListener(this);
+         
+        loginFrame.getRootPane().setDefaultButton(loginFrame.getloginBtn());
+        settingFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        //centreWindow(loginFrame);
+        loginFrame.setLocationRelativeTo(null);
+        mainFrame.setLocationRelativeTo(null);
+        peminjamanFrame.setLocationRelativeTo(null);
+        pengembalianFrame.setLocationRelativeTo(null);
+        editmember.setLocationRelativeTo(null);
+        managebukuFrame.setLocationRelativeTo(null);
+        settingFrame.setLocationRelativeTo(null);
+        laporanFrame.setLocationRelativeTo(null);
+        
+           
+        JSpinner spinner = peminjamanFrame.getjumlahSpinner();
+        JFormattedTextField tf = ((JSpinner.DefaultEditor) spinner.getEditor()).getTextField();
+        tf.setEditable(false);
         }
-        public void actionPerformed(ActionEvent ae) {
-                Object source = ae.getSource();
-                if(source.equals(loginFrame.getloginBtn())) {
-                    login(loginFrame.getusernameField().getText(), loginFrame.getpasswordField().getText());
-                    loginFrame.getusernameField().setText("");
-                    loginFrame.getpasswordField().setText("");
-                }
+    public void actionPerformed(ActionEvent ae) {
+        Object source = ae.getSource();
+        if(source.equals(loginFrame.getloginBtn())) {
+            login(loginFrame.getusernameField().getText(), loginFrame.getpasswordField().getText());
+            loginFrame.getpasswordField().setText("");
+        }
+        
+        if(source.equals(mainFrame.getlogoutBtn())) {
+            mainFrame.setVisible(false);
+            loginFrame.setVisible(true);
+            loginFrame.getusernameField().requestFocusInWindow();
+        }
+        else if(source.equals(mainFrame.getmanageBtn())) {
+            managebukuFrame.setTable(con.loadTableBuku());
+            incrementBuku();
+            managebukuFrame.getupdateBtn().setVisible(false);
+            managebukuFrame.getdeleteBtn().setVisible(false);
+            managebukuFrame.setVisible(true);            
+            mainFrame.setVisible(false);
+        }
+        else if(source.equals(mainFrame.getmemberBtn())) {
+            editmember.getdeleteBtn().setVisible(false);
+            editmember.getupdateBtn().setVisible(false);
+            Date dateNow = new java.util.Date();
+            editmember.gettglDateChooser().setDate(dateNow);
+            editmember.setTable(con.loadTableMember());
+            editmember.setVisible(true);
+            mainFrame.setVisible(false);
+        }
+        else if(source.equals(mainFrame.getpinjamBtn())) {
+            //peminjamanFrame.setTable(con.loadTablePeminjaman());
+            //peminjamanFrame.setTable(con.loadTableBuku());
+            incrementPeminjaman();
+            Date dateNow = new java.util.Date();
+            peminjamanFrame.getpinjamDateChooser().setDate(dateNow);
+            peminjamanFrame.getkembaliDateChooser().setDate(dateNow);
+            peminjamanFrame.setVisible(true);
+            mainFrame.setVisible(false);
+            peminjamanFrame.setTableBuku(con.loadTableBuku());
+        }
+        else if(source.equals(mainFrame.getkembaliBtn())) {
+            //pengembalianFrame.setTable(con.loadTablePeminjaman());
+            //pengembalianFrame.setTable(con.loadTableBuku());
+            incrementPeminjaman();
+            Date dateNow = new java.util.Date();
+            pengembalianFrame.getpinjamDateChooserField().setDate(dateNow);
+            pengembalianFrame.getkembaliDateChooserField().setDate(dateNow);
+            pengembalianFrame.setVisible(true);
+            mainFrame.setVisible(false);
+            pengembalianFrame.setTable(con.loadTableMember());
+        }
+        else if(source.equals(mainFrame.getlaporanBtn())){
+            //laporanFrame.setTable(con.loadTableLaporan());
+            laporanFrame.setVisible(true);
+            mainFrame.setVisible(false);
+        }
+        else if(source.equals(mainFrame.getsettingBtn())){
+            //mainFrame.setVisible(false);
+            settingFrame.setVisible(true);
+        }
+             
+        if(source.equals(managebukuFrame.getlogoutBtn())) {
+            resetUiBuku();
+            loginFrame.setVisible(true);
+            managebukuFrame.setVisible(false);
+        }
+        else if(source.equals(managebukuFrame.getbackBtn())) {
+            resetUiBuku();
+            mainFrame.setVisible(true);
+            managebukuFrame.setVisible(false);
+        }
+        else if(source.equals(managebukuFrame.getsearchBtn())) {
+            String category = (String) managebukuFrame.getsearchCombo().getSelectedItem();
+            managebukuFrame.setTable(con.searchBuku(category, managebukuFrame.getsearchField().getText()));
+        }
+        else if(source.equals(managebukuFrame.getdeleteBtn())) {
+            if(con.deleteBuku(managebukuFrame.getidField().getText())){
+                JOptionPane.showMessageDialog(managebukuFrame, "Berhasil menghapus buku dengan Id " + managebukuFrame.getidField().getText(), "Hapus Buku", JOptionPane.INFORMATION_MESSAGE);
+                resetUiBuku();
                 
-                if(source.equals(mainFrame.getlogoutBtn())) {
-                    mainFrame.setVisible(false);
-                    loginFrame.setVisible(true);
-                }
-                else if(source.equals(mainFrame.getmanageBtn())) {
-                    managebukuFrame.setTable(con.loadTableBuku());
-                    incrementBuku();
-                    managebukuFrame.getupdateBtn().setVisible(false);
-                    managebukuFrame.getdeleteBtn().setVisible(false);
-                    mainFrame.setVisible(false);
-                    managebukuFrame.setVisible(true);
-                }
-                else if(source.equals(mainFrame.getmemberBtn())) {
-                    editmember.getdeleteBtn().setVisible(false);
-                    editmember.getupdateBtn().setVisible(false);
-                    Date dateNow = new java.util.Date();
-                    editmember.gettglDateChooser().setDate(dateNow);
-                    editmember.setTable(con.loadTableMember());
-                    mainFrame.setVisible(false);
-                    editmember.setVisible(true);
-                }
-                else if(source.equals(mainFrame.getpinjamBtn())) {
-                    //peminjamanFrame.setTable(con.loadTablePeminjaman());
-                    //peminjamanFrame.setTable(con.loadTableBuku());
-                    incrementPeminjaman();
-                    Date dateNow = new java.util.Date();
-                    peminjamanFrame.getpinjamDateChooser().setDate(dateNow);
-                    peminjamanFrame.getkembaliDateChooser().setDate(dateNow);
-                    mainFrame.setVisible(false);
-                    peminjamanFrame.setVisible(true);
-                    peminjamanFrame.setTableBuku(con.loadTableBuku());
-                }
-                else if(source.equals(mainFrame.getkembaliBtn())) {
-                    //pengembalianFrame.setTable(con.loadTablePeminjaman());
-                    //pengembalianFrame.setTable(con.loadTableBuku());
-                    incrementPeminjaman();
-                    Date dateNow = new java.util.Date();
-                    pengembalianFrame.getpinjamDateChooserField().setDate(dateNow);
-                    pengembalianFrame.getkembaliDateChooserField().setDate(dateNow);
-                    mainFrame.setVisible(false);
-                    pengembalianFrame.setVisible(true);
-                    pengembalianFrame.setTable(con.loadTableMember());
-                }
-                else if(source.equals(mainFrame.getlaporanBtn())){
-                    //laporanFrame.setTable(con.loadTableLaporan());
-                    mainFrame.setVisible(false);
-                    laporanFrame.setVisible(true);
-                }
-                else if(source.equals(mainFrame.getsettingBtn())){
-                    //mainFrame.setVisible(false);
-                    settingFrame.setVisible(true);
-                }
-                
-                if(source.equals(managebukuFrame.getlogoutBtn())) {
-                    resetUiBuku();
-                    managebukuFrame.setVisible(false);
-                    loginFrame.setVisible(true);
-                }
-                else if(source.equals(managebukuFrame.getbackBtn())) {
-                    resetUiBuku();
-                    managebukuFrame.setVisible(false);
-                    mainFrame.setVisible(true);
-                }
-                else if(source.equals(managebukuFrame.getsearchBtn())) {
-                    String category = (String) managebukuFrame.getsearchCombo().getSelectedItem();
-                    managebukuFrame.setTable(con.searchBuku(category, managebukuFrame.getsearchField().getText()));
-                    managebukuFrame.setTable(con.loadTableBuku());
-                }
-                else if(source.equals(managebukuFrame.getdeleteBtn())) {
-                    if(con.deleteBuku(managebukuFrame.getidField().getText())){
-                        JOptionPane.showMessageDialog(managebukuFrame, "Berhasil menghapus buku dengan Id " + managebukuFrame.getidField().getText(), "Hapus Buku", JOptionPane.INFORMATION_MESSAGE);
-                        resetUiBuku();
-                        
-                    }
-                    else{
-                        JOptionPane.showMessageDialog(managebukuFrame, "Gagal hapus buku", "Hapus Buku", JOptionPane.ERROR_MESSAGE);
-                    }
-                    managebukuFrame.setTable(con.loadTableBuku());
-                
-                }
-                else if(source.equals(managebukuFrame.getaddBtn())) {
-                    addBuku();
-                }
-                else if(source.equals(managebukuFrame.getupdateBtn())) {
-                    updateBuku();
-                    resetUiBuku();
-                }
-                else if(source.equals(managebukuFrame.getresetBtn())) {
-                    resetUiBuku();
-                    managebukuFrame.setTable(con.loadTableBuku());
-                }
-                
-                if(source.equals(editmember.getlogoutBtn())) {
-                    resetUiMember();
-                    editmember.setVisible(false);
-                    loginFrame.setVisible(true);
-                }
-                else if(source.equals(editmember.getbackBtn())) {
-                    resetUiMember();
-                    editmember.setVisible(false);
-                    mainFrame.setVisible(true);
-                }
-                else if(source.equals(editmember.getsearchBtn())) {
-                    String category = (String) managebukuFrame.getsearchCombo().getSelectedItem();
-                    con.searchMember(category, editmember.getsearchField().getText());
-                    editmember.setTable(con.loadTableMember());
-                }
-                else if(source.equals(editmember.getdeleteBtn())) {
-                    if(con.deleteMember(editmember.getnomorindukField().getText())){
-                        JOptionPane.showMessageDialog(editmember, "Berhasil menghapus member dengan NIS " + editmember.getnomorindukField().getText(), "Hapus Member", JOptionPane.INFORMATION_MESSAGE);
-                        resetUiMember();
-                    }
-                    else{
-                        JOptionPane.showMessageDialog(editmember, "Gagal hapus member", "Hapus Member", JOptionPane.ERROR_MESSAGE);
-                    }
-                    editmember.setTable(con.loadTableMember());
-                }
-                else if(source.equals(editmember.getaddBtn())) {
-                    addMember();
-                }
-                else if(source.equals(editmember.getupdateBtn())) {
-                    updateMember();
+            }
+            else{
+                JOptionPane.showMessageDialog(managebukuFrame, "Gagal hapus buku", "Hapus Buku", JOptionPane.ERROR_MESSAGE);
+            }
+            managebukuFrame.setTable(con.loadTableBuku());
+        
+            }
+        else if(source.equals(managebukuFrame.getaddBtn())) {
+            addBuku();
+        }
+        else if(source.equals(managebukuFrame.getupdateBtn())) {
+            updateBuku();
+            resetUiBuku();
+        }
+        else if(source.equals(managebukuFrame.getresetBtn())) {
+            resetUiBuku();
+            managebukuFrame.setTable(con.loadTableBuku());
+        }
+         
+        if(source.equals(editmember.getlogoutBtn())) {
+            resetUiMember();
+            editmember.setVisible(false);
+            loginFrame.setVisible(true);
+        }
+        else if(source.equals(editmember.getbackBtn())) {
+            resetUiMember();
+            editmember.setVisible(false);
+            mainFrame.setVisible(true);
+        }
+        else if(source.equals(editmember.getsearchBtn())) {
+            String category = (String) editmember.getsearchCombo().getSelectedItem();
+            editmember.setTable(con.searchMember(category, editmember.getsearchField().getText()));
+        }
+        else if(source.equals(editmember.getdeleteBtn())) {
+            if(editmember.getnomorindukField().getText().isEmpty()){
+                JOptionPane.showMessageDialog(editmember, "Pilih data pada tabel terlebih dahulu", "Hapus Member", JOptionPane.ERROR_MESSAGE);                        
+            }
+            else{
+                if(con.deleteMember(editmember.getnomorindukField().getText())){
+                    JOptionPane.showMessageDialog(editmember, "Berhasil menghapus member dengan NIS " + editmember.getnomorindukField().getText(), "Hapus Member", JOptionPane.INFORMATION_MESSAGE);
                     resetUiMember();
                 }
-                else if(source.equals(editmember.getresetBtn())) {
-                    resetUiMember();
-                    editmember.setTable(con.loadTableMember());
+                else{
+                    JOptionPane.showMessageDialog(editmember, "Gagal hapus member", "Hapus Member", JOptionPane.ERROR_MESSAGE);
                 }
+                editmember.setTable(con.loadTableMember());
+            }
+        }
+        else if(source.equals(editmember.getaddBtn())) {
+            addMember();
+        }
+        else if(source.equals(editmember.getupdateBtn())) {
+            updateMember();
+            resetUiMember();
+        }
+        else if(source.equals(editmember.getresetBtn())) {
+            resetUiMember();
+            editmember.setTable(con.loadTableMember());
+        }
+          
+        if(source.equals(peminjamanFrame.getlogoutBtn())) {
+            peminjamanFrame.getidpinjamField().setText("");
+            peminjamanFrame.getnamaField().setText("");
+            peminjamanFrame.getnomorindukField().setText("");
+            Date dateNow = new java.util.Date();
+            peminjamanFrame.getpinjamDateChooser().setDate(dateNow);
+            peminjamanFrame.getkembaliDateChooser().setDate(dateNow);
+            peminjamanFrame.getsearchField().setText("");
+            peminjamanFrame.getjudulField().setText("");
+            peminjamanFrame.setVisible(false);
+            loginFrame.setVisible(true);
+        }
+        else if(source.equals(peminjamanFrame.getbackBtn())) {
+            peminjamanFrame.getidpinjamField().setText("");
+            peminjamanFrame.getnamaField().setText("");
+            peminjamanFrame.getnomorindukField().setText("");
+            Date dateNow = new java.util.Date();
+            peminjamanFrame.getpinjamDateChooser().setDate(dateNow);
+            peminjamanFrame.getkembaliDateChooser().setDate(dateNow);
+            peminjamanFrame.getsearchField().setText("");
+            peminjamanFrame.getjudulField().setText("");
+            peminjamanFrame.setVisible(false);
+            mainFrame.setVisible(true);
+        }
+        else if(source.equals(peminjamanFrame.getaddBtn())) {
+            DefaultTableModel model = (DefaultTableModel)peminjamanFrame.getkeranjangTable().getModel();
+            model.addRow(new Object[]{peminjamanFrame.getidField().getText(), peminjamanFrame.getjudulField().getText(), peminjamanFrame.getjumlahSpinner().getValue()});
+            peminjamanFrame.getjudulField().setText("");
+            peminjamanFrame.getidField().setText("");
+            peminjamanFrame.getjumlahSpinner().setValue(1);
+        }
+            else if(source.equals(peminjamanFrame.getsearchBtn())){
+                String category = (String) peminjamanFrame.getsearchComboBox().getSelectedItem();
+                peminjamanFrame.setTableBuku(con.searchBuku(category, peminjamanFrame.getsearchField().getText()));
+            } 
+            else if(source.equals(peminjamanFrame.getsubmitBtn())) {
                 
-                if(source.equals(peminjamanFrame.getlogoutBtn())) {
-                    peminjamanFrame.getidpinjamField().setText("");
-                    peminjamanFrame.getnamaField().setText("");
-                    peminjamanFrame.getnomorindukField().setText("");
-                    Date dateNow = new java.util.Date();
-                    peminjamanFrame.getpinjamDateChooser().setDate(dateNow);
-                    peminjamanFrame.getkembaliDateChooser().setDate(dateNow);
-                    peminjamanFrame.getsearchField().setText("");
-                    peminjamanFrame.getjudulField().setText("");
-                    peminjamanFrame.setVisible(false);
-                    loginFrame.setVisible(true);
+            }
+            else if(source.equals(peminjamanFrame.getdeleteBtn())){
+                DefaultTableModel model = (DefaultTableModel) peminjamanFrame.getkeranjangTable().getModel();
+                int[] rows = peminjamanFrame.getkeranjangTable().getSelectedRows();
+                for(int i=0;i<rows.length;i++){
+                    model.removeRow(rows[i]-i);
                 }
-                else if(source.equals(peminjamanFrame.getbackBtn())) {
-                    peminjamanFrame.getidpinjamField().setText("");
-                    peminjamanFrame.getnamaField().setText("");
-                    peminjamanFrame.getnomorindukField().setText("");
-                    Date dateNow = new java.util.Date();
-                    peminjamanFrame.getpinjamDateChooser().setDate(dateNow);
-                    peminjamanFrame.getkembaliDateChooser().setDate(dateNow);
-                    peminjamanFrame.getsearchField().setText("");
-                    peminjamanFrame.getjudulField().setText("");
-                    peminjamanFrame.setVisible(false);
-                    mainFrame.setVisible(true);
-                }
-                else if(source.equals(peminjamanFrame.getaddBtn())) {
-                    DefaultTableModel model = (DefaultTableModel)peminjamanFrame.getkeranjangTable().getModel();
-                    model.addRow(new Object[]{peminjamanFrame.getidField().getText(), peminjamanFrame.getjudulField().getText(), peminjamanFrame.getjumlahSpinner().getValue()});
-                    peminjamanFrame.getjudulField().setText("");
-                    peminjamanFrame.getidField().setText("");
-                    peminjamanFrame.getjumlahSpinner().setValue(1);
-                }
-                else if(source.equals(peminjamanFrame.getsearchBtn())){
-                    String category = (String) peminjamanFrame.getsearchComboBox().getSelectedItem();
-                    peminjamanFrame.setTableBuku(con.searchBuku(category, peminjamanFrame.getsearchField().getText()));
-                }
-                else if(source.equals(peminjamanFrame.getsubmitBtn())) {
-                    
-                }
-                else if(source.equals(peminjamanFrame.getdeleteBtn())){
-                    DefaultTableModel model = (DefaultTableModel) peminjamanFrame.getkeranjangTable().getModel();
-                    int[] rows = peminjamanFrame.getkeranjangTable().getSelectedRows();
-                    for(int i=0;i<rows.length;i++){
-                        model.removeRow(rows[i]-i);
-                    }
-                }
+            }
+            
+            if(source.equals(pengembalianFrame.getlogoutBtn())) {
+                pengembalianFrame.getidpinjamField().setText("");
+                pengembalianFrame.getidpengembalianField().setText("");
+                pengembalianFrame.getindukField().setText("");
+                pengembalianFrame.getnamaField().setText("");
+                Date dateNow = new java.util.Date();
+                pengembalianFrame.getpinjamDateChooserField().setDate(dateNow);
+                pengembalianFrame.getkembaliDateChooserField().setDate(dateNow);
+                pengembalianFrame.getdendaField().setText("");
+                pengembalianFrame.getstatusField().setText("");
+                pengembalianFrame.setVisible(false);
+                loginFrame.setVisible(true);
+            }
+            else if(source.equals(pengembalianFrame.getbackBtn())) {
+                pengembalianFrame.getidpinjamField().setText("");
+                pengembalianFrame.getidpengembalianField().setText("");
+                pengembalianFrame.getindukField().setText("");
+                pengembalianFrame.getnamaField().setText("");
+                Date dateNow = new java.util.Date();
+                pengembalianFrame.getpinjamDateChooserField().setDate(dateNow);
+                pengembalianFrame.getkembaliDateChooserField().setDate(dateNow);
+                pengembalianFrame.getdendaField().setText("");
+                pengembalianFrame.getstatusField().setText("");
+                pengembalianFrame.setVisible(false);
+                mainFrame.setVisible(true);
+            }
+            else if(source.equals(pengembalianFrame.getsearchBtn())) {
+                //String category = (String) pengembalianFrame.getCategory().getSelectedItem();
+                //con.searchPengembalian(category, pengembalianFrame.getsearchField().getText());
+                //pengembalianFrame.setTable(con.loadTablePengembalian());
+            } 
+            else if(source.equals(pengembalianFrame.getsubmitBtn())) {
                 
-                if(source.equals(pengembalianFrame.getlogoutBtn())) {
-                    pengembalianFrame.getidpinjamField().setText("");
-                    pengembalianFrame.getidpengembalianField().setText("");
-                    pengembalianFrame.getindukField().setText("");
-                    pengembalianFrame.getnamaField().setText("");
-                    Date dateNow = new java.util.Date();
-                    pengembalianFrame.getpinjamDateChooserField().setDate(dateNow);
-                    pengembalianFrame.getkembaliDateChooserField().setDate(dateNow);
-                    pengembalianFrame.getdendaField().setText("");
-                    pengembalianFrame.getstatusField().setText("");
-                    pengembalianFrame.setVisible(false);
-                    loginFrame.setVisible(true);
-                }
-                else if(source.equals(pengembalianFrame.getbackBtn())) {
-                    pengembalianFrame.getidpinjamField().setText("");
-                    pengembalianFrame.getidpengembalianField().setText("");
-                    pengembalianFrame.getindukField().setText("");
-                    pengembalianFrame.getnamaField().setText("");
-                    Date dateNow = new java.util.Date();
-                    pengembalianFrame.getpinjamDateChooserField().setDate(dateNow);
-                    pengembalianFrame.getkembaliDateChooserField().setDate(dateNow);
-                    pengembalianFrame.getdendaField().setText("");
-                    pengembalianFrame.getstatusField().setText("");
-                    pengembalianFrame.setVisible(false);
-                    mainFrame.setVisible(true);
-                }
-                else if(source.equals(pengembalianFrame.getsearchBtn())) {
-                    //String category = (String) pengembalianFrame.getCategory().getSelectedItem();
-                    //con.searchPengembalian(category, pengembalianFrame.getsearchField().getText());
-                    //pengembalianFrame.setTable(con.loadTablePengembalian());
-                }
-                else if(source.equals(pengembalianFrame.getsubmitBtn())) {
-                
-                }
-                
-                if(source.equals(laporanFrame.getbackBtn())){
-                    laporanFrame.setVisible(false);
-                    mainFrame.setVisible(true);
-                }
-                else if(source.equals(laporanFrame.getlogoutBtn())){
-                    laporanFrame.setVisible(false);
-                    loginFrame.setVisible(true);
-                }
-                
-                if (source.equals(settingFrame.getupdateBtn())){
-                    settingFrame.setVisible(false);
-                    loginFrame.setVisible(true);
-                }
+            }
+            
+            if(source.equals(laporanFrame.getbackBtn())){
+                laporanFrame.setVisible(false);
+                mainFrame.setVisible(true);
+            }
+            else if(source.equals(laporanFrame.getlogoutBtn())){
+                laporanFrame.setVisible(false);
+                loginFrame.setVisible(true);
+            }
+            
+            if (source.equals(settingFrame.getupdateBtn())){
+                settingFrame.setVisible(false);
+                mainFrame.setVisible(false);
+                loginFrame.setVisible(true);
+            }
+            else if (source.equals(settingFrame.getcloseBtn())){
+                settingFrame.setVisible(false);
+            }
         }
         public void mousePressed(MouseEvent me) {
                 Object source = me.getSource();
@@ -310,11 +341,11 @@ public class Handler extends MouseAdapter implements ActionListener {
         public void login(String usr, String pwd) {
             if(con.cekLogin(usr, pwd)) {
                 loginFrame.setVisible(false);
-                mainFrame.setVisible(true);
                 JOptionPane.showMessageDialog(null, "Selamat Datang, " + usr +".");
+                mainFrame.setVisible(true);
             }
             else {
-                JOptionPane.showMessageDialog(null, "username atau password salah");
+                JOptionPane.showMessageDialog(null, "Username/Password Salah", "Login", JOptionPane.ERROR_MESSAGE);
             }
         }
         
@@ -359,9 +390,9 @@ public class Handler extends MouseAdapter implements ActionListener {
         }
         
         public void addMember(){
-            if((editmember.getnomorindukField().equals(""))||
-                        (editmember.getnamaField().equals(""))||
-                        (editmember.gettempatField().equals(""))){
+            if((editmember.getnomorindukField().getText().isEmpty())||
+                        (editmember.getnamaField().getText().isEmpty())||
+                        (editmember.gettempatField().getText().isEmpty())){
                 JOptionPane.showMessageDialog(null, "Field tidak boleh ada yang kosong", "Edit Member", JOptionPane.WARNING_MESSAGE);
             }
             else{
@@ -520,6 +551,7 @@ public class Handler extends MouseAdapter implements ActionListener {
                         editmember.gettglDateChooser().getDate(),value);
                 
                 if(con.updateMember(m)){
+                    JOptionPane.showMessageDialog(null, "Data member berhasil diupdate", "Update Member", JOptionPane.INFORMATION_MESSAGE);                    
                     editmember.getnomorindukField().setText("");
                     editmember.getnamaField().setText("");
                     editmember.gettempatField().setText("");
@@ -527,7 +559,6 @@ public class Handler extends MouseAdapter implements ActionListener {
                     editmember.gettglDateChooser().setDate(date);
                     editmember.getjumlahpinjam().setValue(0);
                     editmember.setTable(con.loadTableMember());
-                    JOptionPane.showMessageDialog(null, "Data member berhasil diupdate", "Update Member", JOptionPane.INFORMATION_MESSAGE);
                 }
                 else{
                     
@@ -556,6 +587,7 @@ public class Handler extends MouseAdapter implements ActionListener {
                         managebukuFrame.gettahunField().getText(),value);
                 
                 if(con.updateBuku(b)){
+                    JOptionPane.showMessageDialog(null, "Data buku berhasil diupdate", "Update Buku", JOptionPane.INFORMATION_MESSAGE);                    
                     incrementBuku();
                     managebukuFrame.getjudulField().setText("");
                     managebukuFrame.getpenulisField().setText("");
@@ -563,7 +595,6 @@ public class Handler extends MouseAdapter implements ActionListener {
                     managebukuFrame.gettahunField().setText("");
                     managebukuFrame.getstokspinner().setValue(0);
                     managebukuFrame.setTable(con.loadTableBuku());
-                    JOptionPane.showMessageDialog(null, "Data buku berhasil diupdate", "Update Buku", JOptionPane.INFORMATION_MESSAGE);
                 }
                 else{
                                         
@@ -595,4 +626,7 @@ public class Handler extends MouseAdapter implements ActionListener {
             managebukuFrame.getdeleteBtn().setVisible(false);
             managebukuFrame.getupdateBtn().setVisible(false);
         }
+           
+
+
 }

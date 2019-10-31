@@ -298,7 +298,10 @@ public class Database {
         boolean cek = false;
         int row;
         try {
-            row = stmt.executeUpdate("UPDATE member SET nama = '"+ m.getNama() +"', tempat_lahir = '"+ m.getTempat_lahir() +"', tgl_lahir = '"+ m.getTgl_lahir() +"', jml_pinjam = '"+ m.getJml_pinjam() +"' WHERE nis = '"+ m.getNIS() +"'");
+            java.text.DateFormat df = new java.text.SimpleDateFormat("MM/dd/yyyy");
+            String tgl = df.format(m.getTgl_lahir());
+
+            row = stmt.executeUpdate("UPDATE member SET nama = '"+ m.getNama() +"', tempat_lahir = '"+ m.getTempat_lahir() +"', tgl_lahir = #"+ tgl +"#, jml_pinjam = '"+ m.getJml_pinjam() +"' WHERE nis = '"+ m.getNIS() +"'");
             if (row > 0){
                 cek = true;
             }
