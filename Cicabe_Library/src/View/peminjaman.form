@@ -26,13 +26,17 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="tabelPanel" alignment="0" max="32767" attributes="0"/>
                   <Component id="logoutPanel" alignment="0" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
-                      <Component id="searchPanel" max="32767" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="dataPanel" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="tabelPanel" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="searchPanel" max="32767" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="dataPanel" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -46,10 +50,10 @@
               <Component id="logoutPanel" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="searchPanel" min="-2" max="-2" attributes="0"/>
                   <Component id="dataPanel" max="32767" attributes="0"/>
+                  <Component id="searchPanel" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="tabelPanel" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -74,7 +78,7 @@
                   <Component id="backBtn" min="-2" pref="115" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="319" max="-2" attributes="0"/>
                   <Component id="peminjamanLabel" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="572" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
                   <Component id="logoutBtn" min="-2" pref="115" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -133,8 +137,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="jScrollPane2" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
@@ -164,6 +167,10 @@
                                   <Component id="kembaliDateChooser" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <Component id="jScrollPane2" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -210,19 +217,19 @@
                       <Component id="ttlLabel1" min="-2" pref="25" max="-2" attributes="0"/>
                       <Component id="kembaliDateChooser" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="jScrollPane2" min="-2" pref="133" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
                           <Component id="deleteBtn" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                           <Component id="submitBtn" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="jScrollPane2" min="-2" pref="147" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace pref="29" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -275,21 +282,6 @@
             <Property name="dateFormatString" type="java.lang.String" value="yyyy-MM-dd"/>
           </Properties>
         </Component>
-        <Container class="javax.swing.JScrollPane" name="jScrollPane2">
-          <AuxValues>
-            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-          </AuxValues>
-
-          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-          <SubComponents>
-            <Component class="javax.swing.JTextArea" name="peminjamanArea">
-              <Properties>
-                <Property name="columns" type="int" value="20"/>
-                <Property name="rows" type="int" value="5"/>
-              </Properties>
-            </Component>
-          </SubComponents>
-        </Container>
         <Component class="javax.swing.JButton" name="deleteBtn">
           <Properties>
             <Property name="text" type="java.lang.String" value="Delete"/>
@@ -300,6 +292,48 @@
             <Property name="text" type="java.lang.String" value="Submit"/>
           </Properties>
         </Component>
+        <Container class="javax.swing.JScrollPane" name="jScrollPane2">
+          <AuxValues>
+            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+          </AuxValues>
+
+          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+          <SubComponents>
+            <Component class="javax.swing.JTable" name="keranjangTable">
+              <Properties>
+                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                  <Table columnCount="3" rowCount="0">
+                    <Column editable="true" title="ID" type="java.lang.Object"/>
+                    <Column editable="true" title="Judul" type="java.lang.Object"/>
+                    <Column editable="true" title="Jumlah" type="java.lang.Object"/>
+                  </Table>
+                </Property>
+                <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                  <TableColumnModel selectionModel="0">
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                  </TableColumnModel>
+                </Property>
+                <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                  <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                </Property>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
       </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="dataPanel">
@@ -342,7 +376,11 @@
                               <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="110" max="-2" attributes="0"/>
-                          <Component id="addBtn" min="-2" pref="74" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="addBtn" min="-2" pref="74" max="-2" attributes="0"/>
+                              <Component id="idField" min="-2" pref="175" max="-2" attributes="0"/>
+                              <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                          </Group>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -362,9 +400,15 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jScrollPane3" min="-2" pref="128" max="-2" attributes="0"/>
                   <EmptySpace pref="31" max="32767" attributes="0"/>
-                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="judulField" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="judulField" min="-2" max="-2" attributes="0"/>
+                      <Component id="idField" min="-2" pref="24" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jumlahLabel" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
@@ -385,7 +429,7 @@
               <StringArray count="4">
                 <StringItem index="0" value="Judul"/>
                 <StringItem index="1" value="Penerbit"/>
-                <StringItem index="2" value="Pengarang"/>
+                <StringItem index="2" value="Penulis"/>
                 <StringItem index="3" value="Tahun"/>
               </StringArray>
             </Property>
@@ -422,6 +466,9 @@
                   </Table>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="bukuTableMouseClicked"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -442,6 +489,13 @@
             <Property name="text" type="java.lang.String" value="Judul"/>
           </Properties>
         </Component>
+        <Component class="javax.swing.JTextField" name="idField">
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel3">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="ID"/>
+          </Properties>
+        </Component>
       </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="tabelPanel">
@@ -459,7 +513,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jScrollPane1" max="32767" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -467,8 +521,8 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" pref="224" max="32767" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jScrollPane1" min="-2" pref="104" max="-2" attributes="0"/>
+                  <EmptySpace pref="131" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>

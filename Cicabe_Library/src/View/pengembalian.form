@@ -30,7 +30,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Component id="logoutPanel" max="32767" attributes="0"/>
-                  <Component id="searchPanel" alignment="0" max="32767" attributes="0"/>
+                  <Component id="searchPanel" alignment="0" pref="1260" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jPanel1" max="32767" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -50,7 +50,7 @@
               <Component id="searchPanel" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jPanel1" max="32767" attributes="0"/>
+                  <Component id="jPanel1" pref="0" max="32767" attributes="0"/>
                   <Component id="dataPanel" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -136,9 +136,9 @@
                       <Group type="102" attributes="0">
                           <Component id="searchField" min="-2" pref="400" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="searchComboBox" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="searchBtn" min="-2" max="-2" attributes="0"/>
+                          <Component id="searchComboBox" min="-2" pref="85" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                          <Component id="searchBtn" min="-2" pref="80" max="-2" attributes="0"/>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -174,7 +174,7 @@
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="2">
-                <StringItem index="0" value="Nomor Induk"/>
+                <StringItem index="0" value="NIS"/>
                 <StringItem index="1" value="Nama"/>
               </StringArray>
             </Property>
@@ -222,11 +222,6 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="jScrollPane3" min="-2" pref="383" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="submitBtn" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -267,43 +262,50 @@
                               <Component id="statusField" min="-2" pref="130" max="-2" attributes="0"/>
                               <Component id="idpengembalianField" min="-2" pref="130" max="-2" attributes="0"/>
                           </Group>
+                          <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="jScrollPane3" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="submitBtn" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel1" alignment="3" min="-2" pref="17" max="-2" attributes="0"/>
                       <Component id="idpinjamField" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                      <Component id="jLabel1" alignment="3" min="-2" pref="17" max="-2" attributes="0"/>
                       <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="idpengembalianField" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
+                  <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="nomorindukLabel" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                      <Component id="indukField" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="namaLabel" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                      <Component id="namaField" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="tglpinjamLabel" min="-2" pref="25" max="-2" attributes="0"/>
+                      <Component id="pinjamDateChooser" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="tanggalbalikLabel" min="-2" pref="25" max="-2" attributes="0"/>
+                      <Component id="kembaliDateChooser" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="nomorindukLabel" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
-                              <Component id="indukField" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="namaLabel" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
-                              <Component id="namaField" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="tglpinjamLabel" min="-2" pref="25" max="-2" attributes="0"/>
-                              <Component id="pinjamDateChooser" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="tanggalbalikLabel" min="-2" pref="25" max="-2" attributes="0"/>
-                              <Component id="kembaliDateChooser" min="-2" max="-2" attributes="0"/>
-                          </Group>
                           <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="dendaLabel" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
@@ -311,16 +313,16 @@
                               <Component id="jLabel6" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                               <Component id="statusField" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jScrollPane3" min="-2" pref="132" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="22" max="32767" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="jScrollPane3" pref="161" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace max="32767" attributes="0"/>
                           <Component id="submitBtn" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -372,21 +374,6 @@
             <Property name="editable" type="boolean" value="false"/>
           </Properties>
         </Component>
-        <Container class="javax.swing.JScrollPane" name="jScrollPane3">
-          <AuxValues>
-            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-          </AuxValues>
-
-          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-          <SubComponents>
-            <Component class="javax.swing.JTextArea" name="searchTextArea">
-              <Properties>
-                <Property name="columns" type="int" value="20"/>
-                <Property name="rows" type="int" value="5"/>
-              </Properties>
-            </Component>
-          </SubComponents>
-        </Container>
         <Component class="javax.swing.JLabel" name="jLabel6">
           <Properties>
             <Property name="text" type="java.lang.String" value="Status"/>
@@ -414,6 +401,27 @@
             <Property name="editable" type="boolean" value="false"/>
           </Properties>
         </Component>
+        <Container class="javax.swing.JScrollPane" name="jScrollPane3">
+          <AuxValues>
+            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+          </AuxValues>
+
+          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+          <SubComponents>
+            <Component class="javax.swing.JTable" name="keranjangTable">
+              <Properties>
+                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                  <Table columnCount="4" rowCount="4">
+                    <Column editable="true" title="Title 1" type="java.lang.Object"/>
+                    <Column editable="true" title="Title 2" type="java.lang.Object"/>
+                    <Column editable="true" title="Title 3" type="java.lang.Object"/>
+                    <Column editable="true" title="Title 4" type="java.lang.Object"/>
+                  </Table>
+                </Property>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
       </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="jPanel1">
@@ -446,9 +454,9 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                   <Component id="jLabel3" min="-2" pref="35" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" pref="0" max="32767" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" min="-2" pref="299" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="252" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>

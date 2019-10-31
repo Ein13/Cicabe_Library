@@ -19,6 +19,7 @@ import javax.swing.table.TableModel;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.table.DefaultTableModel;
 //import java.util.Calendar;
 
 
@@ -108,6 +109,7 @@ public class Handler extends MouseAdapter implements ActionListener {
                     peminjamanFrame.getkembaliDateChooser().setDate(dateNow);
                     mainFrame.setVisible(false);
                     peminjamanFrame.setVisible(true);
+                    peminjamanFrame.setTableBuku(con.loadTableBuku());
                 }
                 else if(source.equals(mainFrame.getkembaliBtn())) {
                     //pengembalianFrame.setTable(con.loadTablePeminjaman());
@@ -118,6 +120,7 @@ public class Handler extends MouseAdapter implements ActionListener {
                     pengembalianFrame.getkembaliDateChooserField().setDate(dateNow);
                     mainFrame.setVisible(false);
                     pengembalianFrame.setVisible(true);
+                    pengembalianFrame.setTable(con.loadTableMember());
                 }
                 else if(source.equals(mainFrame.getlaporanBtn())){
                     //laporanFrame.setTable(con.loadTableLaporan());
@@ -230,18 +233,25 @@ public class Handler extends MouseAdapter implements ActionListener {
                     mainFrame.setVisible(true);
                 }
                 else if(source.equals(peminjamanFrame.getaddBtn())) {
-                    
+                    DefaultTableModel model = (DefaultTableModel)peminjamanFrame.getkeranjangTable().getModel();
+                    model.addRow(new Object[]{peminjamanFrame.getidField().getText(), peminjamanFrame.getjudulField().getText(), peminjamanFrame.getjumlahSpinner().getValue()});
+                    peminjamanFrame.getjudulField().setText("");
+                    peminjamanFrame.getidField().setText("");
+                    peminjamanFrame.getjumlahSpinner().setValue(1);
                 }
                 else if(source.equals(peminjamanFrame.getsearchBtn())){
                     String category = (String) peminjamanFrame.getsearchComboBox().getSelectedItem();
-                    con.searchPeminjaman(category, peminjamanFrame.getsearchField().getText());
-                    peminjamanFrame.setTable(con.loadTableBuku());
+                    peminjamanFrame.setTableBuku(con.searchBuku(category, peminjamanFrame.getsearchField().getText()));
                 }
                 else if(source.equals(peminjamanFrame.getsubmitBtn())) {
                     
                 }
                 else if(source.equals(peminjamanFrame.getdeleteBtn())){
-                    
+                    DefaultTableModel model = (DefaultTableModel) peminjamanFrame.getkeranjangTable().getModel();
+                    int[] rows = peminjamanFrame.getkeranjangTable().getSelectedRows();
+                    for(int i=0;i<rows.length;i++){
+                        model.removeRow(rows[i]-i);
+                    }
                 }
                 
                 if(source.equals(pengembalianFrame.getlogoutBtn())) {
