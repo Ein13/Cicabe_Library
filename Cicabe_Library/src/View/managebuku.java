@@ -43,7 +43,7 @@ public class managebuku extends javax.swing.JFrame {
         searchLabel = new javax.swing.JLabel();
         searchField = new javax.swing.JTextField();
         searchBtn = new javax.swing.JButton();
-        searchCombo = new javax.swing.JComboBox<String>();
+        searchCombo = new javax.swing.JComboBox<>();
         dataPanel = new javax.swing.JPanel();
         idLabel = new javax.swing.JLabel();
         judulLabel = new javax.swing.JLabel();
@@ -60,6 +60,7 @@ public class managebuku extends javax.swing.JFrame {
         deleteBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         stokSpinner = new javax.swing.JSpinner();
+        resetBtn = new javax.swing.JButton();
         tabelPanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         editbukuTable = new javax.swing.JTable();
@@ -109,7 +110,7 @@ public class managebuku extends javax.swing.JFrame {
 
         searchBtn.setText("Search");
 
-        searchCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Judul", "Penerbit", "Penulis", "Tahun" }));
+        searchCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Judul", "Penerbit", "Penulis", "Tahun" }));
 
         javax.swing.GroupLayout searchPanelLayout = new javax.swing.GroupLayout(searchPanel);
         searchPanel.setLayout(searchPanelLayout);
@@ -168,6 +169,8 @@ public class managebuku extends javax.swing.JFrame {
         jLabel1.setText("Stok");
         jLabel1.setPreferredSize(new java.awt.Dimension(40, 14));
 
+        resetBtn.setText("Reset");
+
         javax.swing.GroupLayout dataPanelLayout = new javax.swing.GroupLayout(dataPanel);
         dataPanel.setLayout(dataPanelLayout);
         dataPanelLayout.setHorizontalGroup(
@@ -201,7 +204,8 @@ public class managebuku extends javax.swing.JFrame {
                 .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(addBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(updateBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
-                    .addComponent(deleteBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(deleteBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(resetBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE))
                 .addGap(19, 19, 19))
         );
         dataPanelLayout.setVerticalGroup(
@@ -233,12 +237,14 @@ public class managebuku extends javax.swing.JFrame {
                 .addContainerGap(69, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dataPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(deleteBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(addBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
+                .addComponent(deleteBtn)
+                .addGap(18, 18, 18)
                 .addComponent(updateBtn)
-                .addGap(25, 25, 25))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(resetBtn)
+                .addGap(20, 20, 20))
         );
 
         tabelPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
@@ -315,7 +321,10 @@ public class managebuku extends javax.swing.JFrame {
     }//GEN-LAST:event_addBtnActionPerformed
 
     private void editbukuTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editbukuTableMouseClicked
-         int i = editbukuTable.getSelectedRow();
+        this.deleteBtn.setVisible(true);
+        this.updateBtn.setVisible(true);
+        this.getaddBtn().setVisible(false);
+        int i = editbukuTable.getSelectedRow();
         TableModel model = editbukuTable.getModel();
         // Kalau fail, kemungkinan urutan table beda dengan database 
         idField.setText(model.getValueAt(i,0).toString());
@@ -361,6 +370,9 @@ public class managebuku extends javax.swing.JFrame {
     public JButton getupdateBtn(){
         return updateBtn;
     }
+    public JButton getresetBtn(){
+        return resetBtn;
+    }
     public void addActionListener(ActionListener ae){
         logoutBtn.addActionListener(ae);
         backBtn.addActionListener(ae);
@@ -368,6 +380,7 @@ public class managebuku extends javax.swing.JFrame {
         deleteBtn.addActionListener(ae);
         addBtn.addActionListener(ae);
         updateBtn.addActionListener(ae);
+        resetBtn.addActionListener(ae);
     }
     public JTextField getsearchField(){
         return searchField;
@@ -421,6 +434,7 @@ public class managebuku extends javax.swing.JFrame {
     private javax.swing.JLabel penerbitLabel;
     private javax.swing.JTextField penulisField;
     private javax.swing.JLabel penulisLabel;
+    private javax.swing.JButton resetBtn;
     private javax.swing.JButton searchBtn;
     private javax.swing.JComboBox<String> searchCombo;
     private javax.swing.JTextField searchField;

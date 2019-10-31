@@ -48,7 +48,7 @@ public class editmember extends javax.swing.JFrame {
         searchLabel = new javax.swing.JLabel();
         searchField = new javax.swing.JTextField();
         searchBtn = new javax.swing.JButton();
-        searchCombo = new javax.swing.JComboBox<String>();
+        searchCombo = new javax.swing.JComboBox<>();
         dataPanel = new javax.swing.JPanel();
         namaLabel = new javax.swing.JLabel();
         nomorindukLabel = new javax.swing.JLabel();
@@ -63,6 +63,7 @@ public class editmember extends javax.swing.JFrame {
         jmlpinjamLabel = new javax.swing.JLabel();
         tglDateChooser = new com.toedter.calendar.JDateChooser();
         pinjamSpinner = new javax.swing.JSpinner();
+        resetBtn = new javax.swing.JButton();
         tabelPanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         editdatamemberTable = new javax.swing.JTable();
@@ -112,7 +113,7 @@ public class editmember extends javax.swing.JFrame {
 
         searchBtn.setText("Search");
 
-        searchCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "NIS", "Nama", "Tempat", "Tanggal Lahir" }));
+        searchCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "NIS", "Nama", "Tempat", "Tanggal Lahir" }));
 
         javax.swing.GroupLayout searchPanelLayout = new javax.swing.GroupLayout(searchPanel);
         searchPanel.setLayout(searchPanelLayout);
@@ -162,39 +163,46 @@ public class editmember extends javax.swing.JFrame {
         jmlpinjamLabel.setText("Jumlah Pinjam");
         jmlpinjamLabel.setPreferredSize(new java.awt.Dimension(64, 14));
 
-        tglDateChooser.setDateFormatString("yyyy-MM-dd");
+        tglDateChooser.setDateFormatString("dd-MM-yyyy");
+
+        resetBtn.setText("Reset");
 
         javax.swing.GroupLayout dataPanelLayout = new javax.swing.GroupLayout(dataPanel);
         dataPanel.setLayout(dataPanelLayout);
         dataPanelLayout.setHorizontalGroup(
             dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(dataPanelLayout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(namaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nomorindukLabel)
-                    .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jmlpinjamLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel1)
-                        .addComponent(ttlLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE)))
-                .addGap(18, 18, 18)
-                .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dataPanelLayout.createSequentialGroup()
+                .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(dataPanelLayout.createSequentialGroup()
-                        .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(tempatField, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
-                            .addComponent(namaField, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
-                            .addComponent(nomorindukField, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 276, Short.MAX_VALUE)
-                        .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(addBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(updateBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
-                            .addComponent(deleteBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(19, 19, 19))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(updateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(dataPanelLayout.createSequentialGroup()
+                        .addGap(32, 32, 32)
                         .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(namaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nomorindukLabel)
+                            .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jmlpinjamLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel1)
+                                .addComponent(ttlLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE)))
+                        .addGap(18, 18, 18)
+                        .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(tempatField, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
+                                .addComponent(namaField, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
+                                .addComponent(nomorindukField, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE))
                             .addComponent(tglDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(pinjamSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(442, Short.MAX_VALUE))))
+                        .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(dataPanelLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 276, Short.MAX_VALUE)
+                                .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(resetBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(deleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dataPanelLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(19, 19, 19))
         );
         dataPanelLayout.setVerticalGroup(
             dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -222,12 +230,14 @@ public class editmember extends javax.swing.JFrame {
                 .addContainerGap(127, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dataPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(addBtn)
+                .addGap(18, 18, 18)
+                .addComponent(updateBtn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(deleteBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(addBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(updateBtn)
-                .addGap(25, 25, 25))
+                .addComponent(resetBtn)
+                .addGap(22, 22, 22))
         );
 
         tabelPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
@@ -300,6 +310,10 @@ public class editmember extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void editdatamemberTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editdatamemberTableMouseClicked
+        this.getnomorindukField().setEditable(false);
+        this.getdeleteBtn().setVisible(true);
+        this.getupdateBtn().setVisible(true);
+        this.getaddBtn().setVisible(false);
         int i = editdatamemberTable.getSelectedRow();
         TableModel model = editdatamemberTable.getModel();
         // Kalau fail, kemungkinan urutan table beda dengan database 
@@ -309,7 +323,7 @@ public class editmember extends javax.swing.JFrame {
         pinjamSpinner.setValue(model.getValueAt(i,4));
         try {
             //jdateChooser
-            Date date = new SimpleDateFormat("MM-dd-yyyy").parse((String)model.getValueAt(i, 3).toString());
+            Date date = new SimpleDateFormat("yyyy-MM-dd").parse((String)model.getValueAt(i, 3).toString());
             tglDateChooser.setDate(date);
         } catch (ParseException ex) {
             Logger.getLogger(editmember.class.getName()).log(Level.SEVERE, null, ex);
@@ -334,6 +348,9 @@ public class editmember extends javax.swing.JFrame {
    public JButton getupdateBtn(){
        return updateBtn;
    }
+   public JButton getresetBtn(){
+       return resetBtn;
+   }
    public void addActionListener(ActionListener ae){
        logoutBtn.addActionListener(ae);
        backBtn.addActionListener(ae);
@@ -341,6 +358,7 @@ public class editmember extends javax.swing.JFrame {
        deleteBtn.addActionListener(ae);
        addBtn.addActionListener(ae);
        updateBtn.addActionListener(ae);
+       resetBtn.addActionListener(ae);
    }
    public JTextField getsearchField(){
        return searchField;
@@ -388,6 +406,7 @@ public class editmember extends javax.swing.JFrame {
     private javax.swing.JTextField nomorindukField;
     private javax.swing.JLabel nomorindukLabel;
     private javax.swing.JSpinner pinjamSpinner;
+    private javax.swing.JButton resetBtn;
     private javax.swing.JButton searchBtn;
     private javax.swing.JComboBox<String> searchCombo;
     private javax.swing.JTextField searchField;
