@@ -1,3 +1,9 @@
+//TO DO LIST
+//peminjaman cek jumlah dipinjam dengan stok DONE
+//peminjaman kurang stok dengan jumlah dipinjam saat ADD
+//peminjaman tambah stok dengan jumlah dipinjam saat DELETE
+
+
 package Model;
 
 import java.sql.Statement;
@@ -113,8 +119,8 @@ public class Database {
             rs = stmt.executeQuery("SELECT * FROM peminjaman");
             while(rs.next()){
                 pinjam.add(new Peminjaman(rs.getString("id_Pinjam"), rs.getString("nis"), 
-                        rs.getDate("tempat_Lahir"), rs.getDate("tgl_Lahir"), 
-                        rs.getInt("jml_Pinjam")));
+                        rs.getDate("tgl_pinjam"), rs.getDate("tgl_kembali"), 
+                        rs.getInt("total_pinjam")));
             }
         } catch(SQLException e){
             e.printStackTrace();
@@ -233,12 +239,16 @@ public class Database {
         boolean cek = false;
         int row;
         try{
-           row = stmt.executeUpdate("INSERT INTO peminjaman VALUES('"+ p.getId_pinjam() +"', "
-                   + "'"+ p.getNis() +"', '"+ p.getTgl_pinjam() +"', '"+ p.getTgl_kembali() +"', "
+            java.text.DateFormat df = new java.text.SimpleDateFormat("MM/dd/yyyy");
+            String tglPinjam = df.format(p.getTgl_pinjam());
+            String tglKembali = df.format(p.getTgl_kembali());
+            
+            row = stmt.executeUpdate("INSERT INTO peminjaman VALUES('"+ p.getId_pinjam() +"', "
+                   + "'"+ p.getNis() +"', #"+ tglPinjam +"#, #"+ tglKembali +"#, "
                    + "'"+ p.getTotal_pinjam() +"')");
-           if (row > 0){
-               cek = true;
-           }
+            if (row > 0){
+                cek = true;
+            }
         } catch(SQLException e){
            JOptionPane.showMessageDialog(null, e.getMessage(), "Insert", JOptionPane.ERROR_MESSAGE);
         }

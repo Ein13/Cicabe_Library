@@ -134,6 +134,7 @@ public class Handler extends MouseAdapter implements ActionListener {
             peminjamanFrame.setVisible(true);
             mainFrame.setVisible(false);
             peminjamanFrame.setTableBuku(con.loadTableBuku());
+            peminjamanFrame.setTable(con.loadTablePeminjaman());
         }
         else if(source.equals(mainFrame.getkembaliBtn())) {
             //pengembalianFrame.setTable(con.loadTablePeminjaman());
@@ -260,25 +261,70 @@ public class Handler extends MouseAdapter implements ActionListener {
             mainFrame.setVisible(true);
         }
         else if(source.equals(peminjamanFrame.getaddBtn())) {
-            DefaultTableModel model = (DefaultTableModel)peminjamanFrame.getkeranjangTable().getModel();
-            model.addRow(new Object[]{peminjamanFrame.getidField().getText(), peminjamanFrame.getjudulField().getText(), peminjamanFrame.getjumlahSpinner().getValue()});
-            peminjamanFrame.getjudulField().setText("");
-            peminjamanFrame.getidField().setText("");
-            peminjamanFrame.getjumlahSpinner().setValue(1);
+            String idBuku = peminjamanFrame.getidBukuField().getText();
+            int jml = (int) peminjamanFrame.getjumlahSpinner().getValue();
+            if(con.cekStok(idBuku, jml)){
+                DefaultTableModel model = (DefaultTableModel)peminjamanFrame.getkeranjangTable().getModel();
+                model.addRow(new Object[]{idBuku, peminjamanFrame.getjudulField().getText(), jml});
+                
+                con.kurangiStokBuku(idBuku, jml);
+                peminjamanFrame.setTableBuku(con.loadTableBuku());
+                
+                peminjamanFrame.getjudulField().setText("");
+                peminjamanFrame.getidBukuField().setText("");
+                peminjamanFrame.getjumlahSpinner().setValue(0);
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Stok buku tidak cukup", "Peminjaman", JOptionPane.WARNING_MESSAGE);
+                
+                peminjamanFrame.getjumlahSpinner().setValue(0);
+                peminjamanFrame.getjumlahSpinner().requestFocus();
+            }
         }
             else if(source.equals(peminjamanFrame.getsearchBtn())){
                 String category = (String) peminjamanFrame.getsearchComboBox().getSelectedItem();
                 peminjamanFrame.setTableBuku(con.searchBuku(category, peminjamanFrame.getsearchField().getText()));
-            } 
-            else if(source.equals(peminjamanFrame.getsubmitBtn())) {
-                
             }
+            
+            else if(source.equals(peminjamanFrame.getsubmitBtn())) {
+                int totalPinjam = 0;
+                for (int i = 0; i < peminjamanFrame.getkeranjangTable().getRowCount(); i++){
+                    totalPinjam = totalPinjam + Integer.parseInt(peminjamanFrame.getkeranjangTable().getValueAt(i, 2).toString());
+                }
+                
+                
+                Peminjaman p = new Peminjaman(peminjamanFrame.getidpinjamField().getText(), peminjamanFrame.getnomorindukField().getText(), 
+                        peminjamanFrame.getpinjamDateChooser().getDate(), peminjamanFrame.getkembaliDateChooser().getDate(), totalPinjam);
+                
+                if(con.addPeminjaman(p) && con.tambahiJumlahPinjamMember(p.getNis(), p.getTotal_pinjam())){
+                    peminjamanFrame.setTable(con.loadTablePeminjaman());
+                    
+                    DefaultTableModel model = (DefaultTableModel) peminjamanFrame.getkeranjangTable().getModel();
+                    for (int i = 0; i < peminjamanFrame.getkeranjangTable().getRowCount(); i++){
+                        model.removeRow(i);
+                    }
+                }
+                
+                else{
+                    JOptionPane.showMessageDialog(null, "Gagal Insert Peminjaman", "Peminjaman", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+            
             else if(source.equals(peminjamanFrame.getdeleteBtn())){
                 DefaultTableModel model = (DefaultTableModel) peminjamanFrame.getkeranjangTable().getModel();
-                int[] rows = peminjamanFrame.getkeranjangTable().getSelectedRows();
-                for(int i=0;i<rows.length;i++){
-                    model.removeRow(rows[i]-i);
-                }
+                
+                int baris = peminjamanFrame.getkeranjangTable().getSelectedRow();
+                String idBuku = model.getValueAt(baris, 0).toString();
+                int jml = Integer.parseInt(model.getValueAt(baris, 2).toString());
+                con.tambahiStokBuku(idBuku, jml);
+                peminjamanFrame.setTableBuku(con.loadTableBuku());
+                model.removeRow(baris);
+                
+                
+                //int[] rows = peminjamanFrame.getkeranjangTable().getSelectedRows();
+                //for(int i=0;i<rows.length;i++){
+                //    model.removeRow(rows[i]-i);
+                //}
             }
             
             if(source.equals(pengembalianFrame.getlogoutBtn())) {
@@ -402,7 +448,7 @@ public class Handler extends MouseAdapter implements ActionListener {
 
                 }
                 int value = (Integer) editmember.getjumlahpinjam().getValue();
-                Date temp = editmember.gettglDateChooser().getDate();
+               // Date temp = editmember.gettglDateChooser().getDate();
                 //System.out.println(date);
                 //DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
                 //String strDate = dateFormat.format(temp);

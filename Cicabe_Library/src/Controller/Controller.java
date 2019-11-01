@@ -94,6 +94,16 @@ public class Controller {
         return db.insertBuku(b);
     }
     
+    public boolean addPeminjaman(Peminjaman p){
+        ArrayList<Peminjaman> pinjam = loadPeminjaman();
+        
+        if (!pinjam.stream().noneMatch((pin) -> (pin.getId_pinjam().equals(p.getId_pinjam())))) {
+            return false;
+        }
+        
+        return db.insertPeminjaman(p);
+    }
+    
     //DELETE STUFF///////////////////////////////////////////////////////////////////////////////
     
     public boolean deleteBuku(String id){
@@ -140,19 +150,17 @@ public class Controller {
     
     public boolean cekLogin(String user, String pass){
         ArrayList<Petugas> admin = loadAdmin();
-        for (Petugas a : admin){
-            System.out.println(a.getUsername());
-            System.out.println(a.getPassword());
-            if (a.getUsername().equals(user) && a.getPassword().equals(pass)){
-                return true;
-            }
-        }
-        return false;
+        return admin.stream().anyMatch((a) -> (a.getUsername().equals(user) && a.getPassword().equals(pass)));
     }
     
     public boolean cekMember(String nis){
         ArrayList<Member> member = loadMember();
         return member.stream().anyMatch((m) -> (m.getNIS().equals(nis)));
+    }
+    
+    public boolean cekStok(String idbuku, int jmlRequestPinjam){
+        ArrayList<Buku> buku = loadBuku();
+        return buku.stream().filter((b) -> (b.getIdbuku().equals(idbuku))).anyMatch((b) -> (b.getStok() >= jmlRequestPinjam));
     }
     
     //SEARCH STUFF///////////////////////////////////////////////////////////////////////////////
@@ -191,6 +199,62 @@ public class Controller {
             model.addRow(new Object[]{pin.getId_pinjam(), pin.getNis(), pin.getTgl_pinjam(), pin.getTgl_kembali(), pin.getTotal_pinjam()});
         });
         return model;
+    }
+    
+    //TRANSAKSI STUFF
+    
+    public boolean kurangiStokBuku(String idBuku, int jmlRequestPinjam){
+        ArrayList<Buku> buku = loadBuku();
+        Buku pilihanBuku = null;
+        
+        for (Buku b:buku){
+            if (b.getIdbuku().equals(idBuku)){
+                pilihanBuku = b;
+            }
+        }
+        
+        try{
+            pilihanBuku.setStok(pilihanBuku.getStok() - jmlRequestPinjam);
+            return this.updateBuku(pilihanBuku);
+        } catch (Exception e){}
+        
+        return false;
+    }
+    
+    public boolean tambahiStokBuku(String idBuku, int jmlKembali){
+        ArrayList<Buku> buku = loadBuku();
+        Buku pilihanBuku = null;
+        
+        for (Buku b:buku){
+            if (b.getIdbuku().equals(idBuku)){
+                pilihanBuku = b;
+            }
+        }
+        
+        try{
+            pilihanBuku.setStok(pilihanBuku.getStok() + jmlKembali);
+            return this.updateBuku(pilihanBuku);
+        } catch (Exception e){}
+        
+        return false;
+    }
+    
+    public boolean tambahiJumlahPinjamMember(String nis, int totalPinjam){
+        ArrayList<Member> member = loadMember();
+        Member peminjam = null;
+        
+        for (Member m: member){
+            if (m.getNIS().equals(nis)){
+                peminjam = m;
+            }
+        }
+        
+        try{
+            peminjam.setJml_pinjam(peminjam.getJml_pinjam() + totalPinjam);
+            return this.updateMember(peminjam);
+        } catch (Exception e){}
+        
+        return false;
     }
     
     
