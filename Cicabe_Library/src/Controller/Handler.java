@@ -42,6 +42,7 @@ public class Handler extends MouseAdapter implements ActionListener {
     private managebuku managebukuFrame;
     private laporan laporanFrame;
     private setting settingFrame;
+    private listmember listmemberFrame;
     
     public static void centreWindow(Window frame) {
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
@@ -59,6 +60,7 @@ public class Handler extends MouseAdapter implements ActionListener {
         managebukuFrame = new managebuku();
         settingFrame = new setting();
         laporanFrame = new laporan();
+        listmemberFrame = new listmember();
             
         loginFrame.setVisible(true);
         mainFrame.setVisible(false);
@@ -68,6 +70,7 @@ public class Handler extends MouseAdapter implements ActionListener {
         managebukuFrame.setVisible(false);
         laporanFrame.setVisible(false);
         settingFrame.setVisible(false);
+        listmemberFrame.setVisible(false);
           
         loginFrame.addActionListener(this);
         mainFrame.addActionListener(this);
@@ -326,6 +329,9 @@ public class Handler extends MouseAdapter implements ActionListener {
                 //    model.removeRow(rows[i]-i);
                 //}
             }
+            else if(source.equals(peminjamanFrame.getlistmemberBtn())){
+                listmemberFrame.setVisible(true);
+            }
             
             if(source.equals(pengembalianFrame.getlogoutBtn())) {
                 pengembalianFrame.getidpinjamField().setText("");
@@ -378,6 +384,16 @@ public class Handler extends MouseAdapter implements ActionListener {
             }
             else if (source.equals(settingFrame.getcloseBtn())){
                 settingFrame.setVisible(false);
+            }
+            
+            if(source.equals(listmemberFrame.getbackBtn())){
+                listmemberFrame.setVisible(false);
+            }
+            else if(source.equals(listmemberFrame.getsearchBtn())){
+                
+            }
+            else if(source.equals(listmemberFrame.getokBtn())){
+                
             }
         }
         public void mousePressed(MouseEvent me) {

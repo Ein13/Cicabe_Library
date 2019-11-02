@@ -57,7 +57,7 @@ public class peminjaman extends javax.swing.JFrame {
         submitBtn = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         keranjangTable = new javax.swing.JTable();
-        cariNisBtn = new javax.swing.JButton();
+        listmemberBtn = new javax.swing.JButton();
         dataPanel = new javax.swing.JPanel();
         searchField = new javax.swing.JTextField();
         searchComboBox = new javax.swing.JComboBox<>();
@@ -148,10 +148,10 @@ public class peminjaman extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(keranjangTable);
 
-        cariNisBtn.setText("Cari");
-        cariNisBtn.addActionListener(new java.awt.event.ActionListener() {
+        listmemberBtn.setText("List Member");
+        listmemberBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cariNisBtnActionPerformed(evt);
+                listmemberBtnActionPerformed(evt);
             }
         });
 
@@ -187,16 +187,14 @@ public class peminjaman extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(searchPanelLayout.createSequentialGroup()
-                            .addGap(32, 32, 32)
-                            .addComponent(submitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchPanelLayout.createSequentialGroup()
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(deleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(searchPanelLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(cariNisBtn)))
+                        .addGap(32, 32, 32)
+                        .addComponent(submitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchPanelLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(deleteBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(listmemberBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         searchPanelLayout.setVerticalGroup(
@@ -211,17 +209,15 @@ public class peminjaman extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(namaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(namaField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(namaField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(listmemberBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(nomorindukField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(ttlLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(searchPanelLayout.createSequentialGroup()
-                        .addComponent(cariNisBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(17, 17, 17)
-                        .addComponent(pinjamDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(pinjamDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(ttlLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -286,7 +282,7 @@ public class peminjaman extends javax.swing.JFrame {
                                 .addComponent(searchComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(36, 36, 36)
                                 .addComponent(searchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 162, Short.MAX_VALUE))))
+                                .addGap(0, 212, Short.MAX_VALUE))))
                     .addGroup(dataPanelLayout.createSequentialGroup()
                         .addGap(28, 28, 28)
                         .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -314,7 +310,7 @@ public class peminjaman extends javax.swing.JFrame {
                     .addComponent(searchBtn))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
                 .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel3))
@@ -379,7 +375,7 @@ public class peminjaman extends javax.swing.JFrame {
                             .addComponent(tabelPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(searchPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(68, 68, 68)
+                                .addGap(18, 18, 18)
                                 .addComponent(dataPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
@@ -408,9 +404,9 @@ public class peminjaman extends javax.swing.JFrame {
         idBukuField.setText(model.getValueAt(i, 0).toString());
     }//GEN-LAST:event_bukuTableMouseClicked
 
-    private void cariNisBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cariNisBtnActionPerformed
+    private void listmemberBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listmemberBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cariNisBtnActionPerformed
+    }//GEN-LAST:event_listmemberBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -433,8 +429,8 @@ public class peminjaman extends javax.swing.JFrame {
     public JButton getsearchBtn(){
         return searchBtn;
     }
-    public JButton getCariNisBtn(){
-        return cariNisBtn;
+    public JButton getlistmemberBtn(){
+        return listmemberBtn;
     }
     public void addActionListener(ActionListener ae){
         logoutBtn.addActionListener(ae);
@@ -443,7 +439,7 @@ public class peminjaman extends javax.swing.JFrame {
         submitBtn.addActionListener(ae);
         deleteBtn.addActionListener(ae);
         searchBtn.addActionListener(ae);
-        cariNisBtn.addActionListener(ae);
+        listmemberBtn.addActionListener(ae);
     }
     public JTextField getidpinjamField(){
         return idpinjamField;
@@ -506,7 +502,6 @@ public class peminjaman extends javax.swing.JFrame {
     private javax.swing.JButton addBtn;
     private javax.swing.JButton backBtn;
     private javax.swing.JTable bukuTable;
-    private javax.swing.JButton cariNisBtn;
     private javax.swing.JPanel dataPanel;
     private javax.swing.JButton deleteBtn;
     private javax.swing.JTextField idBukuField;
@@ -523,6 +518,7 @@ public class peminjaman extends javax.swing.JFrame {
     private javax.swing.JSpinner jumlahSpinner;
     private com.toedter.calendar.JDateChooser kembaliDateChooser;
     private javax.swing.JTable keranjangTable;
+    private javax.swing.JButton listmemberBtn;
     private javax.swing.JButton logoutBtn;
     private javax.swing.JPanel logoutPanel;
     private javax.swing.JTextField namaField;

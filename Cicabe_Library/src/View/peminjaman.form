@@ -35,7 +35,7 @@
                           <Component id="tabelPanel" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Component id="searchPanel" max="32767" attributes="0"/>
-                              <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="dataPanel" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -176,19 +176,16 @@
                       </Group>
                   </Group>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                              <Component id="submitBtn" min="-2" pref="85" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="deleteBtn" min="-2" pref="85" max="-2" attributes="0"/>
-                          </Group>
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                          <Component id="submitBtn" min="-2" pref="85" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="cariNisBtn" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="deleteBtn" max="32767" attributes="0"/>
+                              <Component id="listmemberBtn" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -209,6 +206,7 @@
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="namaLabel" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                               <Component id="namaField" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="listmemberBtn" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -218,11 +216,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="ttlLabel" min="-2" pref="25" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" attributes="0">
-                          <Component id="cariNisBtn" min="-2" pref="25" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
-                          <Component id="pinjamDateChooser" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="pinjamDateChooser" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
@@ -346,12 +340,12 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JButton" name="cariNisBtn">
+        <Component class="javax.swing.JButton" name="listmemberBtn">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Cari"/>
+            <Property name="text" type="java.lang.String" value="List Member"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cariNisBtnActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="listmemberBtnActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
@@ -380,7 +374,7 @@
                                   <Component id="searchComboBox" min="-2" pref="113" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                                   <Component id="searchBtn" min="-2" pref="86" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="162" max="32767" attributes="0"/>
+                                  <EmptySpace min="0" pref="212" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -419,7 +413,7 @@
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jScrollPane3" min="-2" pref="128" max="-2" attributes="0"/>
-                  <EmptySpace pref="31" max="32767" attributes="0"/>
+                  <EmptySpace pref="49" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>

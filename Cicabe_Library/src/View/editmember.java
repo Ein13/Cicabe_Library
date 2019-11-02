@@ -353,6 +353,7 @@ public class editmember extends javax.swing.JFrame {
    public JButton getresetBtn(){
        return resetBtn;
    }
+
    public void addActionListener(ActionListener ae){
        logoutBtn.addActionListener(ae);
        backBtn.addActionListener(ae);
