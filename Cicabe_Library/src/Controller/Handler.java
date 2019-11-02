@@ -80,6 +80,7 @@ public class Handler extends MouseAdapter implements ActionListener {
         managebukuFrame.addActionListener(this);
         settingFrame.addActionListener(this);
         laporanFrame.addActionListener(this);
+        listmemberFrame.addActionListener(this);
          
         loginFrame.getRootPane().setDefaultButton(loginFrame.getloginBtn());
         settingFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -92,7 +93,7 @@ public class Handler extends MouseAdapter implements ActionListener {
         managebukuFrame.setLocationRelativeTo(null);
         settingFrame.setLocationRelativeTo(null);
         laporanFrame.setLocationRelativeTo(null);
-        
+        listmemberFrame.setLocationRelativeTo(null);
            
         JSpinner spinner = peminjamanFrame.getjumlahSpinner();
         JFormattedTextField tf = ((JSpinner.DefaultEditor) spinner.getEditor()).getTextField();
@@ -106,9 +107,7 @@ public class Handler extends MouseAdapter implements ActionListener {
         }
         
         if(source.equals(mainFrame.getlogoutBtn())) {
-            mainFrame.setVisible(false);
-            loginFrame.setVisible(true);
-            loginFrame.getusernameField().requestFocusInWindow();
+            logoutEvent();
         }
         else if(source.equals(mainFrame.getmanageBtn())) {
             managebukuFrame.setTable(con.loadTableBuku());
@@ -162,8 +161,7 @@ public class Handler extends MouseAdapter implements ActionListener {
              
         if(source.equals(managebukuFrame.getlogoutBtn())) {
             resetUiBuku();
-            loginFrame.setVisible(true);
-            managebukuFrame.setVisible(false);
+            logoutEvent();
         }
         else if(source.equals(managebukuFrame.getbackBtn())) {
             resetUiBuku();
@@ -200,8 +198,7 @@ public class Handler extends MouseAdapter implements ActionListener {
          
         if(source.equals(editmember.getlogoutBtn())) {
             resetUiMember();
-            editmember.setVisible(false);
-            loginFrame.setVisible(true);
+            logoutEvent();
         }
         else if(source.equals(editmember.getbackBtn())) {
             resetUiMember();
@@ -248,8 +245,7 @@ public class Handler extends MouseAdapter implements ActionListener {
             peminjamanFrame.getkembaliDateChooser().setDate(dateNow);
             peminjamanFrame.getsearchField().setText("");
             peminjamanFrame.getjudulField().setText("");
-            peminjamanFrame.setVisible(false);
-            loginFrame.setVisible(true);
+            logoutEvent();
         }
         else if(source.equals(peminjamanFrame.getbackBtn())) {
             peminjamanFrame.getidpinjamField().setText("");
@@ -331,6 +327,7 @@ public class Handler extends MouseAdapter implements ActionListener {
             }
             else if(source.equals(peminjamanFrame.getlistmemberBtn())){
                 listmemberFrame.setVisible(true);
+                
             }
             
             if(source.equals(pengembalianFrame.getlogoutBtn())) {
@@ -343,8 +340,7 @@ public class Handler extends MouseAdapter implements ActionListener {
                 pengembalianFrame.getkembaliDateChooserField().setDate(dateNow);
                 pengembalianFrame.getdendaField().setText("");
                 pengembalianFrame.getstatusField().setText("");
-                pengembalianFrame.setVisible(false);
-                loginFrame.setVisible(true);
+                logoutEvent();
             }
             else if(source.equals(pengembalianFrame.getbackBtn())) {
                 pengembalianFrame.getidpinjamField().setText("");
@@ -373,8 +369,7 @@ public class Handler extends MouseAdapter implements ActionListener {
                 mainFrame.setVisible(true);
             }
             else if(source.equals(laporanFrame.getlogoutBtn())){
-                laporanFrame.setVisible(false);
-                loginFrame.setVisible(true);
+                logoutEvent();
             }
             
             if (source.equals(settingFrame.getupdateBtn())){
@@ -390,10 +385,10 @@ public class Handler extends MouseAdapter implements ActionListener {
                 listmemberFrame.setVisible(false);
             }
             else if(source.equals(listmemberFrame.getsearchBtn())){
-                
+                System.out.println("asdsadas");
             }
             else if(source.equals(listmemberFrame.getokBtn())){
-                
+                System.out.println("zcvxcvxcvxcv");
             }
         }
         public void mousePressed(MouseEvent me) {
@@ -689,6 +684,18 @@ public class Handler extends MouseAdapter implements ActionListener {
             managebukuFrame.getupdateBtn().setVisible(false);
         }
            
-
+        public void logoutEvent(){
+            mainFrame.setVisible(false);
+            peminjamanFrame.setVisible(false);
+            pengembalianFrame.setVisible(false);
+            editmember.setVisible(false);
+            managebukuFrame.setVisible(false);
+            laporanFrame.setVisible(false);
+            settingFrame.setVisible(false);
+            listmemberFrame.setVisible(false);
+            JOptionPane.showMessageDialog(null, "Berhasil Logout!", "Logout", JOptionPane.INFORMATION_MESSAGE);
+            loginFrame.setVisible(true);
+            loginFrame.getusernameField().requestFocus();
+        }
 
 }
