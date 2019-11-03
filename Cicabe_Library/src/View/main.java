@@ -53,7 +53,6 @@ public class main extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        managePanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         managePanel.setOpaque(false);
 
         manageBtn.setText("Manage Buku");
@@ -99,7 +98,6 @@ public class main extends javax.swing.JFrame {
 
         getContentPane().add(managePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 97, -1, -1));
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel1.setOpaque(false);
 
         pinjamBtn.setText("Peminjaman");
@@ -145,7 +143,6 @@ public class main extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(428, 101, -1, -1));
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel4.setOpaque(false);
 
         laporanBtn.setText("Laporan");
