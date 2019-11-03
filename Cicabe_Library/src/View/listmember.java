@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -189,6 +190,9 @@ public class listmember extends javax.swing.JFrame {
     }
     public JTable getsearchTable(){
         return searchTable;
+    }
+    public void setTable(TableModel model){
+        this.searchTable.setModel(model);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
