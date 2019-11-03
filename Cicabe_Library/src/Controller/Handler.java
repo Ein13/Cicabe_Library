@@ -311,12 +311,30 @@ public class Handler extends MouseAdapter implements ActionListener {
                         peminjamanFrame.setTable(con.loadTablePeminjaman());
 
                         DefaultTableModel model = (DefaultTableModel) peminjamanFrame.getkeranjangTable().getModel();
-                        for (int i = 0; i < peminjamanFrame.getkeranjangTable().getRowCount(); i++){
-                            model.removeRow(i);
+                        /*for (int i = 0; i < peminjamanFrame.getkeranjangTable().getRowCount(); i++){
+                            Peminjaman_det pdet = new Peminjaman_det(peminjamanFrame.getidpinjamField().getText(), model.getValueAt(i, 0).toString(), 
+                                    Integer.parseInt(model.getValueAt(i, 2).toString()));
+                            if(con.addPeminjamanDet(pdet)){
+                                model.removeRow(i);         
+                            }
+                            else{
+                                JOptionPane.showMessageDialog(peminjamanFrame, "Error peminjaman detail", "Error", JOptionPane.ERROR_MESSAGE);
+                                break;
+                            }
+                            System.out.println("a");
+                        }*/
+                        int rowcount = peminjamanFrame.getkeranjangTable().getRowCount();
+                        for (int i = 0; i < rowcount; i++){
+                            Peminjaman_det pdet = new Peminjaman_det(peminjamanFrame.getidpinjamField().getText(), model.getValueAt(0, 0).toString(), 
+                                        Integer.parseInt(model.getValueAt(0, 2).toString()));
+                            if(con.addPeminjamanDet(pdet)){
+                                model.removeRow(0);
+                            }
                         }
                         peminjamanFrame.getnomorindukField().setText("");
                         int currentID = Integer.parseInt(peminjamanFrame.getidpinjamField().getText()) + 1;
                         incrementPeminjaman();
+                        JOptionPane.showMessageDialog(peminjamanFrame, "Berhasil input data peminjaman", "Peminjaman", JOptionPane.INFORMATION_MESSAGE);
                     }
 
                     else{

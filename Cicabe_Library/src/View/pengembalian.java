@@ -76,6 +76,7 @@ public class pengembalian extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setTitle("Library App");
         setBackground(new java.awt.Color(51, 0, 0));
         setUndecorated(true);
         setResizable(false);

@@ -1,6 +1,7 @@
 package Controller;
 import Model.*;
 import java.util.*;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class Controller {
@@ -35,9 +36,19 @@ public class Controller {
         return pinjam;
     }
     
+    public ArrayList loadPeminjamanDet(){
+        ArrayList<Peminjaman_det> pinjamdet = db.getPinjamDet();
+        return pinjamdet;
+    }
+    
     public ArrayList loadPengembalian(){
         ArrayList<Pengembalian> kembali = db.getKembali();
         return kembali;
+    }
+    
+    public ArrayList loadPengembalianDet(){
+        ArrayList<Pengembalian_det> kembalidet = db.getKembaliDet();
+        return kembalidet;
     }
     
     //LOAD TABLE STUFF///////////////////////////////////////////////////////////////////////////////
@@ -102,6 +113,11 @@ public class Controller {
         }
         
         return db.insertPeminjaman(p);
+    }
+    
+    public boolean addPeminjamanDet(Peminjaman_det p){
+        //ArrayList<Peminjaman_det> pinjamdet = loadPeminjamanDet();
+        return db.insertPeminjaman_Det(p);
     }
     
     //DELETE STUFF///////////////////////////////////////////////////////////////////////////////

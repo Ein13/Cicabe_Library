@@ -74,6 +74,7 @@ public class peminjaman extends javax.swing.JFrame {
         peminjamanTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setTitle("Library App");
         setUndecorated(true);
         setResizable(false);
 
