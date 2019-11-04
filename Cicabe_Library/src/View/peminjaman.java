@@ -369,7 +369,7 @@ public class peminjaman extends javax.swing.JFrame {
 
         getContentPane().add(tabelPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 520, 1403, -1));
 
-        bgrnd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/TestHD_2.jpg"))); // NOI18N
+        bgrnd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/1431x746B.jpg"))); // NOI18N
         getContentPane().add(bgrnd, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();

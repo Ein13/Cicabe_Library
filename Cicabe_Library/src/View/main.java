@@ -191,7 +191,7 @@ public class main extends javax.swing.JFrame {
         logoutBtn.setText("Logout");
         getContentPane().add(logoutBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(1131, 28, 115, 35));
 
-        bgrnd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/TestHD_2.jpg"))); // NOI18N
+        bgrnd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/1280x720B.jpg"))); // NOI18N
         getContentPane().add(bgrnd, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();

@@ -249,7 +249,7 @@ public class editmember extends javax.swing.JFrame {
                 .addGap(22, 22, 22))
         );
 
-        getContentPane().add(dataPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 110, -1, -1));
+        getContentPane().add(dataPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 110, 720, -1));
 
         tabelPanel.setOpaque(false);
 
@@ -291,7 +291,7 @@ public class editmember extends javax.swing.JFrame {
 
         getContentPane().add(tabelPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 410, 1276, -1));
 
-        bgrnd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/TestHD_2.jpg"))); // NOI18N
+        bgrnd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/1280x720B.jpg"))); // NOI18N
         getContentPane().add(bgrnd, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();

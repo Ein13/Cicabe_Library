@@ -131,7 +131,7 @@ public class laporan extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 93, -1, -1));
 
-        bgrnd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/TestHD_2.jpg"))); // NOI18N
+        bgrnd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/1280x720B.jpg"))); // NOI18N
         getContentPane().add(bgrnd, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();

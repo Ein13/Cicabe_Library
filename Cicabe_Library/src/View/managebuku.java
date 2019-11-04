@@ -72,7 +72,7 @@ public class managebuku extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        logoutPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        logoutPanel.setOpaque(false);
 
         backBtn.setText("Back");
 
@@ -88,9 +88,9 @@ public class managebuku extends javax.swing.JFrame {
             .addGroup(logoutPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(322, 322, 322)
-                .addComponent(manageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(456, 456, 456)
+                .addComponent(manageLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 458, Short.MAX_VALUE)
                 .addComponent(logoutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -284,7 +284,7 @@ public class managebuku extends javax.swing.JFrame {
             tabelPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tabelPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1236, Short.MAX_VALUE)
                 .addContainerGap())
         );
         tabelPanelLayout.setVerticalGroup(
@@ -297,7 +297,7 @@ public class managebuku extends javax.swing.JFrame {
 
         getContentPane().add(tabelPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 418, 1260, -1));
 
-        bgrnd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/TestHD_2.jpg"))); // NOI18N
+        bgrnd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/1280x720B.jpg"))); // NOI18N
         getContentPane().add(bgrnd, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
