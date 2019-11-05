@@ -36,10 +36,10 @@ public class Controller {
         return pinjam;
     }
     
-    public ArrayList loadPeminjamanDet(String id){
-        ArrayList<Peminjaman_det> pinjamdet = db.getPinjamDet(id);
-        return pinjamdet;
-    }
+    //public ArrayList loadPeminjamanDet(String id){
+      //  ArrayList<Peminjaman_det> pinjamdet = db.getPinjamDet(id);
+        //return pinjamdet;
+    //}
     
     public ArrayList loadPengembalian(){
         ArrayList<Pengembalian> kembali = db.getKembali();
@@ -54,7 +54,13 @@ public class Controller {
     //LOAD TABLE STUFF///////////////////////////////////////////////////////////////////////////////
     
     public DefaultTableModel loadTableMember(){
-        DefaultTableModel model = new DefaultTableModel(new String[]{"NIS", "Nama", "Tempat Lahir", "Tgl Lahir", "Jumlah Pinjam"}, 0);
+        DefaultTableModel model = new DefaultTableModel(new String[]{"NIS", "Nama", "Tempat Lahir", "Tgl Lahir", "Jumlah Pinjam"}, 0)
+        {
+            @Override
+            public boolean isCellEditable(int row, int column){
+                return false;
+            }
+        };
         ArrayList<Member> member = loadMember();
         
         member.forEach((m) -> {
@@ -64,7 +70,13 @@ public class Controller {
     }
     
     public DefaultTableModel loadTableBuku(){
-        DefaultTableModel model = new DefaultTableModel(new String[]{"ID", "Judul", "Penulis", "Penerbit", "Tahun", "Stok"}, 0);
+        DefaultTableModel model = new DefaultTableModel(new String[]{"ID", "Judul", "Penulis", "Penerbit", "Tahun", "Stok"}, 0)
+        {
+            @Override
+            public boolean isCellEditable(int row, int column){
+                return false;
+            }
+        };
         ArrayList<Buku> buku = loadBuku();
         
         buku.forEach((b) -> {
@@ -74,7 +86,12 @@ public class Controller {
     }
     
     public DefaultTableModel loadTablePeminjaman(){
-        DefaultTableModel model = new DefaultTableModel(new String[]{"ID Pinjam", "NIS", "Tgl Pinjam", "Tgl Kembali", "Total Pinjam"}, 0);
+        DefaultTableModel model = new DefaultTableModel(new String[]{"ID Pinjam", "NIS", "Tgl Pinjam", "Tgl Kembali", "Total Pinjam"}, 0){
+            @Override
+            public boolean isCellEditable(int row, int column){
+                return false;
+            }
+        };
         ArrayList<Peminjaman> pinjam = loadPeminjaman();
         
         pinjam.forEach((pin) -> {
