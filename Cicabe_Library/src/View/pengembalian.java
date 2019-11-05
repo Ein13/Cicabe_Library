@@ -47,7 +47,7 @@ public class pengembalian extends javax.swing.JFrame {
         searchPanel = new javax.swing.JPanel();
         searchField = new javax.swing.JTextField();
         searchBtn = new javax.swing.JButton();
-        searchComboBox = new javax.swing.JComboBox<String>();
+        searchComboBox = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         peminjamanTable = new javax.swing.JTable();
         dataPanel = new javax.swing.JPanel();
@@ -122,7 +122,7 @@ public class pengembalian extends javax.swing.JFrame {
 
         searchBtn.setText("Search");
 
-        searchComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "NIS", "Nama" }));
+        searchComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "NIS", "Nama" }));
 
         peminjamanTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

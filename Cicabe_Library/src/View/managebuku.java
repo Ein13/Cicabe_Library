@@ -43,7 +43,7 @@ public class managebuku extends javax.swing.JFrame {
         searchLabel = new javax.swing.JLabel();
         searchField = new javax.swing.JTextField();
         searchBtn = new javax.swing.JButton();
-        searchCombo = new javax.swing.JComboBox<String>();
+        searchCombo = new javax.swing.JComboBox<>();
         dataPanel = new javax.swing.JPanel();
         idLabel = new javax.swing.JLabel();
         judulLabel = new javax.swing.JLabel();
@@ -117,7 +117,7 @@ public class managebuku extends javax.swing.JFrame {
 
         searchBtn.setText("Search");
 
-        searchCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Judul", "Penerbit", "Penulis", "Tahun" }));
+        searchCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Judul", "Penerbit", "Penulis", "Tahun" }));
 
         javax.swing.GroupLayout searchPanelLayout = new javax.swing.GroupLayout(searchPanel);
         searchPanel.setLayout(searchPanelLayout);
@@ -177,6 +177,8 @@ public class managebuku extends javax.swing.JFrame {
 
         jLabel1.setText("Stok");
         jLabel1.setPreferredSize(new java.awt.Dimension(40, 14));
+
+        stokSpinner.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
 
         resetBtn.setText("Reset");
 

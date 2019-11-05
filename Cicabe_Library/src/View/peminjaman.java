@@ -58,7 +58,7 @@ public class peminjaman extends javax.swing.JFrame {
         listmemberBtn = new javax.swing.JButton();
         dataPanel = new javax.swing.JPanel();
         searchField = new javax.swing.JTextField();
-        searchComboBox = new javax.swing.JComboBox<String>();
+        searchComboBox = new javax.swing.JComboBox<>();
         addBtn = new javax.swing.JButton();
         jumlahLabel = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -98,7 +98,7 @@ public class peminjaman extends javax.swing.JFrame {
                 .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(319, 319, 319)
                 .addComponent(peminjamanLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 723, Short.MAX_VALUE)
                 .addComponent(logoutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -240,7 +240,7 @@ public class peminjaman extends javax.swing.JFrame {
 
         dataPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
-        searchComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Judul", "Penerbit", "Penulis", "Tahun" }));
+        searchComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Judul", "Penerbit", "Penulis", "Tahun" }));
 
         addBtn.setText("Add");
 
@@ -263,6 +263,8 @@ public class peminjaman extends javax.swing.JFrame {
             }
         });
         jScrollPane3.setViewportView(bukuTable);
+
+        jumlahSpinner.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
 
         searchBtn.setText("Search");
 
@@ -314,7 +316,7 @@ public class peminjaman extends javax.swing.JFrame {
                     .addComponent(searchBtn))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
                 .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel3))
@@ -356,7 +358,7 @@ public class peminjaman extends javax.swing.JFrame {
             tabelPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tabelPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1349, Short.MAX_VALUE)
                 .addGap(40, 40, 40))
         );
         tabelPanelLayout.setVerticalGroup(
