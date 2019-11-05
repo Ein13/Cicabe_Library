@@ -277,19 +277,33 @@ public class Handler extends MouseAdapter implements ActionListener {
         else if(source.equals(peminjamanFrame.getaddBtn())) {
             String idBuku = peminjamanFrame.getidBukuField().getText();
             int jml = (int) peminjamanFrame.getjumlahSpinner().getValue();
+            boolean ada = false;
+            int rowada = 0;
             if(con.cekStok(idBuku, jml)){
                 if(jml>0){
                     DefaultTableModel model = (DefaultTableModel)peminjamanFrame.getkeranjangTable().getModel();
-                    model.addRow(new Object[]{idBuku, peminjamanFrame.getjudulField().getText(), jml});
-                
+                    for (int i = 0; i<model.getRowCount(); i++){
+                        if (idBuku.equals(model.getValueAt(i, 0).toString())){
+                            ada = true;
+                            rowada = i;
+                        }
+                    }
+                    if (!ada){
+                        model.addRow(new Object[]{idBuku, peminjamanFrame.getjudulField().getText(), jml});
+                    }
+                    else{
+                        int currentjml = Integer.parseInt(model.getValueAt(rowada, 2).toString());
+                        model.setValueAt(currentjml+jml, rowada, 2);
+                    }
                     con.kurangiStokBuku(idBuku, jml);
                     peminjamanFrame.setTableBuku(con.loadTableBuku());
-                
+
                     peminjamanFrame.getjudulField().setText("");
                     peminjamanFrame.getidBukuField().setText("");
-                    peminjamanFrame.getjumlahSpinner().setValue(0);}
+                    peminjamanFrame.getjumlahSpinner().setValue(0);
+                }
                 else{
-                    JOptionPane.showMessageDialog(null, "Jumlah pinjam tidak memenuhi", "Peminjaman", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Jumlah pinjam harus lebih dari 0", "Peminjaman", JOptionPane.WARNING_MESSAGE);
                 }
             }
             else{
