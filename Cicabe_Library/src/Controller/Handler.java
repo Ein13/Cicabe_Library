@@ -49,12 +49,6 @@ public class Handler extends MouseAdapter implements ActionListener {
     private setting settingFrame;
     private listmember listmemberFrame;
     
-    public static void centreWindow(Window frame) {
-        Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
-        int x = (int) ((dimension.getWidth() - frame.getWidth()) / 2);
-        int y = (int) ((dimension.getHeight() - frame.getHeight()) / 2);
-        frame.setLocation(x, y);
-    }
     private Controller con = new Controller();
     public Handler() {
         loginFrame = new login();
@@ -92,7 +86,6 @@ public class Handler extends MouseAdapter implements ActionListener {
         peminjamanFrame.getnomorindukField().setEditable(false);
         
         settingFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        //centreWindow(loginFrame);
         
         loginFrame.setLocationRelativeTo(null);
         mainFrame.setLocationRelativeTo(null);
@@ -114,6 +107,12 @@ public class Handler extends MouseAdapter implements ActionListener {
         managebukuFrame.getstokspinner().addChangeListener(new SpinnerListener());
         editmember.getjumlahpinjam().addChangeListener(new SpinnerListener());
         peminjamanFrame.getjumlahSpinner().addChangeListener(new SpinnerListener());
+        
+        managebukuFrame.getidField().setPreferredSize(new Dimension(6, 20));
+        managebukuFrame.getjudulField().setPreferredSize(new Dimension(6, 20));
+        managebukuFrame.getpenerbitField().setPreferredSize(new Dimension(6, 20));
+        managebukuFrame.getpenulisField().setPreferredSize(new Dimension(6, 20));
+        
         
     }
     public void actionPerformed(ActionEvent ae) {

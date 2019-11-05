@@ -151,6 +151,7 @@ public class managebuku extends javax.swing.JFrame {
         getContentPane().add(searchPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 113, -1, -1));
 
         dataPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        dataPanel.setMaximumSize(new java.awt.Dimension(738, 294));
 
         idLabel.setText("ID Buku");
 

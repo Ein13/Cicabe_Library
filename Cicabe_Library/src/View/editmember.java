@@ -154,6 +154,7 @@ public class editmember extends javax.swing.JFrame {
         getContentPane().add(searchPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, -1, -1));
 
         dataPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        dataPanel.setMaximumSize(new java.awt.Dimension(730, 297));
 
         namaLabel.setText("Nama");
 
