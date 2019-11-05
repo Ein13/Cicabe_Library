@@ -178,8 +178,6 @@ public class managebuku extends javax.swing.JFrame {
         jLabel1.setText("Stok");
         jLabel1.setPreferredSize(new java.awt.Dimension(40, 14));
 
-        stokSpinner.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
-
         resetBtn.setText("Reset");
 
         javax.swing.GroupLayout dataPanelLayout = new javax.swing.GroupLayout(dataPanel);

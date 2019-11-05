@@ -458,11 +458,6 @@
         <Component class="javax.swing.JTextField" name="judulField">
         </Component>
         <Component class="javax.swing.JSpinner" name="jumlahSpinner">
-          <Properties>
-            <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-              <SpinnerModel initial="1" minimum="1" numberType="java.lang.Integer" stepSize="1" type="number"/>
-            </Property>
-          </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="JFormattedTextField tf = ((JSpinner.DefaultEditor) jumlahSpinner.getEditor()).getTextField();&#xa;tf.setEditable(false);"/>
           </AuxValues>

@@ -264,8 +264,6 @@ public class peminjaman extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(bukuTable);
 
-        jumlahSpinner.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
-
         searchBtn.setText("Search");
 
         jLabel2.setText("Judul");

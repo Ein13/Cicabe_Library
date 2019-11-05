@@ -161,7 +161,7 @@ public class Handler extends MouseAdapter implements ActionListener {
             pengembalianFrame.getkembaliDateChooserField().setDate(dateNow);
             pengembalianFrame.setVisible(true);
             mainFrame.setVisible(false);
-            pengembalianFrame.setTable(con.loadTableMember());
+            pengembalianFrame.setTable(con.loadTablePeminjaman());
         }
         else if(source.equals(mainFrame.getlaporanBtn())){
             //laporanFrame.setTable(con.loadTableLaporan());
@@ -275,15 +275,19 @@ public class Handler extends MouseAdapter implements ActionListener {
             String idBuku = peminjamanFrame.getidBukuField().getText();
             int jml = (int) peminjamanFrame.getjumlahSpinner().getValue();
             if(con.cekStok(idBuku, jml)){
-                DefaultTableModel model = (DefaultTableModel)peminjamanFrame.getkeranjangTable().getModel();
-                model.addRow(new Object[]{idBuku, peminjamanFrame.getjudulField().getText(), jml});
+                if(jml>0){
+                    DefaultTableModel model = (DefaultTableModel)peminjamanFrame.getkeranjangTable().getModel();
+                    model.addRow(new Object[]{idBuku, peminjamanFrame.getjudulField().getText(), jml});
                 
-                con.kurangiStokBuku(idBuku, jml);
-                peminjamanFrame.setTableBuku(con.loadTableBuku());
+                    con.kurangiStokBuku(idBuku, jml);
+                    peminjamanFrame.setTableBuku(con.loadTableBuku());
                 
-                peminjamanFrame.getjudulField().setText("");
-                peminjamanFrame.getidBukuField().setText("");
-                peminjamanFrame.getjumlahSpinner().setValue(0);
+                    peminjamanFrame.getjudulField().setText("");
+                    peminjamanFrame.getidBukuField().setText("");
+                    peminjamanFrame.getjumlahSpinner().setValue(0);}
+                else{
+                    JOptionPane.showMessageDialog(null, "Jumlah pinjam tidak memenuhi", "Peminjaman", JOptionPane.WARNING_MESSAGE);
+                }
             }
             else{
                 JOptionPane.showMessageDialog(null, "Stok buku tidak cukup", "Peminjaman", JOptionPane.WARNING_MESSAGE);
@@ -401,9 +405,8 @@ public class Handler extends MouseAdapter implements ActionListener {
                 mainFrame.setVisible(true);
             }
             else if(source.equals(pengembalianFrame.getsearchBtn())) {
-                //String category = (String) pengembalianFrame.getCategory().getSelectedItem();
-                //con.searchPengembalian(category, pengembalianFrame.getsearchField().getText());
-                //pengembalianFrame.setTable(con.loadTablePengembalian());
+                String category = (String) pengembalianFrame.getCategory().getSelectedItem();
+                pengembalianFrame.setTable(con.searchPeminjaman(category, pengembalianFrame.getsearchField().getText()));
             } 
             else if(source.equals(pengembalianFrame.getsubmitBtn())) {
                 

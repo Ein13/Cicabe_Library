@@ -174,8 +174,6 @@ public class editmember extends javax.swing.JFrame {
 
         tglDateChooser.setDateFormatString("dd-MM-yyyy");
 
-        pinjamSpinner.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
-
         resetBtn.setText("Reset");
 
         javax.swing.GroupLayout dataPanelLayout = new javax.swing.GroupLayout(dataPanel);

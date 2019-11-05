@@ -132,11 +132,11 @@ public class Database {
         return pinjam;
     }
     
-    public void loadPinjamDet(){
+    public void loadPinjamDet(String id){
         connect();
         try{
             pinjamDet = new ArrayList();
-            rs = stmt.executeQuery("SELECT * FROM peminjaman_det");
+            rs = stmt.executeQuery("SELECT * FROM peminjaman_det WHERE id_Pinjam = "+"'"+id+"'");
             while(rs.next()){
                 pinjamDet.add(new Peminjaman_det(rs.getString("id_Pinjam"), 
                         rs.getString("id_Buku"), rs.getInt("jml")));
@@ -146,8 +146,8 @@ public class Database {
         }
     }
     
-    public ArrayList<Peminjaman_det> getPinjamDet(){
-        loadPinjamDet();
+    public ArrayList<Peminjaman_det> getPinjamDet(String id){
+        loadPinjamDet(id);
         return pinjamDet;
     }
     
@@ -174,6 +174,7 @@ public class Database {
             e.printStackTrace();
         }
     }
+    
     
     public ArrayList<Pengembalian> getKembali(){
         loadKembali();
