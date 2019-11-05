@@ -113,7 +113,8 @@ public class Handler extends MouseAdapter implements ActionListener {
         managebukuFrame.getpenerbitField().setPreferredSize(new Dimension(6, 20));
         managebukuFrame.getpenulisField().setPreferredSize(new Dimension(6, 20));
         
-        
+        pengembalianFrame.setTableBuku(con.loadTablePeminjamanDet("0"));
+
     }
     public void actionPerformed(ActionEvent ae) {
         Object source = ae.getSource();
@@ -418,12 +419,17 @@ public class Handler extends MouseAdapter implements ActionListener {
                 pengembalianFrame.getdendaField().setText("");
                 pengembalianFrame.getstatusField().setText("");
                 pengembalianFrame.setVisible(false);
+                this.emptyPeminjamanDetTable();
                 mainFrame.setVisible(true);
             }
+            
             else if(source.equals(pengembalianFrame.getsearchBtn())) {
                 String category = (String) pengembalianFrame.getCategory().getSelectedItem();
-                pengembalianFrame.setTable(con.searchPeminjaman(category, pengembalianFrame.getsearchField().getText()));
+                String keyword = pengembalianFrame.getsearchField().getText().toString();
+                
+                pengembalianFrame.setTable(con.searchPeminjaman(category, keyword));
             }
+            
             else if(source.equals(pengembalianFrame.getdelBtn())){
                 DefaultTableModel model = (DefaultTableModel) pengembalianFrame.getkeranjangTable().getModel();
                 DefaultTableModel model2 = (DefaultTableModel) pengembalianFrame.getbukuTable().getModel();
@@ -810,8 +816,15 @@ public class Handler extends MouseAdapter implements ActionListener {
             loginFrame.getusernameField().requestFocus();
         }
         
+        public void emptyPeminjamanDetTable(){
+            DefaultTableModel model = (DefaultTableModel) pengembalianFrame.getbukuTable().getModel();
+            for (int i = 0; i <= model.getRowCount(); i++){
+                model.removeRow(0);
+            }
+        }
         
     class SpinnerListener implements ChangeListener {
+        @Override
         public void stateChanged(ChangeEvent evt) {
             JSpinner spinner = (JSpinner) evt.getSource();
 
@@ -821,7 +834,7 @@ public class Handler extends MouseAdapter implements ActionListener {
             if(isi < 0){
                 spinner.setValue(0);
                 try{spinner.commitEdit();}
-                catch (Exception e){}
+                catch (ParseException e){}
             }
         }
     }
