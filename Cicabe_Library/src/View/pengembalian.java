@@ -23,6 +23,7 @@ import javax.swing.JComboBox;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 public class pengembalian extends javax.swing.JFrame {
 
@@ -77,6 +78,7 @@ public class pengembalian extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         bukuTable = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
+        pilihBtn = new javax.swing.JButton();
         bgrnd = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -129,10 +131,7 @@ public class pengembalian extends javax.swing.JFrame {
 
         peminjamanTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"
@@ -212,13 +211,10 @@ public class pengembalian extends javax.swing.JFrame {
 
         keranjangTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Id Buku", "Judul", "Jumlah"
             }
         ));
         jScrollPane3.setViewportView(keranjangTable);
@@ -319,19 +315,23 @@ public class pengembalian extends javax.swing.JFrame {
 
         bukuTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        bukuTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bukuTableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(bukuTable);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel3.setText("Daftar Buku Peminjam");
+
+        pilihBtn.setText("Pilih");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -343,16 +343,19 @@ public class pengembalian extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 575, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(pilihBtn)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pilihBtn))
+                .addGap(18, 18, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(252, 252, 252))
         );
 
@@ -364,9 +367,10 @@ public class pengembalian extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private Controller conn = new Controller();
     private void peminjamanTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_peminjamanTableMouseClicked
         // TODO add your handling code here:
-        Controller conn = new Controller();
+        
         int i = peminjamanTable.getSelectedRow();
         TableModel model = peminjamanTable.getModel();
         // Kalau fail, kemungkinan urutan table beda dengan database 
@@ -394,12 +398,18 @@ public class pengembalian extends javax.swing.JFrame {
         dendaField.setText(model.getValueAt(i,5).toString());
         statusField.setText(model.getValueAt(i,6).toString());
         
-        setTableBuku(conn.loadTablePeminjamanDet(model.getValueAt(i,0).toString()));
     }//GEN-LAST:event_peminjamanTableMouseClicked
 
     private void idpinjamFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idpinjamFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_idpinjamFieldActionPerformed
+
+    private void bukuTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bukuTableMouseClicked
+        
+        
+        
+        
+    }//GEN-LAST:event_bukuTableMouseClicked
 
     /**
      * @param args the command line arguments
@@ -422,6 +432,9 @@ public class pengembalian extends javax.swing.JFrame {
     public JButton getdelBtn(){
         return delBtn;
     }
+    public JButton getpilihBtn(){
+        return pilihBtn;
+    }
 
     public void addActionListener(ActionListener ae){
         logoutBtn.addActionListener(ae);
@@ -429,6 +442,7 @@ public class pengembalian extends javax.swing.JFrame {
         searchBtn.addActionListener(ae);
         submitBtn.addActionListener(ae);
         delBtn.addActionListener(ae);
+        pilihBtn.addActionListener(ae);
     }
 
     public JTextField getsearchField(){
@@ -512,6 +526,7 @@ public class pengembalian extends javax.swing.JFrame {
     private javax.swing.JLabel nomorindukLabel;
     private javax.swing.JTable peminjamanTable;
     private javax.swing.JLabel pengembalianLabel;
+    private javax.swing.JButton pilihBtn;
     private com.toedter.calendar.JDateChooser pinjamDateChooser;
     private javax.swing.JButton searchBtn;
     private javax.swing.JComboBox<String> searchComboBox;

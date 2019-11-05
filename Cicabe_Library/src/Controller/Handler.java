@@ -442,7 +442,23 @@ public class Handler extends MouseAdapter implements ActionListener {
                 model.removeRow(baris);
                 model2.addRow(new Object[]{idBuku,judulBuku,jmlPinjam});
             }
+            else if(source.equals(pengembalianFrame.getpilihBtn())){
+                int i = pengembalianFrame.getbukuTable().getSelectedRow();
+                DefaultTableModel model1 = (DefaultTableModel) pengembalianFrame.getkeranjangTable().getModel();
+                TableModel model2 = pengembalianFrame.getbukuTable().getModel();
+                DefaultTableModel model3 = (DefaultTableModel) pengembalianFrame.getbukuTable().getModel();
+                
+        
+                String idBuku = model2.getValueAt(i, 0).toString();
+                String Judul = model2.getValueAt(i, 1).toString();
+                String jumlah = model2.getValueAt(i, 2).toString();
+        
+                model1.addRow(new Object[]{idBuku,Judul,jumlah});
+                model3.removeRow(i);
+                
+            }
             else if(source.equals(pengembalianFrame.getsubmitBtn())) {
+                
                 
             }
             
