@@ -9,6 +9,8 @@ package View;
  *
  * @author Luthfi
  */
+import Controller.*;
+import Model.*;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JTextField;
@@ -70,6 +72,7 @@ public class pengembalian extends javax.swing.JFrame {
         idpengembalianField = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
         keranjangTable = new javax.swing.JTable();
+        delBtn = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         bukuTable = new javax.swing.JTable();
@@ -191,6 +194,11 @@ public class pengembalian extends javax.swing.JFrame {
         jLabel1.setText("ID Peminjaman");
 
         idpinjamField.setEditable(false);
+        idpinjamField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                idpinjamFieldActionPerformed(evt);
+            }
+        });
 
         jLabel6.setText("Status");
 
@@ -214,6 +222,8 @@ public class pengembalian extends javax.swing.JFrame {
             }
         ));
         jScrollPane3.setViewportView(keranjangTable);
+
+        delBtn.setText("Delete");
 
         javax.swing.GroupLayout dataPanelLayout = new javax.swing.GroupLayout(dataPanel);
         dataPanel.setLayout(dataPanelLayout);
@@ -254,7 +264,9 @@ public class pengembalian extends javax.swing.JFrame {
                     .addGroup(dataPanelLayout.createSequentialGroup()
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(submitBtn)))
+                        .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(submitBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(delBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(34, 34, 34))
         );
         dataPanelLayout.setVerticalGroup(
@@ -295,6 +307,8 @@ public class pengembalian extends javax.swing.JFrame {
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dataPanelLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(delBtn)
+                        .addGap(38, 38, 38)
                         .addComponent(submitBtn)
                         .addGap(25, 25, 25))))
         );
@@ -352,12 +366,14 @@ public class pengembalian extends javax.swing.JFrame {
 
     private void peminjamanTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_peminjamanTableMouseClicked
         // TODO add your handling code here:
+        Controller conn = new Controller();
         int i = peminjamanTable.getSelectedRow();
         TableModel model = peminjamanTable.getModel();
         // Kalau fail, kemungkinan urutan table beda dengan database 
         idpinjamField.setText(model.getValueAt(i,0).toString());
         indukField.setText(model.getValueAt(i,1).toString());
         namaField.setText(model.getValueAt(i,2).toString());
+        setTableBuku(conn.loadTablePeminjamanDet(model.getValueAt(i,0).toString()));
         
         //test2, gk tau bisa atau enggak.
         try {
@@ -377,7 +393,13 @@ public class pengembalian extends javax.swing.JFrame {
         
         dendaField.setText(model.getValueAt(i,5).toString());
         statusField.setText(model.getValueAt(i,6).toString());
+        
+        setTableBuku(conn.loadTablePeminjamanDet(model.getValueAt(i,0).toString()));
     }//GEN-LAST:event_peminjamanTableMouseClicked
+
+    private void idpinjamFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idpinjamFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_idpinjamFieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -397,12 +419,16 @@ public class pengembalian extends javax.swing.JFrame {
     public JButton getsubmitBtn(){
         return submitBtn;
     }
+    public JButton getdelBtn(){
+        return delBtn;
+    }
 
     public void addActionListener(ActionListener ae){
         logoutBtn.addActionListener(ae);
         backBtn.addActionListener(ae);
         searchBtn.addActionListener(ae);
         submitBtn.addActionListener(ae);
+        delBtn.addActionListener(ae);
     }
 
     public JTextField getsearchField(){
@@ -441,6 +467,9 @@ public class pengembalian extends javax.swing.JFrame {
     public JTable getbukuTable(){
         return bukuTable;
     }
+    public JTable getkeranjangTable(){
+        return keranjangTable;
+    }
     
     public void setTable(TableModel model){
         this.peminjamanTable.setModel(model);
@@ -460,6 +489,7 @@ public class pengembalian extends javax.swing.JFrame {
     private javax.swing.JLabel bgrnd;
     private javax.swing.JTable bukuTable;
     private javax.swing.JPanel dataPanel;
+    private javax.swing.JButton delBtn;
     private javax.swing.JTextField dendaField;
     private javax.swing.JLabel dendaLabel;
     private javax.swing.JTextField idpengembalianField;

@@ -36,10 +36,10 @@ public class Controller {
         return pinjam;
     }
     
-    //public ArrayList loadPeminjamanDet(String id){
-      //  ArrayList<Peminjaman_det> pinjamdet = db.getPinjamDet(id);
-        //return pinjamdet;
-    //}
+    public ArrayList loadPeminjamanDet(String id){
+        ArrayList<Peminjaman_det> pinjamdet = db.getPinjamDet(id);
+        return pinjamdet;
+    }
     
     public ArrayList loadPengembalian(){
         ArrayList<Pengembalian> kembali = db.getKembali();
@@ -97,6 +97,30 @@ public class Controller {
         pinjam.forEach((pin) -> {
             model.addRow(new Object[]{pin.getId_pinjam(), pin.getNis(), pin.getTgl_pinjam(), pin.getTgl_kembali(), pin.getTotal_pinjam()});
         });
+        return model;
+    }
+    
+    public DefaultTableModel loadTablePeminjamanDet(String id){
+        String id2 = id;
+        DefaultTableModel model = new DefaultTableModel(new String[]{"ID Buku","Judul Buku","Jumlah Pinjam"},0){
+            public boolean isCellEditable(int row, int column){
+                return false;
+            }
+        };
+        
+        ArrayList<Peminjaman_det> peminjaman = loadPeminjamanDet(id2);
+        ArrayList<Buku> buku = loadBuku();
+        
+        for(Peminjaman_det pind : peminjaman){
+            String idbuku = pind.getId_buku();
+            for(Buku book : buku){
+                if (book.getIdbuku().equals(idbuku)){
+                    model.addRow(new Object[]{pind.getId_buku(), book.getJudul(), pind.getJml()});
+                    break;
+                }
+            }
+        }
+        
         return model;
     }
     

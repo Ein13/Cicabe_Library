@@ -20,8 +20,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 import javax.swing.table.TableModel;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JRootPane;
 import javax.swing.event.ChangeEvent;
@@ -407,7 +410,19 @@ public class Handler extends MouseAdapter implements ActionListener {
             else if(source.equals(pengembalianFrame.getsearchBtn())) {
                 String category = (String) pengembalianFrame.getCategory().getSelectedItem();
                 pengembalianFrame.setTable(con.searchPeminjaman(category, pengembalianFrame.getsearchField().getText()));
-            } 
+            }
+            else if(source.equals(pengembalianFrame.getdelBtn())){
+                DefaultTableModel model = (DefaultTableModel) pengembalianFrame.getkeranjangTable().getModel();
+                DefaultTableModel model2 = (DefaultTableModel) pengembalianFrame.getbukuTable().getModel();
+                
+                int baris = pengembalianFrame.getkeranjangTable().getSelectedRow();
+                String idBuku = model.getValueAt(baris, 0).toString();
+                String judulBuku = model.getValueAt(baris, 1).toString();
+                int jmlPinjam = Integer.parseInt(model.getValueAt(baris, 2).toString());
+                
+                model.removeRow(baris);
+                model2.addRow(new Object[]{idBuku,judulBuku,jmlPinjam});
+            }
             else if(source.equals(pengembalianFrame.getsubmitBtn())) {
                 
             }
@@ -447,7 +462,36 @@ public class Handler extends MouseAdapter implements ActionListener {
             }
         }
         public void mousePressed(MouseEvent me) {
-                Object source = me.getSource();
+                Object sc = me.getSource();
+                if(sc.equals(pengembalianFrame.getpeminjamanTable())){
+                    int i = pengembalianFrame.getpeminjamanTable().getSelectedRow();
+                    TableModel model = pengembalianFrame.getpeminjamanTable().getModel();
+                    // Kalau fail, kemungkinan urutan table beda dengan database 
+                    pengembalianFrame.getidpinjamField().setText(model.getValueAt(i,0).toString());
+                    pengembalianFrame.getindukField().setText(model.getValueAt(i,1).toString());
+                    pengembalianFrame.getnamaField().setText(model.getValueAt(i,2).toString());
+        
+                    //test2, gk tau bisa atau enggak.
+                try {
+                    Date date = new SimpleDateFormat("MM-dd-yyyy").parse((String)model.getValueAt(i, 3).toString());
+                    pengembalianFrame.getpinjamDateChooserField().setDate(date);
+                } catch (ParseException ex) {
+                    Logger.getLogger(editmember.class.getName()).log(Level.SEVERE, null, ex);
+                }
+        
+                try {
+                   //jdateChooser
+                    Date date = new SimpleDateFormat("MM-dd-yyyy").parse((String)model.getValueAt(i, 4).toString());
+                    pengembalianFrame.getkembaliDateChooserField().setDate(date);
+                } catch (ParseException ex) {
+                    Logger.getLogger(editmember.class.getName()).log(Level.SEVERE, null, ex);
+                }
+        
+                pengembalianFrame.getdendaField().setText(model.getValueAt(i,5).toString());
+                pengembalianFrame.getstatusField().setText(model.getValueAt(i,6).toString());
+                
+                
+                }
         }
         
         public void login(String usr, String pwd) {

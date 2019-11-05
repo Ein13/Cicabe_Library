@@ -268,6 +268,8 @@ public class peminjaman extends javax.swing.JFrame {
 
         jLabel2.setText("Judul");
 
+        idBukuField.setEditable(false);
+
         jLabel3.setText("ID");
 
         javax.swing.GroupLayout dataPanelLayout = new javax.swing.GroupLayout(dataPanel);
