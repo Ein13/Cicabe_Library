@@ -36,8 +36,8 @@ public class Controller {
         return pinjam;
     }
     
-    public ArrayList loadPeminjamanDet(){
-        ArrayList<Peminjaman_det> pinjamdet = db.getPinjamDet();
+    public ArrayList loadPeminjamanDet(String id){
+        ArrayList<Peminjaman_det> pinjamdet = db.getPinjamDet(id);
         return pinjamdet;
     }
     
