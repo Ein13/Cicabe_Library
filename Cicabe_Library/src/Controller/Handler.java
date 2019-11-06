@@ -471,6 +471,7 @@ public class Handler extends MouseAdapter implements ActionListener {
                 DefaultTableModel model1 = (DefaultTableModel) pengembalianFrame.getkeranjangTable().getModel();
                 TableModel model2 = pengembalianFrame.getbukuTable().getModel();
                 DefaultTableModel model3 = (DefaultTableModel) pengembalianFrame.getbukuTable().getModel();
+                TableModel model4 = pengembalianFrame.getkeranjangTable().getModel();
                 
                 
                 String idBuku = model2.getValueAt(i, 0).toString();
@@ -480,16 +481,52 @@ public class Handler extends MouseAdapter implements ActionListener {
                 
                 if((Integer)pengembalianFrame.getbukuSpinner().getValue()<jumlah){
                     if((Integer)pengembalianFrame.getbukuSpinner().getValue()>0){
-                        jumlah = jumlah-(Integer)pengembalianFrame.getbukuSpinner().getValue();
-                        model1.addRow(new Object[]{idBuku,Judul,(Integer)pengembalianFrame.getbukuSpinner().getValue()});
-                        model3.setValueAt(jumlah, i, 2);
+                        boolean ada = false;
+                        int temp = 0;
+                        for(int row = 0;row<model4.getRowCount();row++){
+                            if(idBuku.equals(model4.getValueAt(row, 0))){
+                                ada = true;
+                                temp = row;
+                                break;
+                            }
+                        }
+                        
+                        if(ada){
+                            String jmlkeranjang = model4.getValueAt(temp, 2).toString();
+                            int jmlah = Integer.parseInt(jmlkeranjang);
+                            jmlah = jmlah + (Integer)pengembalianFrame.getbukuSpinner().getValue();
+                            model4.setValueAt(jmlah, temp, 2);
+                            jumlah = jumlah-(Integer)pengembalianFrame.getbukuSpinner().getValue();
+                            model3.setValueAt(jumlah, i, 2);
+                        }else{
+                            jumlah = jumlah-(Integer)pengembalianFrame.getbukuSpinner().getValue();
+                            model1.addRow(new Object[]{idBuku,Judul,(Integer)pengembalianFrame.getbukuSpinner().getValue()});
+                            model3.setValueAt(jumlah, i, 2);
+                        }
                     }
                     else{
                         JOptionPane.showMessageDialog(peminjamanFrame, "Jumlah salah", "Pengembalian", JOptionPane.ERROR_MESSAGE);
                     }
                 }else if((Integer)pengembalianFrame.getbukuSpinner().getValue()==jumlah){
-                    model1.addRow(new Object[]{idBuku,Judul,jml});
-                    model3.removeRow(i);
+                    boolean ada = false;
+                    int temp = 0;
+                    for(int row = 0;row<model2.getRowCount();row++){
+                        if(idBuku.equals(model2.getValueAt(row, 0))){
+                            ada = true;
+                            temp = row;
+                            break;
+                        }
+                    }
+                    if(ada){
+                        String jmlkeranjang = model4.getValueAt(temp, 2).toString();
+                        int jmlah = Integer.parseInt(jmlkeranjang);
+                        jmlah = jmlah + (Integer)pengembalianFrame.getbukuSpinner().getValue();
+                        model4.setValueAt(jmlah, temp, 2);
+                        model3.removeRow(i);
+                    }else{
+                        model1.addRow(new Object[]{idBuku,Judul,jml});
+                        model3.removeRow(i);
+                    }
                 }
                 else{
                     JOptionPane.showMessageDialog(peminjamanFrame, "Jumlah salah", "Pengembalian", JOptionPane.ERROR_MESSAGE);
@@ -501,7 +538,6 @@ public class Handler extends MouseAdapter implements ActionListener {
                 
             }
             else if(source.equals(pengembalianFrame.getsubmitBtn())) {
-                
                 
             }
             
