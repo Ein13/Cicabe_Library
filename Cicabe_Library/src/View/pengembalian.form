@@ -401,12 +401,12 @@
         </Component>
         <Component class="com.toedter.calendar.JDateChooser" name="pinjamDateChooser">
           <Properties>
-            <Property name="dateFormatString" type="java.lang.String" value="yyyy-MM-dd"/>
+            <Property name="dateFormatString" type="java.lang.String" value="dd-MM-yyyy"/>
           </Properties>
         </Component>
         <Component class="com.toedter.calendar.JDateChooser" name="kembaliDateChooser">
           <Properties>
-            <Property name="dateFormatString" type="java.lang.String" value="yyyy-MM-dd"/>
+            <Property name="dateFormatString" type="java.lang.String" value="dd-MM-yyyy"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">

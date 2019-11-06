@@ -204,9 +204,9 @@ public class pengembalian extends javax.swing.JFrame {
 
         jLabel6.setText("Status");
 
-        pinjamDateChooser.setDateFormatString("yyyy-MM-dd");
+        pinjamDateChooser.setDateFormatString("dd-MM-yyyy");
 
-        kembaliDateChooser.setDateFormatString("yyyy-MM-dd");
+        kembaliDateChooser.setDateFormatString("dd-MM-yyyy");
 
         jLabel2.setText("ID Pengembalian");
 
@@ -392,12 +392,12 @@ public class pengembalian extends javax.swing.JFrame {
         // Kalau fail, kemungkinan urutan table beda dengan database 
         idpinjamField.setText(model.getValueAt(i,0).toString());
         indukField.setText(model.getValueAt(i,1).toString());
-        namaField.setText(model.getValueAt(i,2).toString());
+        //namaField.setText(model.getValueAt(i,2).toString());
         setTableBuku(conn.loadTablePeminjamanDet(model.getValueAt(i,0).toString()));
         
         //test2, gk tau bisa atau enggak.
         try {
-            Date date = new SimpleDateFormat("MM-dd-yyyy").parse((String)model.getValueAt(i, 3).toString());
+            Date date = new SimpleDateFormat("yyyy-MM-dd").parse((String)model.getValueAt(i, 2).toString());
             pinjamDateChooser.setDate(date);
         } catch (ParseException ex) {
             Logger.getLogger(editmember.class.getName()).log(Level.SEVERE, null, ex);
@@ -405,14 +405,14 @@ public class pengembalian extends javax.swing.JFrame {
         
         try {
             //jdateChooser
-            Date date = new SimpleDateFormat("MM-dd-yyyy").parse((String)model.getValueAt(i, 4).toString());
+            Date date = new SimpleDateFormat("yyyy-MM-dd").parse((String)model.getValueAt(i, 3).toString());
             kembaliDateChooser.setDate(date);
         } catch (ParseException ex) {
             Logger.getLogger(editmember.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        dendaField.setText(model.getValueAt(i,5).toString());
-        statusField.setText(model.getValueAt(i,6).toString());
+        //dendaField.setText(model.getValueAt(i,5).toString());
+        //statusField.setText(model.getValueAt(i,6).toString());
         
     }//GEN-LAST:event_peminjamanTableMouseClicked
 
