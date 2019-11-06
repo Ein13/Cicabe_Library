@@ -161,6 +161,19 @@ public class Controller {
         return db.insertPeminjaman_Det(p);
     }
     
+    public boolean addPengembalian(Pengembalian p){
+        ArrayList<Pengembalian> kembali = loadPengembalian();
+        
+        if (!kembali.stream().noneMatch((kem) -> (kem.getId_kembali().equals(p.getId_kembali())))) {
+            return false;
+        }
+        return db.insertPengembalian(p);
+    }
+    
+    public boolean addPengembalianDet(Pengembalian_det p){
+        return db.insertPengembalianDet(p);
+    }
+    
     //DELETE STUFF///////////////////////////////////////////////////////////////////////////////
     
     public boolean deleteBuku(String id){

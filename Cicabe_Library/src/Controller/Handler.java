@@ -458,21 +458,23 @@ public class Handler extends MouseAdapter implements ActionListener {
                 }
                 
                 if(ada){
-                    model2.setValueAt(jmlPinjam+(Integer)model2.getValueAt(temp, 2), temp, 2);
+                    model2.setValueAt(jmlPinjam+Integer.parseInt(model2.getValueAt(temp, 2).toString()), temp, 2);
                     model.removeRow(baris);
                     
                 }else{
                     model.removeRow(baris);
                     model2.addRow(new Object[]{idBuku,judulBuku,jmlPinjam});
                 }
-                temp2 = this.totalBuku(model);
                 Date dateNow = new java.util.Date();
                 long difference = (dateNow.getTime()-pengembalianFrame.getkembaliDateChooserField().getDate().getTime())/86400000;
+                temp2 = this.totalBuku(model);
+                temp2 = temp2 * Math.toIntExact(difference)*500;
                 if(difference>0){
-                    pengembalianFrame.getdendaField().setText(Long.toString(difference*500*temp2));
+                    pengembalianFrame.getdendaField().setText(Integer.toString(temp2));
                 }else{
                     pengembalianFrame.getdendaField().setText("0");
                 }
+                //System.out.println(temp2);
                 
                 
             }
@@ -508,16 +510,20 @@ public class Handler extends MouseAdapter implements ActionListener {
                             model4.setValueAt(jmlah, temp, 2);
                             jumlah = jumlah-(Integer)pengembalianFrame.getbukuSpinner().getValue();
                             model3.setValueAt(jumlah, i, 2);
+                            //System.out.println("echo");
                         }else{
                             jumlah = jumlah-(Integer)pengembalianFrame.getbukuSpinner().getValue();
                             model1.addRow(new Object[]{idBuku,Judul,(Integer)pengembalianFrame.getbukuSpinner().getValue()});
                             model3.setValueAt(jumlah, i, 2);
+                            //System.out.println("echo");
                         }
+                        
                         Date dateNow = new java.util.Date();
                         long difference = (dateNow.getTime()-pengembalianFrame.getkembaliDateChooserField().getDate().getTime())/86400000;
                         int temp2 = this.totalBuku(model4);
+                        temp2 = temp2 * Math.toIntExact(difference)*500;
                         if(difference>0){
-                            pengembalianFrame.getdendaField().setText(Long.toString(difference*500*temp2));
+                            pengembalianFrame.getdendaField().setText(Integer.toString(temp2));
                         }else{
                             pengembalianFrame.getdendaField().setText("0");
                         }
@@ -526,24 +532,43 @@ public class Handler extends MouseAdapter implements ActionListener {
                         JOptionPane.showMessageDialog(peminjamanFrame, "Jumlah salah", "Pengembalian", JOptionPane.ERROR_MESSAGE);
                     }
                 }else if((Integer)pengembalianFrame.getbukuSpinner().getValue()==jumlah){
+                    
                     boolean ada = false;
                     int temp = 0;
-                    for(int row = 0;row<model2.getRowCount();row++){
-                        if(idBuku.equals(model2.getValueAt(row, 0))){
-                            ada = true;
-                            temp = row;
-                            break;
+                    if(model4.getRowCount()!=0){
+                        for(int row = 0;row<model4.getRowCount();row++){
+                            if(idBuku.equals(model4.getValueAt(row, 0))){
+                                ada = true;
+                                temp = row;
+                                break;
+                            }
                         }
-                    }
-                    if(ada){
-                        String jmlkeranjang = model4.getValueAt(temp, 2).toString();
-                        int jmlah = Integer.parseInt(jmlkeranjang);
-                        jmlah = jmlah + (Integer)pengembalianFrame.getbukuSpinner().getValue();
-                        model4.setValueAt(jmlah, temp, 2);
-                        model3.removeRow(i);
+                        if(ada){
+                            String jmlkeranjang = model4.getValueAt(temp, 2).toString();
+                            int jmlah = Integer.parseInt(jmlkeranjang);
+                            jmlah = jmlah + (Integer)pengembalianFrame.getbukuSpinner().getValue();
+                            model4.setValueAt(jmlah, temp, 2);
+                            model3.removeRow(i);
+                        
+                        }else{
+                            model1.addRow(new Object[]{idBuku,Judul,jml});
+                            model3.removeRow(i);   
+                        }
                     }else{
                         model1.addRow(new Object[]{idBuku,Judul,jml});
                         model3.removeRow(i);
+                    }
+                    
+                    System.out.println("echo");
+                    Date dateNow = new java.util.Date();
+                    long difference = (dateNow.getTime()-pengembalianFrame.getkembaliDateChooserField().getDate().getTime())/86400000;
+                    int temp2 = totalBuku(model4);
+                    temp2 = temp2 * Math.toIntExact(difference)*500;
+                    String denda = Integer.toString(temp2);
+                    if(difference>0){
+                        pengembalianFrame.getdendaField().setText(denda);
+                    }else{
+                        pengembalianFrame.getdendaField().setText("0");
                     }
                 }
                 else{
@@ -556,7 +581,49 @@ public class Handler extends MouseAdapter implements ActionListener {
                 
             }
             else if(source.equals(pengembalianFrame.getsubmitBtn())) {
+                /*
+                TableModel model = pengembalianFrame.getbukuTable().getModel();
+                int totalKembali = totalBuku(model);
                 
+                
+                 
+                if (!pengembalianFrame.getidpengembalianField().getText().isEmpty() && !pengembalianFrame.getindukField().getText().isEmpty()){
+                    Pengembalian p = new Pengembalian(pengembalianFrame.getidpengembalianField().getText(), pengembalianFrame.getindukField().getText(), 
+                        pengembalianFrame.getkembaliDateChooserField().getDate(), Integer.parseInt(pengembalianFrame.getdendaField().getText()), totalKembali);
+
+                    if(con.addPengembalian(p)){
+
+                        DefaultTableModel modelKeranjang = (DefaultTableModel) pengembalianFrame.getkeranjangTable().getModel();
+                        
+                        int rowcount = pengembalianFrame.getkeranjangTable().getRowCount();
+                        for (int i = 0; i < rowcount; i++){
+                            Pengembalian_det pdet = new Pengembalian_det(pengembalianFrame.getidpengembalianField().getText(), model.getValueAt(i, 0).toString(), 
+                                        Integer.parseInt(model.getValueAt(i, 2).toString()));
+                            if(!con.addPengembalianDet(pdet)){
+                            } else {
+                                modelKeranjang.removeRow(0);
+                            }
+                        }
+                        pengembalianFrame.getindukField().setText("");
+                        int currentID = Integer.parseInt(pengembalianFrame.getidpengembalianField().getText()) + 1;
+                        incrementPengembalian();
+                        JOptionPane.showMessageDialog(peminjamanFrame, "Berhasil input data pengembalian", "Pengembalian", JOptionPane.INFORMATION_MESSAGE);
+                    }
+
+                    else{
+                        JOptionPane.showMessageDialog(null, "Gagal Insert Pengembalian", "Pengembalian", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+                else{
+                    if(pengembalianFrame.getindukField().getText().isEmpty()){
+                        JOptionPane.showMessageDialog(pengembalianFrame, "Peminjam belum dipilih", "Pengembalian", JOptionPane.ERROR_MESSAGE);               
+                        
+                    }
+                    else if (model.getRowCount()==0){
+                        JOptionPane.showMessageDialog(pengembalianFrame, "Belum ada buku yang dipilih", "Pengembalian", JOptionPane.ERROR_MESSAGE);    
+                    
+                    }
+                }*/
             }
             
             if(source.equals(laporanFrame.getbackBtn())){
@@ -665,15 +732,15 @@ public class Handler extends MouseAdapter implements ActionListener {
         }
         
         public void incrementPengembalian(){
-            ArrayList<Peminjaman> pinjam = con.loadPeminjaman();
-            if(pinjam.isEmpty()){
-                peminjamanFrame.getidpinjamField().setText("1");
+            ArrayList<Pengembalian> kembali = con.loadPengembalian();
+            if(kembali.isEmpty()){
+                pengembalianFrame.getidpengembalianField().setText("1");
             }
             else {
-                Peminjaman lastpinjam = pinjam.get(pinjam.size() - 1);
-                int temp = Integer.parseInt(lastpinjam.getId_pinjam());
+                Pengembalian lastkembali= kembali.get(kembali.size() - 1);
+                int temp = Integer.parseInt(lastkembali.getId_kembali());
                 int count = temp + 1;
-                peminjamanFrame.getidpinjamField().setText(Integer.toString(temp));
+                pengembalianFrame.getidpengembalianField().setText(Integer.toString(temp));
             }
         }
         
@@ -940,7 +1007,7 @@ public class Handler extends MouseAdapter implements ActionListener {
         public int totalBuku(TableModel model){
             int jumlah = 0;
             for(int row = 0;row<model.getRowCount();row++){
-                jumlah = jumlah + (Integer)model.getValueAt(row, 2);
+                jumlah = jumlah + Integer.parseInt(model.getValueAt(row, 2).toString());
             }
             return jumlah;
         }

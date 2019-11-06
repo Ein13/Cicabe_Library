@@ -18,6 +18,7 @@ import com.toedter.calendar.JDateChooser;
 import java.awt.event.MouseAdapter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JComboBox;
 import java.util.logging.Level;
@@ -217,7 +218,7 @@ public class pengembalian extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Id Buku", "Judul", "Jumlah"
+                "ID Buku", "Judul", "Jumlah"
             }
         ));
         jScrollPane3.setViewportView(keranjangTable);
@@ -410,6 +411,16 @@ public class pengembalian extends javax.swing.JFrame {
         } catch (ParseException ex) {
             Logger.getLogger(editmember.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        ArrayList<Member> member = conn.loadMember();
+        for(Member x : member){
+            if(x.getNIS().equals(model.getValueAt(i, 1))){
+                namaField.setText(x.getNama());
+                break;
+            }
+        }
+        
+        
         //statusField.setText(model.getValueAt(i,6).toString());
         
         
