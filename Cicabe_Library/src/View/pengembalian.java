@@ -410,9 +410,15 @@ public class pengembalian extends javax.swing.JFrame {
         } catch (ParseException ex) {
             Logger.getLogger(editmember.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        //dendaField.setText(model.getValueAt(i,5).toString());
         //statusField.setText(model.getValueAt(i,6).toString());
+        Date dateNow = new java.util.Date();
+        long difference = (dateNow.getTime()-this.kembaliDateChooser.getDate().getTime())/86400000;
+        //long temp = Math.abs(difference);
+        if(difference>0){
+            dendaField.setText(Long.toString(difference*500));
+        }else{
+            dendaField.setText("0");
+        }
         
     }//GEN-LAST:event_peminjamanTableMouseClicked
 
