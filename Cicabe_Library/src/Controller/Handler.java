@@ -581,7 +581,7 @@ public class Handler extends MouseAdapter implements ActionListener {
                 
             }
             else if(source.equals(pengembalianFrame.getsubmitBtn())) {
-                /*
+                
                 TableModel model = pengembalianFrame.getbukuTable().getModel();
                 int totalKembali = totalBuku(model);
                 
@@ -592,22 +592,26 @@ public class Handler extends MouseAdapter implements ActionListener {
                         pengembalianFrame.getkembaliDateChooserField().getDate(), Integer.parseInt(pengembalianFrame.getdendaField().getText()), totalKembali);
 
                     if(con.addPengembalian(p)){
-
+                        
+                        
                         DefaultTableModel modelKeranjang = (DefaultTableModel) pengembalianFrame.getkeranjangTable().getModel();
                         
                         int rowcount = pengembalianFrame.getkeranjangTable().getRowCount();
                         for (int i = 0; i < rowcount; i++){
                             Pengembalian_det pdet = new Pengembalian_det(pengembalianFrame.getidpengembalianField().getText(), model.getValueAt(i, 0).toString(), 
                                         Integer.parseInt(model.getValueAt(i, 2).toString()));
-                            if(!con.addPengembalianDet(pdet)){
+                            if(!con.addPengembalianDet(pdet)){   
                             } else {
-                                modelKeranjang.removeRow(0);
+                                modelKeranjang.removeRow(i);
+                                System.out.println("hai");
                             }
                         }
+                        JOptionPane.showMessageDialog(peminjamanFrame, "Berhasil input data pengembalian", "Pengembalian", JOptionPane.INFORMATION_MESSAGE);
                         pengembalianFrame.getindukField().setText("");
                         int currentID = Integer.parseInt(pengembalianFrame.getidpengembalianField().getText()) + 1;
                         incrementPengembalian();
-                        JOptionPane.showMessageDialog(peminjamanFrame, "Berhasil input data pengembalian", "Pengembalian", JOptionPane.INFORMATION_MESSAGE);
+                        
+                        
                     }
 
                     else{
@@ -623,7 +627,7 @@ public class Handler extends MouseAdapter implements ActionListener {
                         JOptionPane.showMessageDialog(pengembalianFrame, "Belum ada buku yang dipilih", "Pengembalian", JOptionPane.ERROR_MESSAGE);    
                     
                     }
-                }*/
+                }
             }
             
             if(source.equals(laporanFrame.getbackBtn())){

@@ -211,8 +211,6 @@ public class pengembalian extends javax.swing.JFrame {
 
         jLabel2.setText("ID Pengembalian");
 
-        idpengembalianField.setEditable(false);
-
         keranjangTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 

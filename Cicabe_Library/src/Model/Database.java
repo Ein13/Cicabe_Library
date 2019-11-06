@@ -276,8 +276,11 @@ public class Database {
         boolean cek = false;
         int row;
         try{
-           row = stmt.executeUpdate("INSERT INTO pengembalian VALUES('"+ p.getId_kembali() +"', '"+ p.getId_pinjam() +"', "
-                   + "'"+ p.getTgl_Kembali() +"', '"+ p.getDenda() +"', '"+ p.getTotal_kembali() +"')");
+           java.text.DateFormat df = new java.text.SimpleDateFormat("MM/dd/yyyy");
+           String tglKembali = df.format(p.getTgl_Kembali());
+           row = stmt.executeUpdate("INSERT INTO pengembalian VALUES('"+ p.getId_kembali() +"', '"+ p.getId_pinjam() 
+                   + "', #"+ tglKembali +"#, '"+ p.getDenda() +"', '"+ p.getTotal_kembali() +"')");
+            System.out.println(row);
            if (row > 0){
                cek = true;
            }
