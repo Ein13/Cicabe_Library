@@ -441,6 +441,7 @@ public class Handler extends MouseAdapter implements ActionListener {
                 DefaultTableModel model2 = (DefaultTableModel) pengembalianFrame.getbukuTable().getModel();
                 boolean ada = false;
                 int temp = 0;
+                int temp2 = 0;
                 
                 
                 int baris = pengembalianFrame.getkeranjangTable().getSelectedRow();
@@ -459,9 +460,18 @@ public class Handler extends MouseAdapter implements ActionListener {
                 if(ada){
                     model2.setValueAt(jmlPinjam+(Integer)model2.getValueAt(temp, 2), temp, 2);
                     model.removeRow(baris);
+                    
                 }else{
                     model.removeRow(baris);
                     model2.addRow(new Object[]{idBuku,judulBuku,jmlPinjam});
+                }
+                temp2 = this.totalBuku(model);
+                Date dateNow = new java.util.Date();
+                long difference = (dateNow.getTime()-pengembalianFrame.getkembaliDateChooserField().getDate().getTime())/86400000;
+                if(difference>0){
+                    pengembalianFrame.getdendaField().setText(Long.toString(difference*500*temp2));
+                }else{
+                    pengembalianFrame.getdendaField().setText("0");
                 }
                 
                 
@@ -502,6 +512,14 @@ public class Handler extends MouseAdapter implements ActionListener {
                             jumlah = jumlah-(Integer)pengembalianFrame.getbukuSpinner().getValue();
                             model1.addRow(new Object[]{idBuku,Judul,(Integer)pengembalianFrame.getbukuSpinner().getValue()});
                             model3.setValueAt(jumlah, i, 2);
+                        }
+                        Date dateNow = new java.util.Date();
+                        long difference = (dateNow.getTime()-pengembalianFrame.getkembaliDateChooserField().getDate().getTime())/86400000;
+                        int temp2 = this.totalBuku(model4);
+                        if(difference>0){
+                            pengembalianFrame.getdendaField().setText(Long.toString(difference*500*temp2));
+                        }else{
+                            pengembalianFrame.getdendaField().setText("0");
                         }
                     }
                     else{
@@ -918,6 +936,13 @@ public class Handler extends MouseAdapter implements ActionListener {
                     model.removeRow(0);
                 }
             }
+        }
+        public int totalBuku(TableModel model){
+            int jumlah = 0;
+            for(int row = 0;row<model.getRowCount();row++){
+                jumlah = jumlah + (Integer)model.getValueAt(row, 2);
+            }
+            return jumlah;
         }
         
     class SpinnerListener implements ChangeListener {
