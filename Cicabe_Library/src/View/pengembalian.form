@@ -491,8 +491,16 @@
                       <Component id="jScrollPane1" pref="575" max="32767" attributes="0"/>
                       <Group type="102" attributes="0">
                           <Component id="jLabel3" min="-2" pref="245" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                          <Component id="judulField" min="-2" pref="222" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+                          <Component id="bukuSpinner" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="pilihBtn" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -503,13 +511,18 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel3" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                      <Component id="pilihBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel3" min="-2" pref="35" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" min="-2" pref="202" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="pilihBtn" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="judulField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="bukuSpinner" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace type="separate" max="32767" attributes="0"/>
-                  <Component id="jScrollPane1" min="-2" pref="287" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="252" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="259" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -578,6 +591,13 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Pilih"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="judulField">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JSpinner" name="bukuSpinner">
         </Component>
       </SubComponents>
     </Container>

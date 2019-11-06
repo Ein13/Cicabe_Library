@@ -113,7 +113,13 @@ public class Handler extends MouseAdapter implements ActionListener {
         managebukuFrame.getpenerbitField().setPreferredSize(new Dimension(6, 20));
         managebukuFrame.getpenulisField().setPreferredSize(new Dimension(6, 20));
         
-        pengembalianFrame.setTableBuku(con.loadTablePeminjamanDet("0"));
+        DefaultTableModel model = new DefaultTableModel(new String[]{"ID Buku","Judul Buku","Jumlah Pinjam"},0){
+            public boolean isCellEditable(int row, int column){
+                return false;
+            }
+        };
+
+        pengembalianFrame.setTableBuku(model);
 
     }
     public void actionPerformed(ActionEvent ae) {
@@ -409,6 +415,7 @@ public class Handler extends MouseAdapter implements ActionListener {
                 logoutEvent();
             }
             else if(source.equals(pengembalianFrame.getbackBtn())) {
+                this.emptyPeminjamanDetTable();
                 pengembalianFrame.getidpinjamField().setText("");
                 pengembalianFrame.getidpengembalianField().setText("");
                 pengembalianFrame.getindukField().setText("");
@@ -419,7 +426,6 @@ public class Handler extends MouseAdapter implements ActionListener {
                 pengembalianFrame.getdendaField().setText("");
                 pengembalianFrame.getstatusField().setText("");
                 pengembalianFrame.setVisible(false);
-                this.emptyPeminjamanDetTable();
                 mainFrame.setVisible(true);
             }
             
@@ -433,14 +439,32 @@ public class Handler extends MouseAdapter implements ActionListener {
             else if(source.equals(pengembalianFrame.getdelBtn())){
                 DefaultTableModel model = (DefaultTableModel) pengembalianFrame.getkeranjangTable().getModel();
                 DefaultTableModel model2 = (DefaultTableModel) pengembalianFrame.getbukuTable().getModel();
+                boolean ada = false;
+                int temp = 0;
+                
                 
                 int baris = pengembalianFrame.getkeranjangTable().getSelectedRow();
                 String idBuku = model.getValueAt(baris, 0).toString();
                 String judulBuku = model.getValueAt(baris, 1).toString();
                 int jmlPinjam = Integer.parseInt(model.getValueAt(baris, 2).toString());
                 
-                model.removeRow(baris);
-                model2.addRow(new Object[]{idBuku,judulBuku,jmlPinjam});
+                for(int row = 0;row<model2.getRowCount();row++){
+                    if(idBuku.equals(model2.getValueAt(row, 0))){
+                        ada = true;
+                        temp = row;
+                        break;
+                    }
+                }
+                
+                if(ada){
+                    model2.setValueAt(jmlPinjam+(Integer)model2.getValueAt(temp, 2), temp, 2);
+                    model.removeRow(baris);
+                }else{
+                    model.removeRow(baris);
+                    model2.addRow(new Object[]{idBuku,judulBuku,jmlPinjam});
+                }
+                
+                
             }
             else if(source.equals(pengembalianFrame.getpilihBtn())){
                 int i = pengembalianFrame.getbukuTable().getSelectedRow();
@@ -448,13 +472,32 @@ public class Handler extends MouseAdapter implements ActionListener {
                 TableModel model2 = pengembalianFrame.getbukuTable().getModel();
                 DefaultTableModel model3 = (DefaultTableModel) pengembalianFrame.getbukuTable().getModel();
                 
-        
+                
                 String idBuku = model2.getValueAt(i, 0).toString();
                 String Judul = model2.getValueAt(i, 1).toString();
-                String jumlah = model2.getValueAt(i, 2).toString();
-        
-                model1.addRow(new Object[]{idBuku,Judul,jumlah});
-                model3.removeRow(i);
+                String jml = model2.getValueAt(i, 2).toString();
+                int jumlah =  Integer.parseInt(jml);
+                
+                if((Integer)pengembalianFrame.getbukuSpinner().getValue()<jumlah){
+                    if((Integer)pengembalianFrame.getbukuSpinner().getValue()>0){
+                        jumlah = jumlah-(Integer)pengembalianFrame.getbukuSpinner().getValue();
+                        model1.addRow(new Object[]{idBuku,Judul,(Integer)pengembalianFrame.getbukuSpinner().getValue()});
+                        model3.setValueAt(jumlah, i, 2);
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(peminjamanFrame, "Jumlah salah", "Pengembalian", JOptionPane.ERROR_MESSAGE);
+                    }
+                }else if((Integer)pengembalianFrame.getbukuSpinner().getValue()==jumlah){
+                    model1.addRow(new Object[]{idBuku,Judul,jml});
+                    model3.removeRow(i);
+                }
+                else{
+                    JOptionPane.showMessageDialog(peminjamanFrame, "Jumlah salah", "Pengembalian", JOptionPane.ERROR_MESSAGE);
+                }
+                
+                
+                pengembalianFrame.getjudulField().setText("");
+                pengembalianFrame.getbukuSpinner().setValue(0);
                 
             }
             else if(source.equals(pengembalianFrame.getsubmitBtn())) {
@@ -834,8 +877,10 @@ public class Handler extends MouseAdapter implements ActionListener {
         
         public void emptyPeminjamanDetTable(){
             DefaultTableModel model = (DefaultTableModel) pengembalianFrame.getbukuTable().getModel();
-            for (int i = 0; i <= model.getRowCount(); i++){
-                model.removeRow(0);
+            if(model.getRowCount() > 0){
+                for (int i = 0; i <= model.getRowCount(); i++){
+                    model.removeRow(0);
+                }
             }
         }
         

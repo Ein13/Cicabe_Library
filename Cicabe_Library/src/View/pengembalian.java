@@ -22,6 +22,7 @@ import java.util.Date;
 import javax.swing.JComboBox;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JSpinner;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -79,6 +80,8 @@ public class pengembalian extends javax.swing.JFrame {
         bukuTable = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
         pilihBtn = new javax.swing.JButton();
+        judulField = new javax.swing.JTextField();
+        bukuSpinner = new javax.swing.JSpinner();
         bgrnd = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -333,6 +336,8 @@ public class pengembalian extends javax.swing.JFrame {
 
         pilihBtn.setText("Pilih");
 
+        judulField.setEditable(false);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -343,20 +348,31 @@ public class pengembalian extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 575, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addComponent(judulField, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(42, 42, 42)
+                        .addComponent(bukuSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(pilihBtn)))
+                        .addComponent(pilihBtn)
+                        .addGap(26, 26, 26)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pilihBtn))
-                .addGap(18, 18, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(252, 252, 252))
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(55, 55, 55)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pilihBtn)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(judulField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(bukuSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(259, 259, 259))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, -1, 385));
@@ -406,7 +422,10 @@ public class pengembalian extends javax.swing.JFrame {
 
     private void bukuTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bukuTableMouseClicked
         
-        
+        int i = bukuTable.getSelectedRow();
+        TableModel model = bukuTable.getModel();
+        judulField.setText(model.getValueAt(i, 1).toString());
+        bukuSpinner.setValue(model.getValueAt(i, 2));
         
         
     }//GEN-LAST:event_bukuTableMouseClicked
@@ -457,6 +476,9 @@ public class pengembalian extends javax.swing.JFrame {
     public JTextField getnamaField(){
         return namaField;
     }
+    public JTextField getjudulField(){
+        return judulField;
+    }
     public JDateChooser getpinjamDateChooserField(){
         return pinjamDateChooser;
     }
@@ -471,6 +493,9 @@ public class pengembalian extends javax.swing.JFrame {
     }
     public JTextField getidpengembalianField(){
         return idpengembalianField;
+    }
+    public JSpinner getbukuSpinner(){
+        return bukuSpinner;
     }
     public JTable getpeminjamanTable(){
         return peminjamanTable;
@@ -501,6 +526,7 @@ public class pengembalian extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBtn;
     private javax.swing.JLabel bgrnd;
+    private javax.swing.JSpinner bukuSpinner;
     private javax.swing.JTable bukuTable;
     private javax.swing.JPanel dataPanel;
     private javax.swing.JButton delBtn;
@@ -517,6 +543,7 @@ public class pengembalian extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTextField judulField;
     private com.toedter.calendar.JDateChooser kembaliDateChooser;
     private javax.swing.JTable keranjangTable;
     private javax.swing.JButton logoutBtn;
