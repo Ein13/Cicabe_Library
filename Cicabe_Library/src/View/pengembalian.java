@@ -386,7 +386,7 @@ public class pengembalian extends javax.swing.JFrame {
     private void peminjamanTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_peminjamanTableMouseClicked
         // TODO add your handling code here:
         
-        int i = peminjamanTable.getSelectedRow();
+        /*int i = peminjamanTable.getSelectedRow();
         TableModel model = peminjamanTable.getModel();
         // Kalau fail, kemungkinan urutan table beda dengan database 
         idpinjamField.setText(model.getValueAt(i,0).toString());
@@ -420,7 +420,7 @@ public class pengembalian extends javax.swing.JFrame {
         
         
         //statusField.setText(model.getValueAt(i,6).toString());
-        
+        */
         
     }//GEN-LAST:event_peminjamanTableMouseClicked
 

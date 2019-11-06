@@ -80,6 +80,47 @@ public class Handler extends MouseAdapter implements ActionListener {
         settingFrame.addActionListener(this);
         laporanFrame.addActionListener(this);
         listmemberFrame.addActionListener(this);
+        pengembalianFrame.getpeminjamanTable().addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                int row = pengembalianFrame.getpeminjamanTable().rowAtPoint(evt.getPoint());
+                int col = pengembalianFrame.getpeminjamanTable().columnAtPoint(evt.getPoint());
+                if (row >= 0 && col >= 0) {
+                    int i = pengembalianFrame.getpeminjamanTable().getSelectedRow();
+                    TableModel model = pengembalianFrame.getpeminjamanTable().getModel();
+                    // Kalau fail, kemungkinan urutan table beda dengan database 
+                    pengembalianFrame.getidpinjamField().setText(model.getValueAt(i,0).toString());
+                    pengembalianFrame.getindukField().setText(model.getValueAt(i,1).toString());
+                    //namaField.setText(model.getValueAt(i,2).toString());
+                    pengembalianFrame.setTableBuku(con.loadTablePeminjamanDet(model.getValueAt(i,0).toString()));
+
+                    //test2, gk tau bisa atau enggak.
+                    try {
+                        Date date = new SimpleDateFormat("yyyy-MM-dd").parse((String)model.getValueAt(i, 2).toString());
+                        pengembalianFrame.getpinjamDateChooserField().setDate(date);
+                    } catch (ParseException ex) {
+                        Logger.getLogger(editmember.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+                    try {
+                        //jdateChooser
+                        Date date = new SimpleDateFormat("yyyy-MM-dd").parse((String)model.getValueAt(i, 3).toString());
+                        pengembalianFrame.getkembaliDateChooserField().setDate(date);
+                    } catch (ParseException ex) {
+                        Logger.getLogger(editmember.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+                    ArrayList<Member> member = con.loadMember();
+                    for(Member x : member){
+                        if(x.getNIS().equals(model.getValueAt(i, 1))){
+                            pengembalianFrame.getnamaField().setText(x.getNama());
+                            break;
+                        }
+                    }
+                    emptyKeranjangPengembalianTable();
+                }
+            }
+        });
          
         loginFrame.getRootPane().setDefaultButton(loginFrame.getloginBtn());
         listmemberFrame.getRootPane().setDefaultButton(listmemberFrame.getsearchBtn());
@@ -270,15 +311,20 @@ public class Handler extends MouseAdapter implements ActionListener {
             logoutEvent();
         }
         else if(source.equals(peminjamanFrame.getbackBtn())) {
-            peminjamanFrame.getidpinjamField().setText("");
-            peminjamanFrame.getnomorindukField().setText("");
-            Date dateNow = new java.util.Date();
-            peminjamanFrame.getpinjamDateChooser().setDate(dateNow);
-            peminjamanFrame.getkembaliDateChooser().setDate(dateNow);
-            peminjamanFrame.getsearchField().setText("");
-            peminjamanFrame.getjudulField().setText("");
-            peminjamanFrame.setVisible(false);
-            mainFrame.setVisible(true);
+            if(peminjamanFrame.getkeranjangTable().getRowCount() == 0){
+                peminjamanFrame.getidpinjamField().setText("");
+                peminjamanFrame.getnomorindukField().setText("");
+                Date dateNow = new java.util.Date();
+                peminjamanFrame.getpinjamDateChooser().setDate(dateNow);
+                peminjamanFrame.getkembaliDateChooser().setDate(dateNow);
+                peminjamanFrame.getsearchField().setText("");
+                peminjamanFrame.getjudulField().setText("");
+                peminjamanFrame.setVisible(false);
+                mainFrame.setVisible(true);
+            }
+            else{
+                JOptionPane.showMessageDialog(peminjamanFrame, "Hapus isi table keranjang terlebih dahulu!", "Peminjaman", JOptionPane.ERROR_MESSAGE);
+            }
         }
         else if(source.equals(peminjamanFrame.getaddBtn())) {
             String idBuku = peminjamanFrame.getidBukuField().getText();
@@ -383,14 +429,22 @@ public class Handler extends MouseAdapter implements ActionListener {
             else if(source.equals(peminjamanFrame.getdeleteBtn())){
                 DefaultTableModel model = (DefaultTableModel) peminjamanFrame.getkeranjangTable().getModel();
                 
-                int baris = peminjamanFrame.getkeranjangTable().getSelectedRow();
-                String idBuku = model.getValueAt(baris, 0).toString();
-                int jml = Integer.parseInt(model.getValueAt(baris, 2).toString());
-                con.tambahiStokBuku(idBuku, jml);
-                peminjamanFrame.setTableBuku(con.loadTableBuku());
-                model.removeRow(baris);
-                
-                
+                if (model.getRowCount() > 0){
+                    int baris = peminjamanFrame.getkeranjangTable().getSelectedRow();
+                    if (baris >= 0){
+                        String idBuku = model.getValueAt(baris, 0).toString();
+                        int jml = Integer.parseInt(model.getValueAt(baris, 2).toString());
+                        con.tambahiStokBuku(idBuku, jml);
+                        peminjamanFrame.setTableBuku(con.loadTableBuku());
+                        model.removeRow(baris);
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(peminjamanFrame, "Pilih buku yang mau dihapus dari Table Keranjang di kiri", "Peminjaman", JOptionPane.WARNING_MESSAGE);
+                    }
+                }
+                else{
+                    JOptionPane.showMessageDialog(peminjamanFrame, "Table Keranjang sudah kosong", "Peminjaman", JOptionPane.INFORMATION_MESSAGE);
+                }
                 //int[] rows = peminjamanFrame.getkeranjangTable().getSelectedRows();
                 //for(int i=0;i<rows.length;i++){
                 //    model.removeRow(rows[i]-i);
@@ -415,7 +469,7 @@ public class Handler extends MouseAdapter implements ActionListener {
                 logoutEvent();
             }
             else if(source.equals(pengembalianFrame.getbackBtn())) {
-                this.emptyPeminjamanDetTable();
+                this.emptyKeranjangPengembalianTable();
                 pengembalianFrame.getidpinjamField().setText("");
                 pengembalianFrame.getidpengembalianField().setText("");
                 pengembalianFrame.getindukField().setText("");
@@ -987,17 +1041,27 @@ public class Handler extends MouseAdapter implements ActionListener {
         }
            
         public void logoutEvent(){
-            mainFrame.setVisible(false);
-            peminjamanFrame.setVisible(false);
-            pengembalianFrame.setVisible(false);
-            editmember.setVisible(false);
-            managebukuFrame.setVisible(false);
-            laporanFrame.setVisible(false);
-            settingFrame.setVisible(false);
-            listmemberFrame.setVisible(false);
-            JOptionPane.showMessageDialog(null, "Berhasil Logout!", "Logout", JOptionPane.INFORMATION_MESSAGE);
-            loginFrame.setVisible(true);
-            loginFrame.getusernameField().requestFocus();
+            if (JOptionPane.showConfirmDialog(null, "Apakah anda yakin ingin logout?", "Logout", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
+                if(peminjamanFrame.getkeranjangTable().getRowCount() == 0){
+                    resetUiMember();
+                    resetUiBuku();
+                    emptyPeminjamanDetTable();
+                    mainFrame.setVisible(false);
+                    peminjamanFrame.setVisible(false);
+                    pengembalianFrame.setVisible(false);
+                    editmember.setVisible(false);
+                    managebukuFrame.setVisible(false);
+                    laporanFrame.setVisible(false);
+                    settingFrame.setVisible(false);
+                    listmemberFrame.setVisible(false);
+                    JOptionPane.showMessageDialog(null, "Berhasil Logout!", "Logout", JOptionPane.INFORMATION_MESSAGE);
+                    loginFrame.setVisible(true);
+                    loginFrame.getusernameField().requestFocus();
+                }
+                else{
+                    JOptionPane.showMessageDialog(peminjamanFrame, "Hapus isi table keranjang terlebih dahulu!", "Peminjaman", JOptionPane.ERROR_MESSAGE);
+                }
+            }
         }
         
         public void emptyPeminjamanDetTable(){
@@ -1005,6 +1069,16 @@ public class Handler extends MouseAdapter implements ActionListener {
             if(model.getRowCount() > 0){
                 for (int i = 0; i <= model.getRowCount(); i++){
                     model.removeRow(0);
+                }
+            }
+            emptyKeranjangPengembalianTable();
+        }
+        
+        public void emptyKeranjangPengembalianTable(){
+            DefaultTableModel modelkeranjang = (DefaultTableModel) pengembalianFrame.getkeranjangTable().getModel();
+            if(modelkeranjang.getRowCount() > 0){
+                for (int i = 0; i <= modelkeranjang.getRowCount(); i++){
+                    modelkeranjang.removeRow(0);
                 }
             }
         }
