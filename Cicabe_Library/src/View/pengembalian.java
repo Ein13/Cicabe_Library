@@ -192,6 +192,12 @@ public class pengembalian extends javax.swing.JFrame {
 
         dendaLabel.setText("Denda");
 
+        namaField.setEditable(false);
+
+        indukField.setEditable(false);
+
+        dendaField.setEditable(false);
+
         submitBtn.setText("Submit");
 
         jLabel1.setText("ID Peminjaman");
@@ -212,6 +218,8 @@ public class pengembalian extends javax.swing.JFrame {
         kembaliDateChooser.setDateFormatString("dd-MM-yyyy");
 
         jLabel2.setText("ID Pengembalian");
+
+        idpengembalianField.setEditable(false);
 
         keranjangTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

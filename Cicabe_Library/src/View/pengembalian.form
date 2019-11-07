@@ -369,10 +369,19 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="namaField">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="indukField">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="dendaField">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="submitBtn">
           <Properties>
@@ -418,6 +427,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="idpengembalianField">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane3">
           <AuxValues>

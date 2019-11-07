@@ -787,12 +787,11 @@ public class Handler extends MouseAdapter implements ActionListener {
                 peminjamanFrame.getidpinjamField().setText("1");
             }
             else {
-                ArrayList<Peminjaman> last = con.loadPeminjaman();
                 int x = 0;
-                for (Peminjaman p : last){
+                for (Peminjaman p : pinjam){
                     x = x + 1;
                 }
-                pengembalianFrame.getidpinjamField().setText(Integer.toString(x+1));
+                peminjamanFrame.getidpinjamField().setText(Integer.toString(x+1));
             }
         }
         
