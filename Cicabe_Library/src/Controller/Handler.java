@@ -652,11 +652,11 @@ public class Handler extends MouseAdapter implements ActionListener {
                         
                         int rowcount = pengembalianFrame.getkeranjangTable().getRowCount();
                         for (int i = 0; i < rowcount; i++){
-                            Pengembalian_det pdet = new Pengembalian_det(pengembalianFrame.getidpengembalianField().getText(), model.getValueAt(i, 0).toString(), 
-                                        Integer.parseInt(model.getValueAt(i, 2).toString()));
+                            Pengembalian_det pdet = new Pengembalian_det(pengembalianFrame.getidpengembalianField().getText(), model.getValueAt(0, 0).toString(), 
+                                        Integer.parseInt(model.getValueAt(0, 2).toString()));
                             if(!con.addPengembalianDet(pdet)){   
                             } else {
-                                modelKeranjang.removeRow(i);
+                                modelKeranjang.removeRow(0);
                                 System.out.println("hai");
                             }
                         }
@@ -700,6 +700,7 @@ public class Handler extends MouseAdapter implements ActionListener {
                 settingFrame.setVisible(false);
                 mainFrame.setVisible(false);
                 loginFrame.setVisible(true);
+                
             }
             else if (source.equals(settingFrame.getcloseBtn())){
                 settingFrame.setVisible(false);
@@ -786,10 +787,12 @@ public class Handler extends MouseAdapter implements ActionListener {
                 peminjamanFrame.getidpinjamField().setText("1");
             }
             else {
-                Peminjaman lastpinjam = pinjam.get(pinjam.size() - 1);
-                int temp = Integer.parseInt(lastpinjam.getId_pinjam());
-                int count = temp + 1;
-                peminjamanFrame.getidpinjamField().setText(Integer.toString(count));
+                ArrayList<Peminjaman> last = con.loadPeminjaman();
+                int x = 0;
+                for (Peminjaman p : last){
+                    x = x + 1;
+                }
+                pengembalianFrame.getidpinjamField().setText(Integer.toString(x+1));
             }
         }
         
@@ -799,10 +802,15 @@ public class Handler extends MouseAdapter implements ActionListener {
                 pengembalianFrame.getidpengembalianField().setText("1");
             }
             else {
+                ArrayList<Pengembalian> last = con.loadPengembalian();
+                int x = 0;
+                for (Pengembalian p : last){
+                    x = x + 1;
+                }
                 Pengembalian lastkembali= kembali.get(kembali.size() - 1);
                 int temp = Integer.parseInt(lastkembali.getId_kembali());
                 int count = temp + 1;
-                pengembalianFrame.getidpengembalianField().setText(Integer.toString(temp));
+                pengembalianFrame.getidpengembalianField().setText(Integer.toString(x+1));
             }
         }
         
