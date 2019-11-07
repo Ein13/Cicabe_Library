@@ -778,7 +778,7 @@ public class Handler extends MouseAdapter implements ActionListener {
                 for(Buku b : buku){
                     count = count + 1;
                 }
-                managebukuFrame.getidField().setText(Integer.toString(count));
+                managebukuFrame.getidField().setText(Integer.toString(count+1));
                 
             }
         }
