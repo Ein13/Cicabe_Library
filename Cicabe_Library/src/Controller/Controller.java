@@ -146,6 +146,10 @@ public class Controller {
         return db.insertBuku(b);
     }
     
+    public boolean delPeminjamanDet(String idBuku, String idPinjam){
+        return db.deletePinjamDet(idBuku, idPinjam);
+    }
+    
     public boolean addPeminjaman(Peminjaman p){
         ArrayList<Peminjaman> pinjam = loadPeminjaman();
         

@@ -93,6 +93,9 @@ public class Handler extends MouseAdapter implements ActionListener {
                     pengembalianFrame.getindukField().setText(model.getValueAt(i,1).toString());
                     //namaField.setText(model.getValueAt(i,2).toString());
                     pengembalianFrame.setTableBuku(con.loadTablePeminjamanDet(model.getValueAt(i,0).toString()));
+                    if(pengembalianFrame.getbukuTable().getRowCount()==0){
+                        pengembalianFrame.getsubmitBtn().setEnabled(false);
+                    }
 
                     //test2, gk tau bisa atau enggak.
                     try {
@@ -643,7 +646,7 @@ public class Handler extends MouseAdapter implements ActionListener {
                 
                  
                 if (!pengembalianFrame.getidpengembalianField().getText().isEmpty() && !pengembalianFrame.getindukField().getText().isEmpty()){
-                    Pengembalian p = new Pengembalian(pengembalianFrame.getidpengembalianField().getText(), pengembalianFrame.getindukField().getText(), 
+                    Pengembalian p = new Pengembalian(pengembalianFrame.getidpengembalianField().getText(), pengembalianFrame.getidpinjamField().getText(), 
                         pengembalianFrame.getkembaliDateChooserField().getDate(), Integer.parseInt(pengembalianFrame.getdendaField().getText()), totalKembali);
 
                     if(con.addPengembalian(p)){
@@ -655,7 +658,7 @@ public class Handler extends MouseAdapter implements ActionListener {
                         for (int i = 0; i < rowcount; i++){
                             Pengembalian_det pdet = new Pengembalian_det(pengembalianFrame.getidpengembalianField().getText(), model.getValueAt(0, 0).toString(), 
                                         Integer.parseInt(model.getValueAt(0, 2).toString()));
-                            if(!con.addPengembalianDet(pdet)){   
+                            if(!con.addPengembalianDet(pdet)&&!con.delPeminjamanDet(model.getValueAt(0, 0).toString(),pengembalianFrame.getidpinjamField().getText())){   
                             } else {
                                 modelKeranjang.removeRow(0);
                                 System.out.println("hai");
@@ -1067,7 +1070,7 @@ public class Handler extends MouseAdapter implements ActionListener {
                     laporanFrame.setVisible(false);
                     settingFrame.setVisible(false);
                     listmemberFrame.setVisible(false);
-                    JOptionPane.showMessageDialog(null, "Berhasil Logout!", "Logout", JOptionPane.INFORMATION_MESSAGE);
+                    //JOptionPane.showMessageDialog(null, "Berhasil Logout!", "Logout", JOptionPane.INFORMATION_MESSAGE);
                     loginFrame.setVisible(true);
                     loginFrame.getusernameField().requestFocus();
                 }

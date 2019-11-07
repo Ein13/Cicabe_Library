@@ -146,15 +146,7 @@ public class Database {
         }
     }
     
-    public void deletePinjamDet(String id){
-        connect();
-        try{
-            pinjamDet = new ArrayList();
-            rs = stmt.executeQuery("DELETE FROM pengembalian_det WHERE ");
-        } catch(SQLException e){
-            e.printStackTrace();;
-        }
-    }
+    
     
     public ArrayList<Peminjaman_det> getPinjamDet(String id){
         loadPinjamDet(id);
@@ -355,6 +347,21 @@ public class Database {
 
     
     //DELETE STUFF
+    public boolean deletePinjamDet(String idBuku, String idPinjam){
+        boolean cek = false;
+        connect();
+        int row;
+        try{
+            row = stmt.executeUpdate("DELETE FROM pengembalian_det WHERE id_Buku = '"+idBuku+"' AND id_Pinjam = '"+idPinjam+"'");
+            if(row > 0){
+                cek = true;
+            }
+        } catch(SQLException e){
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Delete Peminjaman Det", JOptionPane.ERROR_MESSAGE);
+        }
+        return cek;
+                
+    }
     
     public boolean deleteMember(String id){
         boolean cek = false;
