@@ -348,11 +348,11 @@ public class Database {
     
     //DELETE STUFF
     public boolean deletePinjamDet(String idBuku, String idPinjam){
-        boolean cek = false;
         connect();
+        boolean cek = false;
         int row;
         try{
-            row = stmt.executeUpdate("DELETE FROM pengembalian_det WHERE id_Buku = '"+idBuku+"' AND id_Pinjam = '"+idPinjam+"'");
+            row = stmt.executeUpdate("DELETE FROM peminjaman_det WHERE id_Pinjam = '"+idPinjam+"' AND id_Buku = '"+idBuku+"'");
             if(row > 0){
                 cek = true;
             }

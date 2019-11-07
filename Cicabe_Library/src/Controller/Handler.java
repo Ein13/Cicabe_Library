@@ -96,6 +96,9 @@ public class Handler extends MouseAdapter implements ActionListener {
                     if(pengembalianFrame.getbukuTable().getRowCount()==0){
                         pengembalianFrame.getsubmitBtn().setEnabled(false);
                     }
+                    else{
+                        pengembalianFrame.getsubmitBtn().setEnabled(true);
+                    }
 
                     //test2, gk tau bisa atau enggak.
                     try {
@@ -658,10 +661,11 @@ public class Handler extends MouseAdapter implements ActionListener {
                         for (int i = 0; i < rowcount; i++){
                             Pengembalian_det pdet = new Pengembalian_det(pengembalianFrame.getidpengembalianField().getText(), model.getValueAt(0, 0).toString(), 
                                         Integer.parseInt(model.getValueAt(0, 2).toString()));
-                            if(!con.addPengembalianDet(pdet)&&!con.delPeminjamanDet(model.getValueAt(0, 0).toString(),pengembalianFrame.getidpinjamField().getText())){   
+                            if(con.addPengembalianDet(pdet)){
+                                if(con.delPeminjamanDet(model.getValueAt(0, 0).toString(), pengembalianFrame.getidpinjamField().getText())){
+                                    modelKeranjang.removeRow(0);
+                                }
                             } else {
-                                modelKeranjang.removeRow(0);
-                                System.out.println("hai");
                             }
                         }
                         JOptionPane.showMessageDialog(peminjamanFrame, "Berhasil input data pengembalian", "Pengembalian", JOptionPane.INFORMATION_MESSAGE);
