@@ -146,6 +146,16 @@ public class Database {
         }
     }
     
+    public void deletePinjamDet(String id){
+        connect();
+        try{
+            pinjamDet = new ArrayList();
+            rs = stmt.executeQuery("DELETE FROM pengembalian_det WHERE ");
+        } catch(SQLException e){
+            e.printStackTrace();;
+        }
+    }
+    
     public ArrayList<Peminjaman_det> getPinjamDet(String id){
         loadPinjamDet(id);
         return pinjamDet;
@@ -341,6 +351,8 @@ public class Database {
         disconnect();
         return cek;
     }
+    
+
     
     //DELETE STUFF
     

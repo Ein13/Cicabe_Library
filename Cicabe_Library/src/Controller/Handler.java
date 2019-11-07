@@ -168,6 +168,7 @@ public class Handler extends MouseAdapter implements ActionListener {
         if(source.equals(loginFrame.getloginBtn())) {
             login(loginFrame.getusernameField().getText(), loginFrame.getpasswordField().getText());
             loginFrame.getpasswordField().setText("");
+            loginFrame.getusernameField().setText("");
         }
         
         if(source.equals(mainFrame.getlogoutBtn())) {
@@ -773,9 +774,10 @@ public class Handler extends MouseAdapter implements ActionListener {
                 managebukuFrame.getidField().setText("1");
             }
             else {
-                Buku lastbuku = buku.get(buku.size() - 1);
-                int temp = Integer.parseInt(lastbuku.getIdbuku());
-                int count = temp + 1;
+                int count = 0;
+                for(Buku b : buku){
+                    count = count + 1;
+                }
                 managebukuFrame.getidField().setText(Integer.toString(count));
                 
             }
