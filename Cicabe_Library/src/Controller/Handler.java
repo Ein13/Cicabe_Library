@@ -70,6 +70,8 @@ public class Handler extends MouseAdapter implements ActionListener {
         laporanFrame.setVisible(false);
         settingFrame.setVisible(false);
         listmemberFrame.setVisible(false);
+        
+        mainFrame.getlaporanBtn().setEnabled(false);
           
         loginFrame.addActionListener(this);
         mainFrame.addActionListener(this);
@@ -93,6 +95,7 @@ public class Handler extends MouseAdapter implements ActionListener {
                     pengembalianFrame.getindukField().setText(model.getValueAt(i,1).toString());
                     //namaField.setText(model.getValueAt(i,2).toString());
                     pengembalianFrame.setTableBuku(con.loadTablePeminjamanDet(model.getValueAt(i,0).toString()));
+                    pengembalianFrame.getdendaField().setText("0");
                     if(pengembalianFrame.getbukuTable().getRowCount()==0){
                         pengembalianFrame.getsubmitBtn().setEnabled(false);
                     }
@@ -130,6 +133,7 @@ public class Handler extends MouseAdapter implements ActionListener {
          
         loginFrame.getRootPane().setDefaultButton(loginFrame.getloginBtn());
         listmemberFrame.getRootPane().setDefaultButton(listmemberFrame.getsearchBtn());
+        settingFrame.getRootPane().setDefaultButton(settingFrame.getupdateBtn());
         peminjamanFrame.getnomorindukField().setEditable(false);
         
         settingFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -477,6 +481,7 @@ public class Handler extends MouseAdapter implements ActionListener {
             }
             else if(source.equals(pengembalianFrame.getbackBtn())) {
                 this.emptyKeranjangPengembalianTable();
+                this.emptyPeminjamanDetTable();
                 pengembalianFrame.getidpinjamField().setText("");
                 pengembalianFrame.getidpengembalianField().setText("");
                 pengembalianFrame.getindukField().setText("");
@@ -705,13 +710,30 @@ public class Handler extends MouseAdapter implements ActionListener {
             }
             
             if (source.equals(settingFrame.getupdateBtn())){
-                settingFrame.setVisible(false);
-                mainFrame.setVisible(false);
-                loginFrame.setVisible(true);
+                Petugas p = new Petugas("1","Admin",
+                        settingFrame.getusernameField().getText(),settingFrame.getnewpasswordField().getText());
+                boolean cek = con.updateAdmin(p, settingFrame.getoldpasswordField().getText());
+                System.out.println(cek);
+                if(!cek){
+                    JOptionPane.showMessageDialog(settingFrame, "Data gagal diubah", "Setting", JOptionPane.ERROR_MESSAGE);
+                }else{
+                    JOptionPane.showMessageDialog(settingFrame,
+                            "Data berhasil diubah", "Setting", JOptionPane.INFORMATION_MESSAGE);
+                    System.out.println("echo");
+                    settingFrame.setVisible(false);
+                    
+                }
+                settingFrame.getnewpasswordField().setText("");
+                settingFrame.getusernameField().setText("");
+                settingFrame.getoldpasswordField().setText("");
+                
                 
             }
             else if (source.equals(settingFrame.getcloseBtn())){
                 settingFrame.setVisible(false);
+                settingFrame.getnewpasswordField().setText("");
+                settingFrame.getusernameField().setText("");
+                settingFrame.getoldpasswordField().setText("");
             }
             
             if(source.equals(listmemberFrame.getbackBtn())){
@@ -723,6 +745,7 @@ public class Handler extends MouseAdapter implements ActionListener {
                 listmemberFrame.setTable(con.searchMember(kategori, keyword));
             }
             else if(source.equals(listmemberFrame.getokBtn())){
+                this.emptyKeranjangPeminjamanTable();
                 DefaultTableModel model = (DefaultTableModel) listmemberFrame.getsearchTable().getModel();
                 int baris = listmemberFrame.getsearchTable().getSelectedRow();
                 String nis = model.getValueAt(baris, 0).toString();
@@ -1098,6 +1121,15 @@ public class Handler extends MouseAdapter implements ActionListener {
             DefaultTableModel modelkeranjang = (DefaultTableModel) pengembalianFrame.getkeranjangTable().getModel();
             if(modelkeranjang.getRowCount() > 0){
                 for (int i = 0; i <= modelkeranjang.getRowCount(); i++){
+                    modelkeranjang.removeRow(0);
+                }
+            }
+        }
+        
+        public void emptyKeranjangPeminjamanTable(){
+            DefaultTableModel modelkeranjang = (DefaultTableModel) peminjamanFrame.getkeranjangTable().getModel();
+            if(modelkeranjang.getRowCount() > 0){
+                for (int i = 0; i <= modelkeranjang.getRowCount(); i++) {
                     modelkeranjang.removeRow(0);
                 }
             }

@@ -328,6 +328,23 @@ public class Database {
         return cek;
     }
     
+    public boolean updateAdmin(Petugas a){
+        connect();
+        boolean cek = false;
+        int row;
+        try{
+            row = stmt.executeUpdate("UPDATE admin SET username = '"+a.getUsername()+"', password = '"+a.getPassword()+"'");
+            if(row > 0){
+                cek = true;
+            }
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Update Admin", JOptionPane.ERROR_MESSAGE);
+        }
+        disconnect();
+        System.out.println(cek);
+        return cek;
+    }
+    
     public boolean updateBuku(Buku b){
         connect();
         boolean cek = false;

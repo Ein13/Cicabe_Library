@@ -161,7 +161,7 @@ public class Controller {
     }
     
     public boolean addPeminjamanDet(Peminjaman_det p){
-        //ArrayList<Peminjaman_det> pinjamdet = loadPeminjamanDet();
+        //ArrayList<Peminjaman_det> pinjamdet = ();
         return db.insertPeminjaman_Det(p);
     }
     
@@ -218,7 +218,20 @@ public class Controller {
         
         member = loadMember();
         return cek;
-    } 
+    }
+    
+    public boolean updateAdmin(Petugas a, String oldpass){
+        boolean cek = false;
+        ArrayList<Petugas> admin = loadAdmin();
+        
+        for(Petugas ad : admin){
+            if(ad.getPassword().equals(oldpass)){
+                db.updateAdmin(a);
+                cek = true;
+            }
+        }
+        return cek;
+    }
     
     //CEK CEK RICEK//////////////////////////////////////////////////////////////////////////////
     
