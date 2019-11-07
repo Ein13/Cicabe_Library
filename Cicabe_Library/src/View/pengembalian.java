@@ -205,6 +205,8 @@ public class pengembalian extends javax.swing.JFrame {
 
         jLabel6.setText("Status");
 
+        statusField.setEditable(false);
+
         pinjamDateChooser.setDateFormatString("dd-MM-yyyy");
 
         kembaliDateChooser.setDateFormatString("dd-MM-yyyy");

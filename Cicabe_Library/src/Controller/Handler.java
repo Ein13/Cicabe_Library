@@ -636,7 +636,7 @@ public class Handler extends MouseAdapter implements ActionListener {
             }
             else if(source.equals(pengembalianFrame.getsubmitBtn())) {
                 
-                TableModel model = pengembalianFrame.getbukuTable().getModel();
+                TableModel model = pengembalianFrame.getkeranjangTable().getModel();
                 int totalKembali = totalBuku(model);
                 
                 
@@ -662,7 +662,11 @@ public class Handler extends MouseAdapter implements ActionListener {
                         }
                         JOptionPane.showMessageDialog(peminjamanFrame, "Berhasil input data pengembalian", "Pengembalian", JOptionPane.INFORMATION_MESSAGE);
                         pengembalianFrame.getindukField().setText("");
-                        int currentID = Integer.parseInt(pengembalianFrame.getidpengembalianField().getText()) + 1;
+                        pengembalianFrame.getnamaField().setText("");
+                        pengembalianFrame.getdendaField().setText("0");
+                        Date dateNow = new java.util.Date();
+                        pengembalianFrame.getkembaliDateChooserField().setDate(dateNow);
+                        pengembalianFrame.getpinjamDateChooserField().setDate(dateNow);
                         incrementPengembalian();
                         
                         
