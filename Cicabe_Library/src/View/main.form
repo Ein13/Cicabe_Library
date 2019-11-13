@@ -240,7 +240,7 @@
       <SubComponents>
         <Component class="javax.swing.JButton" name="laporanBtn">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Laporan"/>
+            <Property name="text" type="java.lang.String" value="Lihat Data"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="settingBtn">

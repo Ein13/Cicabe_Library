@@ -30,7 +30,7 @@ public class Database {
     
     public void connect() {
         try {
-            String msAccDB = System.getProperty("user.dir") + "\\src\\cicabrary.accdb";
+            String msAccDB = System.getProperty("user.dir") + "\\cicabrary.accdb";
             String url = "jdbc:ucanaccess://" + msAccDB;
             con = DriverManager.getConnection(url);
             stmt = con.createStatement();
@@ -183,11 +183,11 @@ public class Database {
         return kembali;
     }
     
-    public void loadKembaliDet(){
+    public void loadKembaliDet(String id){
         connect();
         try{
             kembaliDet = new ArrayList();
-            rs = stmt.executeQuery("SELECT * FROM pengembalian_det");
+            rs = stmt.executeQuery("SELECT * FROM pengembalian_det WHERE id_Kembali = '"+ id +"'");
             while(rs.next()){
                 kembaliDet.add(new Pengembalian_det(rs.getString("id_Kembali"), rs.getString("id_Buku"), rs.getInt("jml")));
             }
@@ -196,8 +196,8 @@ public class Database {
         }
     }
     
-    public ArrayList<Pengembalian_det> getKembaliDet(){
-        loadKembaliDet();
+    public ArrayList<Pengembalian_det> getKembaliDet(String id){
+        loadKembaliDet(id);
         return kembaliDet;
     }
     
@@ -333,7 +333,7 @@ public class Database {
         boolean cek = false;
         int row;
         try{
-            row = stmt.executeUpdate("UPDATE admin SET username = '"+a.getUsername()+"', password = '"+a.getPassword()+"'");
+            row = stmt.executeUpdate("UPDATE admin SET username = '"+a.getUsername()+"', password = '"+a.getPassword()+"' WHERE id = '"+ a.getNIG() +"'");
             if(row > 0){
                 cek = true;
             }
@@ -468,5 +468,45 @@ public class Database {
     public ArrayList<Peminjaman> getCariPeminjaman(String kategori, String keyword){
         cariPeminjaman(kategori, keyword);
         return pinjam;
+    }
+    
+    public void cariTglPeminjaman(int bulan, int tahun){
+       connect();
+        try {
+            pinjam = new ArrayList();
+            rs = stmt.executeQuery("SELECT * FROM peminjaman WHERE MONTH(tgl_Pinjam) = "+ bulan +" AND YEAR(tgl_Pinjam) = "+ tahun +"");
+            while (rs.next()){
+                pinjam.add(new Peminjaman(rs.getString("id_Pinjam"), rs.getString("nis"), 
+                        rs.getDate("tgl_Pinjam"), rs.getDate("tgl_Kembali"), 
+                        rs.getInt("total_Pinjam")));
+            }
+        } catch (SQLException e){
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Cari Pinjam", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    public ArrayList<Peminjaman> getCariTglPeminjaman(int bulan, int tahun){
+        cariTglPeminjaman(bulan, tahun);
+        return pinjam;
+    }
+    
+    public void cariTglPengembalian(int bulan, int tahun){
+       connect();
+        try {
+            kembali = new ArrayList();
+            rs = stmt.executeQuery("SELECT * FROM pengembalian WHERE MONTH(tgl_Kembali) = "+ bulan +" AND YEAR(tgl_Kembali) = "+ tahun +"");
+            while (rs.next()){
+                kembali.add(new Pengembalian(rs.getString("id_Kembali"), rs.getString("id_Pinjam"), 
+                        rs.getDate("tgl_Kembali"), rs.getInt("denda"), 
+                        rs.getInt("total_Kembali")));
+            }
+        } catch (SQLException e){
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Cari Pinjam", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    public ArrayList<Pengembalian> getCariTglPengembalian(int bulan, int tahun){
+        cariTglPengembalian(bulan, tahun);
+        return kembali;
     }
 }

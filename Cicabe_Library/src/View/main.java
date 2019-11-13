@@ -145,7 +145,7 @@ public class main extends javax.swing.JFrame {
 
         jPanel4.setOpaque(false);
 
-        laporanBtn.setText("Laporan");
+        laporanBtn.setText("Lihat Data");
 
         settingBtn.setText("Setting");
 

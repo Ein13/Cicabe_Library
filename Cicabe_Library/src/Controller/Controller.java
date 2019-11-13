@@ -46,8 +46,8 @@ public class Controller {
         return kembali;
     }
     
-    public ArrayList loadPengembalianDet(){
-        ArrayList<Pengembalian_det> kembalidet = db.getKembaliDet();
+    public ArrayList loadPengembalianDet(String id){
+        ArrayList<Pengembalian_det> kembalidet = db.getKembaliDet(id);
         return kembalidet;
     }
     
@@ -112,6 +112,45 @@ public class Controller {
         ArrayList<Buku> buku = loadBuku();
         
         for(Peminjaman_det pind : peminjaman){
+            String idbuku = pind.getId_buku();
+            for(Buku book : buku){
+                if (book.getIdbuku().equals(idbuku)){
+                    model.addRow(new Object[]{pind.getId_buku(), book.getJudul(), pind.getJml()});
+                    break;
+                }
+            }
+        }
+        
+        return model;
+    }
+    
+     public DefaultTableModel loadTablePengembalian(){
+        DefaultTableModel model = new DefaultTableModel(new String[]{"ID Kembali", "ID Pinjam", "Tgl Kembali", "Denda", "Total Kembali"}, 0){
+            @Override
+            public boolean isCellEditable(int row, int column){
+                return false;
+            }
+        };
+        ArrayList<Pengembalian> kembali = loadPengembalian();
+        
+        kembali.forEach((kem) -> {
+            model.addRow(new Object[]{kem.getId_kembali(), kem.getId_pinjam(), kem.getTgl_Kembali(), kem.getDenda(), kem.getTotal_kembali()});
+        });
+        return model;
+    }
+    
+    public DefaultTableModel loadTablePengembalianDet(String id){
+        String id2 = id;
+        DefaultTableModel model = new DefaultTableModel(new String[]{"ID Buku","Judul Buku","Jumlah Kembali"},0){
+            public boolean isCellEditable(int row, int column){
+                return false;
+            }
+        };
+        
+        ArrayList<Pengembalian_det> pengembalian = loadPengembalianDet(id2);
+        ArrayList<Buku> buku = loadBuku();
+        
+        for(Pengembalian_det pind : pengembalian){
             String idbuku = pind.getId_buku();
             for(Buku book : buku){
                 if (book.getIdbuku().equals(idbuku)){
@@ -235,9 +274,16 @@ public class Controller {
     
     //CEK CEK RICEK//////////////////////////////////////////////////////////////////////////////
     
-    public boolean cekLogin(String user, String pass){
+    public String cekLogin(String user, String pass){
         ArrayList<Petugas> admin = loadAdmin();
-        return admin.stream().anyMatch((a) -> (a.getUsername().equals(user) && a.getPassword().equals(pass)));
+        for (Petugas adm:admin){
+            if (adm.getUsername().equals(user)){
+                if (adm.getPassword().equals(pass)){
+                    return adm.getNIG();
+                }
+            }
+        }
+        return "";
     }
     
     public boolean cekMember(String nis){
@@ -288,6 +334,30 @@ public class Controller {
         return model;
     }
     
+     public DefaultTableModel searchTglPeminjaman(int bulan, String tahun){
+        ArrayList<Peminjaman> pinjam = db.getCariTglPeminjaman(bulan, Integer.parseInt(tahun));
+        
+        
+        DefaultTableModel model = new DefaultTableModel(new String[]{"ID Pinjam", "NIS", "Tgl Pinjam", "Tgl Kembali", "Total Pinjam"}, 0);
+        
+        pinjam.forEach((pin) -> {
+            model.addRow(new Object[]{pin.getId_pinjam(), pin.getNis(), pin.getTgl_pinjam(), pin.getTgl_kembali(), pin.getTotal_pinjam()});
+        });
+        return model;
+    }
+     
+    public DefaultTableModel searchTglPengembalian(int bulan, String tahun){
+        ArrayList<Pengembalian> kembali = db.getCariTglPengembalian(bulan, Integer.parseInt(tahun));
+        
+        
+        DefaultTableModel model = new DefaultTableModel(new String[]{"ID Kembali", "ID Pinjam", "Tgl Kembali", "Denda", "Total Kembali"}, 0);
+        
+        kembali.forEach((kem) -> {
+            model.addRow(new Object[]{kem.getId_kembali(), kem.getId_pinjam(), kem.getTgl_Kembali(), kem.getDenda(), kem.getTotal_kembali()});
+        });
+        return model;
+    }
+     
     //TRANSAKSI STUFF
     
     public boolean kurangiStokBuku(String idBuku, int jmlRequestPinjam){

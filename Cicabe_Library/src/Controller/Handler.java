@@ -71,7 +71,7 @@ public class Handler extends MouseAdapter implements ActionListener {
         settingFrame.setVisible(false);
         listmemberFrame.setVisible(false);
         
-        mainFrame.getlaporanBtn().setEnabled(false);
+        //mainFrame.getlaporanBtn().setEnabled(false);
           
         loginFrame.addActionListener(this);
         mainFrame.addActionListener(this);
@@ -131,6 +131,36 @@ public class Handler extends MouseAdapter implements ActionListener {
             }
         });
          
+        laporanFrame.getLaporanTable().addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TableModel model = laporanFrame.getLaporanTable().getModel();
+                 String id = model.getValueAt(laporanFrame.getLaporanTable().getSelectedRow(), 0).toString();
+                if (laporanFrame.getlaporanComboBox().equals("Peminjaman")){
+                    laporanFrame.setDetailTable(con.loadTablePeminjamanDet(id));
+                }
+                else{
+                    laporanFrame.setDetailTable(con.loadTablePengembalianDet(id));
+                }
+            }
+        });
+                
+        laporanFrame.getLaporanCombo().addActionListener (new ActionListener () {
+            public void actionPerformed(ActionEvent e) {
+                if (laporanFrame.getlaporanComboBox().equals("Peminjaman")){
+                    laporanFrame.setLaporanTable(con.loadTablePeminjaman());
+                }
+                else{
+                    laporanFrame.setLaporanTable(con.loadTablePengembalian());
+                }
+                DefaultTableModel model = (DefaultTableModel) laporanFrame.getDetailTable().getModel();
+                if(model.getRowCount() > 0){
+                    for (int i = 0; i <= model.getRowCount(); i++) {
+                        model.removeRow(0);
+                    }
+                }
+            }
+        });
         loginFrame.getRootPane().setDefaultButton(loginFrame.getloginBtn());
         listmemberFrame.getRootPane().setDefaultButton(listmemberFrame.getsearchBtn());
         settingFrame.getRootPane().setDefaultButton(settingFrame.getupdateBtn());
@@ -178,7 +208,7 @@ public class Handler extends MouseAdapter implements ActionListener {
         if(source.equals(loginFrame.getloginBtn())) {
             login(loginFrame.getusernameField().getText(), loginFrame.getpasswordField().getText());
             loginFrame.getpasswordField().setText("");
-            loginFrame.getusernameField().setText("");
+            //loginFrame.getusernameField().setText("");
         }
         
         if(source.equals(mainFrame.getlogoutBtn())) {
@@ -226,6 +256,7 @@ public class Handler extends MouseAdapter implements ActionListener {
         }
         else if(source.equals(mainFrame.getlaporanBtn())){
             //laporanFrame.setTable(con.loadTableLaporan());
+            laporanFrame.setLaporanTable(con.loadTablePeminjaman());
             laporanFrame.setVisible(true);
             mainFrame.setVisible(false);
         }
@@ -708,14 +739,32 @@ public class Handler extends MouseAdapter implements ActionListener {
             else if(source.equals(laporanFrame.getlogoutBtn())){
                 logoutEvent();
             }
+            else if(source.equals(laporanFrame.getsearchBtn())){
+                if (laporanFrame.getlaporanComboBox().equals("Peminjaman")){
+                    int bulan = laporanFrame.getBulanComboBox().getSelectedIndex() + 1;
+                    String tahun = laporanFrame.getTahunComboBox().getSelectedItem().toString();
+                    laporanFrame.setLaporanTable(con.searchTglPeminjaman(bulan, tahun));
+                }
+                else if (laporanFrame.getlaporanComboBox().equals("Pengembalian")){
+                    int bulan = laporanFrame.getBulanComboBox().getSelectedIndex() + 1;
+                    String tahun = laporanFrame.getTahunComboBox().getSelectedItem().toString();
+                    laporanFrame.setLaporanTable(con.searchTglPengembalian(bulan, tahun));
+                }
+                DefaultTableModel model = (DefaultTableModel) laporanFrame.getDetailTable().getModel();
+                if(model.getRowCount() > 0){
+                    for (int i = 0; i <= model.getRowCount(); i++) {
+                        model.removeRow(0);
+                    }
+                }
+            }
             
             if (source.equals(settingFrame.getupdateBtn())){
-                Petugas p = new Petugas("1","Admin",
+                Petugas p = new Petugas(settingFrame.getIdField().getText(),settingFrame.getusernameField().getText(),
                         settingFrame.getusernameField().getText(),settingFrame.getnewpasswordField().getText());
                 boolean cek = con.updateAdmin(p, settingFrame.getoldpasswordField().getText());
                 System.out.println(cek);
                 if(!cek){
-                    JOptionPane.showMessageDialog(settingFrame, "Data gagal diubah", "Setting", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(settingFrame, "Password Lama Salah", "Setting", JOptionPane.ERROR_MESSAGE);
                 }else{
                     JOptionPane.showMessageDialog(settingFrame,
                             "Data berhasil diubah", "Setting", JOptionPane.INFORMATION_MESSAGE);
@@ -724,7 +773,7 @@ public class Handler extends MouseAdapter implements ActionListener {
                     
                 }
                 settingFrame.getnewpasswordField().setText("");
-                settingFrame.getusernameField().setText("");
+                //settingFrame.getusernameField().setText("");
                 settingFrame.getoldpasswordField().setText("");
                 
                 
@@ -788,9 +837,11 @@ public class Handler extends MouseAdapter implements ActionListener {
         }
         
         public void login(String usr, String pwd) {
-            if(con.cekLogin(usr, pwd)) {
+            String id = con.cekLogin(usr, pwd);
+            if(!id.isEmpty()) {
                 loginFrame.setVisible(false);
                 JOptionPane.showMessageDialog(null, "Selamat Datang, " + usr +".");
+                settingFrame.getIdField().setText(id);
                 mainFrame.setVisible(true);
             }
             else {
@@ -1096,6 +1147,7 @@ public class Handler extends MouseAdapter implements ActionListener {
                     managebukuFrame.setVisible(false);
                     laporanFrame.setVisible(false);
                     settingFrame.setVisible(false);
+                    settingFrame.getIdField().setText("");
                     listmemberFrame.setVisible(false);
                     //JOptionPane.showMessageDialog(null, "Berhasil Logout!", "Logout", JOptionPane.INFORMATION_MESSAGE);
                     loginFrame.setVisible(true);
