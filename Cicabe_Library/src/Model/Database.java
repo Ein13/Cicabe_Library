@@ -30,7 +30,7 @@ public class Database {
     
     public void connect() {
         try {
-            String msAccDB = System.getProperty("user.dir") + "\\cicabrary.accdb";
+            String msAccDB = System.getProperty("user.dir") + "\\src\\cicabrary.accdb";
             String url = "jdbc:ucanaccess://" + msAccDB;
             con = DriverManager.getConnection(url);
             stmt = con.createStatement();

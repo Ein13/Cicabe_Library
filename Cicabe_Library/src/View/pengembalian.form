@@ -239,31 +239,42 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jLabel1" max="32767" attributes="0"/>
-                              <Component id="tanggalbalikLabel" alignment="0" pref="150" max="32767" attributes="0"/>
-                              <Component id="tglpinjamLabel" alignment="0" max="32767" attributes="0"/>
-                              <Component id="namaLabel" alignment="0" max="32767" attributes="0"/>
-                              <Component id="nomorindukLabel" alignment="0" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="jLabel1" max="32767" attributes="0"/>
+                                  <Component id="tanggalbalikLabel" alignment="0" pref="150" max="32767" attributes="0"/>
+                                  <Component id="tglpinjamLabel" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="nomorindukLabel" alignment="0" max="32767" attributes="0"/>
+                              </Group>
+                              <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="kembaliDateChooser" alignment="0" pref="174" max="32767" attributes="0"/>
-                                  <Component id="pinjamDateChooser" alignment="0" max="32767" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                      <Component id="indukField" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="idpinjamField" alignment="0" pref="130" max="32767" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace pref="98" max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="namaLabel" alignment="0" min="-2" pref="35" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="namaField" max="32767" attributes="0"/>
+                                      <Component id="idpengembalianField" pref="120" max="32767" attributes="0"/>
+                                  </Group>
                               </Group>
                               <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="indukField" pref="210" max="32767" attributes="0"/>
-                                      <Component id="namaField" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="idpinjamField" alignment="0" min="-2" pref="130" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="kembaliDateChooser" alignment="0" min="-2" pref="174" max="-2" attributes="0"/>
+                                      <Component id="pinjamDateChooser" alignment="0" min="-2" pref="174" max="-2" attributes="0"/>
+                                      <Component id="janjiField" alignment="0" min="-2" pref="152" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="idpengembalianField" min="-2" pref="120" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="dendaLabel" min="-2" pref="156" max="-2" attributes="0"/>
@@ -301,25 +312,34 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="nomorindukLabel" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                       <Component id="indukField" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="namaLabel" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                       <Component id="namaField" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="tglpinjamLabel" min="-2" pref="25" max="-2" attributes="0"/>
-                      <Component id="pinjamDateChooser" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="pinjamDateChooser" max="32767" attributes="0"/>
+                      <Component id="tglpinjamLabel" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
                       <Component id="tanggalbalikLabel" min="-2" pref="25" max="-2" attributes="0"/>
                       <Component id="kembaliDateChooser" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="delBtn" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                          <Component id="submitBtn" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="janjiField" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel4" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="dendaLabel" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                               <Component id="dendaField" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -329,13 +349,6 @@
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="jScrollPane3" pref="169" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="delBtn" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-                          <Component id="submitBtn" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -476,6 +489,16 @@
         <Component class="javax.swing.JButton" name="delBtn">
           <Properties>
             <Property name="text" type="java.lang.String" value="Delete"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="janjiField">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel4">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Tanggal Kembali"/>
           </Properties>
         </Component>
       </SubComponents>

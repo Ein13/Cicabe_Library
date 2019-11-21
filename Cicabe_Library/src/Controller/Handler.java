@@ -85,6 +85,8 @@ public class Handler extends MouseAdapter implements ActionListener {
         pengembalianFrame.getpeminjamanTable().addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
+                String pattern = "yyyy-MM-dd";
+                DateFormat df = new SimpleDateFormat(pattern);
                 int row = pengembalianFrame.getpeminjamanTable().rowAtPoint(evt.getPoint());
                 int col = pengembalianFrame.getpeminjamanTable().columnAtPoint(evt.getPoint());
                 if (row >= 0 && col >= 0) {
@@ -93,6 +95,8 @@ public class Handler extends MouseAdapter implements ActionListener {
                     // Kalau fail, kemungkinan urutan table beda dengan database 
                     pengembalianFrame.getidpinjamField().setText(model.getValueAt(i,0).toString());
                     pengembalianFrame.getindukField().setText(model.getValueAt(i,1).toString());
+                    Date dateNow = new java.util.Date();
+                    pengembalianFrame.getkembaliDateChooserField().setDate(dateNow);
                     //namaField.setText(model.getValueAt(i,2).toString());
                     pengembalianFrame.setTableBuku(con.loadTablePeminjamanDet(model.getValueAt(i,0).toString()));
                     pengembalianFrame.getdendaField().setText("0");
@@ -114,7 +118,8 @@ public class Handler extends MouseAdapter implements ActionListener {
                     try {
                         //jdateChooser
                         Date date = new SimpleDateFormat("yyyy-MM-dd").parse((String)model.getValueAt(i, 3).toString());
-                        pengembalianFrame.getkembaliDateChooserField().setDate(date);
+                        pengembalianFrame.getJanjiField().setText(df.format(date));
+                        
                     } catch (ParseException ex) {
                         Logger.getLogger(editmember.class.getName()).log(Level.SEVERE, null, ex);
                     }
