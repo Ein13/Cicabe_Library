@@ -85,7 +85,7 @@ public class Handler extends MouseAdapter implements ActionListener {
         pengembalianFrame.getpeminjamanTable().addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                String pattern = "yyyy-MM-dd";
+                String pattern = "dd-MM-yyyy";
                 DateFormat df = new SimpleDateFormat(pattern);
                 int row = pengembalianFrame.getpeminjamanTable().rowAtPoint(evt.getPoint());
                 int col = pengembalianFrame.getpeminjamanTable().columnAtPoint(evt.getPoint());
@@ -541,6 +541,7 @@ public class Handler extends MouseAdapter implements ActionListener {
             else if(source.equals(pengembalianFrame.getdelBtn())){
                 DefaultTableModel model = (DefaultTableModel) pengembalianFrame.getkeranjangTable().getModel();
                 DefaultTableModel model2 = (DefaultTableModel) pengembalianFrame.getbukuTable().getModel();
+                TableModel model3 = pengembalianFrame.getpeminjamanTable().getModel();
                 boolean ada = false;
                 int temp = 0;
                 int temp2 = 0;
@@ -568,13 +569,19 @@ public class Handler extends MouseAdapter implements ActionListener {
                     model2.addRow(new Object[]{idBuku,judulBuku,jmlPinjam});
                 }
                 Date dateNow = new java.util.Date();
-                long difference = (dateNow.getTime()-pengembalianFrame.getkembaliDateChooserField().getDate().getTime())/86400000;
-                temp2 = this.totalBuku(model);
-                temp2 = temp2 * Math.toIntExact(difference)*500;
-                if(difference>0){
-                    pengembalianFrame.getdendaField().setText(Integer.toString(temp2));
-                }else{
-                    pengembalianFrame.getdendaField().setText("0");
+                try {
+                    Date date1=new SimpleDateFormat("yyyy-MM-dd").parse((String)model3.getValueAt(baris, 3).toString());
+                    long difference = (pengembalianFrame.getkembaliDateChooserField().getDate().getTime()-date1.getTime())/86400000;
+                    temp2 = this.totalBuku(model);
+                    System.out.println(difference);
+                    temp2 = temp2 * Math.toIntExact(difference)*500;
+                    if(difference>0){
+                        pengembalianFrame.getdendaField().setText(Integer.toString(temp2));
+                    }else{
+                        pengembalianFrame.getdendaField().setText("0");
+                    }
+                } catch (ParseException ex) {
+                    Logger.getLogger(Handler.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 //System.out.println(temp2);
                 
@@ -586,6 +593,7 @@ public class Handler extends MouseAdapter implements ActionListener {
                 TableModel model2 = pengembalianFrame.getbukuTable().getModel();
                 DefaultTableModel model3 = (DefaultTableModel) pengembalianFrame.getbukuTable().getModel();
                 TableModel model4 = pengembalianFrame.getkeranjangTable().getModel();
+                TableModel model5 = pengembalianFrame.getpeminjamanTable().getModel();
                 
                 
                 String idBuku = model2.getValueAt(i, 0).toString();
@@ -621,14 +629,21 @@ public class Handler extends MouseAdapter implements ActionListener {
                         }
                         
                         Date dateNow = new java.util.Date();
-                        long difference = (dateNow.getTime()-pengembalianFrame.getkembaliDateChooserField().getDate().getTime())/86400000;
-                        int temp2 = this.totalBuku(model4);
-                        temp2 = temp2 * Math.toIntExact(difference)*500;
-                        if(difference>0){
-                            pengembalianFrame.getdendaField().setText(Integer.toString(temp2));
-                        }else{
-                            pengembalianFrame.getdendaField().setText("0");
+                        try {
+                            Date date1=new SimpleDateFormat("yyyy-MM-dd").parse((String)model5.getValueAt(i, 3).toString());
+                            long difference = (pengembalianFrame.getkembaliDateChooserField().getDate().getTime()-date1.getTime())/86400000;
+                            int temp2 = this.totalBuku(model4);
+                            System.out.println(difference);
+                            temp2 = temp2 * Math.toIntExact(difference)*500;
+                            if(difference>0){
+                                pengembalianFrame.getdendaField().setText(Integer.toString(temp2));
+                            }else{
+                                pengembalianFrame.getdendaField().setText("0");
+                            }
+                        } catch (ParseException ex) {
+                            Logger.getLogger(Handler.class.getName()).log(Level.SEVERE, null, ex);
                         }
+                        
                     }
                     else{
                         JOptionPane.showMessageDialog(peminjamanFrame, "Jumlah salah", "Pengembalian", JOptionPane.ERROR_MESSAGE);
@@ -661,16 +676,20 @@ public class Handler extends MouseAdapter implements ActionListener {
                         model3.removeRow(i);
                     }
                     
-                    System.out.println("echo");
                     Date dateNow = new java.util.Date();
-                    long difference = (dateNow.getTime()-pengembalianFrame.getkembaliDateChooserField().getDate().getTime())/86400000;
-                    int temp2 = totalBuku(model4);
-                    temp2 = temp2 * Math.toIntExact(difference)*500;
-                    String denda = Integer.toString(temp2);
-                    if(difference>0){
-                        pengembalianFrame.getdendaField().setText(denda);
-                    }else{
-                        pengembalianFrame.getdendaField().setText("0");
+                    try {
+                        Date date1=new SimpleDateFormat("yyyy-MM-dd").parse((String)model5.getValueAt(i, 3).toString());
+                        long difference = (pengembalianFrame.getkembaliDateChooserField().getDate().getTime()-date1.getTime())/86400000;
+                        System.out.println(difference);
+                        int temp2 = this.totalBuku(model4);
+                        temp2 = temp2 * Math.toIntExact(difference)*500;
+                        if(difference>0){
+                            pengembalianFrame.getdendaField().setText(Integer.toString(temp2));
+                        }else{
+                            pengembalianFrame.getdendaField().setText("0");
+                        }
+                    } catch (ParseException ex) {
+                        Logger.getLogger(Handler.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
                 else{
